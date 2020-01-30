@@ -1,13 +1,19 @@
 import {combineReducers} from 'redux'
 
-function userReducer(oldState = {username: "cakehole"}, action) {
+const sampleUserObj = {
+	username: "cakehole",
+	preferences: {
+		diets: ["vegan"]
+	}
+}
+
+function userReducer(oldState = sampleUserObj, action) {
 	return oldState
 }
 
 function progressReducer(oldState=null, action){
-	// return action.payload ? action.payload : oldState 
 	switch (action.type){
-		case 'START_SWYPE':
+		case 'PROGRESS':
 			return action.payload
 		default:
 			return oldState

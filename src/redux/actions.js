@@ -1,9 +1,18 @@
-const START_SWYPE = "START_SWYPE"
+// const START_SWYPE = "START_SWYPE"
+// const FILTER = "FILTER"
+const PROGRESS = "PROGRESS"
+
+function home(){
+	return { type: PROGRESS, payload: null}
+}
 
 function begin(){
 	console.log("Let's hunger swype")
-  return {type: START_SWYPE, payload: "in-out"}
+  return {type: PROGRESS, payload: "in-out"}
 }
 
+function filter(){
+  return {type: PROGRESS, payload: "filter"}
+}
 
-export { begin }
+export { begin, filter, home }
