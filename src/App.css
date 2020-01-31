@@ -34,6 +34,12 @@
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
   }
+  
+  /* single button */
+  .single-user-action {
+    grid-row: 4;
+    grid-column: 4 / 6
+  }
 
   .user-prompt {
     grid-row: 2;
@@ -45,26 +51,19 @@
     grid-column: 1 / -1;
   }
 
-  .filter-items {
-    grid-column: 2 / 7;
-    grid-row: auto;
-  }
-
-  .single-user-action {
-    grid-row: 4;
-    grid-column: 4 / 6
-  }
-
   #filter-container {
     padding: 0em 1em;
     grid-column: 2 / 7;
     grid-row: auto;
   }
 
-  .filter-continue-button {
-    grid-row: -1;
-    grid-column: 6 / 6;
+  /* filter row with the label and the toggle */
+  .filter-items {
+    grid-column: 2 / 7;
+    grid-row: auto;
   }
+
+
 
 }
 

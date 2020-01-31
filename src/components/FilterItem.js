@@ -1,20 +1,38 @@
 import React from 'react'
-import { Header, Checkbox, List } from 'semantic-ui-react'
+import { Header, Radio, List } from 'semantic-ui-react'
+import { toTitleCase } from '../utils/Helpers.js'
 
 class FilterItem extends React.Component {
+	constructor(){
+		super()
+		this.state = {
+			checked: true
+		}
+	}
+	
+
+	toggleFilter = (item) => {
+		const init = this.state.checked
+
+		this.setState({
+			checked: !this.state.checked
+		})
+		this.props.onFilterChange(this.props.item, !init)
+	}
+
 	render(){
-		console.log("FilterItem", this.props)
+		console.log("FilterItem(props)", this.props)
 		return(
 			<List.Item className="filter-items">
 				<List.Content floated="right">
-					<Checkbox toggle onChange={ () => console.log(`toggling ${this.props.item}`)}/>
+					<Radio toggle name={ this.props.item } checked={this.state.checked} onChange={ this.toggleFilter } />
 				</List.Content>
 				<List.Content floated="left">
 					<Header
 						as='h4'
 						className="filter-item"
 					>
-						{ this.props.item }
+						{ toTitleCase(this.props.item) }
 					</Header>
 				</List.Content>
 			</List.Item>

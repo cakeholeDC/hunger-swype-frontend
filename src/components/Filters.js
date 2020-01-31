@@ -1,18 +1,85 @@
 import React from 'react'
 import { Container, Header, List, Button, Input } from 'semantic-ui-react'
 import FilterItem from './FilterItem.js'
-import { toTitleCase } from '../utils/TitleCaser.js'
+import { toTitleCase } from '../utils/Helpers.js'
 // import store from '../redux/store'
 import { connect } from 'react-redux'
 
 class Filters extends React.Component {
 	state = {
 		filterStep: "diets",
-		diets: ["Vegetarian", "Vegan", "Keto","Gluten Free"],
-		cuisines: ["Italian", "Chinese", "American", "European", "Mediterranean", "Thai"],
-		courses: ["Breakfast", "Lunch", "Dinner"],
-		keywords: ["Pork", "Seafood"]
+		dietsFilter: [],
+		coursesFilter: [],
+		cuisinesFilter: [],
+		keywordsFilter: []
 	}
+
+	componentDidMount(){
+		this.setState({
+			dietsFilter: this.props.diets,
+			coursesFilter: this.props.courses,
+			cuisinesFilter: this.props.cuisines
+		})
+	}
+	
+	onFilterChange = (item, status) => {
+		console.log(this.state.filterStep ,item, status)
+
+		switch (this.state.filterStep){
+			case "diets":
+			console.log("Before Change =>", this.state.dietsFilter)
+				if (status === false){
+					this.setState({
+						dietsFilter: [...this.state.dietsFilter.filter(diet => diet !== item)]
+					})
+				} else {
+					this.setState({
+						dietsFilter: [...this.state.dietsFilter, item]
+					})
+				}
+				console.log("After Change =>", this.state.dietsFilter)
+				break
+			case "cuisines":
+				if (status === false){
+					this.setState({
+						cuisinesFilter: [...this.state.cuisinesFilter.filter(cuisine => cuisine !== item)]
+					})
+				} else {
+					this.setState({
+						cuisinesFilter: [...this.state.cuisinesFilter, item]
+					})
+				}
+				break
+			case "courses":
+				if (status === false){
+					this.setState({
+						coursesFilter: [...this.state.coursesFilter.filter(course => course !== item)]
+					})
+				} else {
+					this.setState({
+						coursesFilter: [...this.state.coursesFilter, item]
+					})
+				}
+				break
+			case "keyword":
+				if (status === false){
+					this.setState({
+						keywordsFilter: [...this.state.keywordsFilter.filter(keyword => keyword.name !== item)]
+					})
+				} else {
+					this.setState({
+						keywordsFilter: [...this.state.keywordsFilter, item]
+					})
+				}
+				break
+			default:
+				return null
+		}
+	}
+
+	// onFilterChange = (event) => {
+	// 	console.log(event.target.name, event.target.value)
+	// }
 
 	contineToNextStep = () => {
 		let nextStep
@@ -29,6 +96,7 @@ class Filters extends React.Component {
 				break
 			default:
 				nextStep = "diets"
+				break
 		}
 
 		this.setState({
@@ -36,39 +104,54 @@ class Filters extends React.Component {
 		})
 	}
 
-	getFilterItems() {
+	getFilterItems = () => {
 		switch (this.state.filterStep){
 			case "diets":
-				return this.state.diets.sort((a,b) => a > b ? 1 : -1)
+				return this.props.diets.sort((a,b) => a > b ? 1 : -1)
 			case "cuisines":
-				return this.state.cuisines.sort((a,b) => a > b ? 1 : -1)
+				return this.props.cuisines.sort((a,b) => a > b ? 1 : -1)
 			case "courses":
-				return this.state.courses.sort((a,b) => a > b ? 1 : -1)
+				return this.props.courses.sort((a,b) => a > b ? 1 : -1)
 			case "keywords":
-				return this.state.keywords.sort((a,b) => a > b ? 1 : -1)
+				return this.state.keywordsFilter.sort((a,b) => a > b ? 1 : -1)
 			default:
-				return this.state.diets.sort((a,b) => a > b ? 1 : -1)
+				return this.props.diets.sort((a,b) => a > b ? 1 : -1)
 		}
+	}
+
+	addKeywordRow(){
+		return (
+			<List.Item>
+				<List.Content floated="right">
+					<Button size="mini" circular primary icon="plus" onClick={ () => console.log(`Adding Keyword`)}/>
+				</List.Content>
+				<List.Content floated="left">
+					<Input size="mini" placeholder='asparagus...' />
+				</List.Content>
+			</List.Item>
+		)
 	}
 
 	render(){
 		console.log("Filters", this.props)
 		return(
-			<div>
-				<Header as='h3' className="user-prompt filter">Filter By {toTitleCase(this.state.filterStep)}</Header>
+			<React.Fragment>
+				<Header 
+					as='h3' 
+					className="user-prompt filter">
+						{this.state.filterStep !== "keywords" 
+							? toTitleCase(`Filter By ${this.state.filterStep}`)
+							: toTitleCase(`Exclude ${this.state.filterStep}`)
+						}
+					</Header>
 				<Container id="filter-container">
 					<List divided >
-						{ this.getFilterItems().map(item => <FilterItem key={item} item={item}/>) }
+						{ this.getFilterItems().map(item => <FilterItem step={this.state.filterStep} key={item} item={item} onFilterChange={this.onFilterChange}/>) }
 						{ this.state.filterStep === "keywords" 
-							? <List.Item>
-								<List.Content floated="right">
-									<Button size="mini" circular primary icon="plus" onClick={ () => console.log(`Adding Keyword`)}/>
-								</List.Content>
-								<List.Content floated="left">
-									<Input size="mini" placeholder='asparagus...' />
-								</List.Content>
-							  </List.Item>
-							: null}
+							? this.addKeywordRow()
+							: null
+						}
+						{  }
 					</List>
 
 				</Container>
@@ -87,7 +170,7 @@ class Filters extends React.Component {
 					onClick={ this.contineToNextStep }
 					icon='arrow right'
 				/>
-			</div>
+			</React.Fragment>
 		)
 	}
 }
@@ -95,7 +178,12 @@ class Filters extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
-    progress: state.progress
+    progress: state.progress,
+    dishes: state.dishes,
+	diets: state.diets,
+	cuisines: state.cuisines,
+	courses: state.courses,
+	filters: state.filters
   }
 }
 

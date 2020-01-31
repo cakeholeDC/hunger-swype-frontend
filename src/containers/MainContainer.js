@@ -9,7 +9,6 @@ import { connect } from 'react-redux'
 class MainContainer extends React.Component {
 
 	render(){
-		console.log(store.getState())
 		switch (store.getState().progress){
 			case "in-out":
 				return(
