@@ -2,8 +2,9 @@ import React from 'react'
 import { Container, Header, List, Button, Input } from 'semantic-ui-react'
 import FilterItem from './FilterItem.js'
 import { toTitleCase } from '../utils/Helpers.js'
-// import store from '../redux/store'
+import { fetchingDishes } from '../redux/actions'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class Filters extends React.Component {
 	state = {
@@ -14,20 +15,18 @@ class Filters extends React.Component {
 		keywordsFilter: []
 	}
 
-	componentDidMount(){
-		this.setState({
-			dietsFilter: this.props.diets,
-			coursesFilter: this.props.courses,
-			cuisinesFilter: this.props.cuisines
-		})
-	}
+	// componentDidMount(){
+	// 	this.setState({
+	// 		dietsFilter: this.props.diets,
+	// 		coursesFilter: this.props.courses,
+	// 		cuisinesFilter: this.props.cuisines
+	// 	})
+	// }
 	
 	onFilterChange = (item, status) => {
-		console.log(this.state.filterStep ,item, status)
 
 		switch (this.state.filterStep){
 			case "diets":
-			console.log("Before Change =>", this.state.dietsFilter)
 				if (status === false){
 					this.setState({
 						dietsFilter: [...this.state.dietsFilter.filter(diet => diet !== item)]
@@ -37,7 +36,6 @@ class Filters extends React.Component {
 						dietsFilter: [...this.state.dietsFilter, item]
 					})
 				}
-				console.log("After Change =>", this.state.dietsFilter)
 				break
 			case "cuisines":
 				if (status === false){
@@ -84,24 +82,33 @@ class Filters extends React.Component {
 	contineToNextStep = () => {
 		let nextStep
 
-		switch (this.state.filterStep){
-			case "diets":
-				nextStep = "cuisines"
-				break
-			case "cuisines":
-				nextStep = "courses"
-				break
-			case "courses":
-				nextStep = "keywords"
-				break
-			default:
-				nextStep = "diets"
-				break
+		if (this.state.filterStep === "keywords"){
+			this.setState({
+				filterStep: null
+			})
+			this.props.fetchingDishes(this.state)
+			this.props.history.push('/match')
+		} else {
+			switch (this.state.filterStep){
+				case "diets":
+					nextStep = "cuisines"
+					break
+				case "cuisines":
+					nextStep = "courses"
+					break
+				case "courses":
+					nextStep = "keywords"
+					break
+				default:
+					nextStep = "diets"
+					break
+			}	
+			this.setState({
+				filterStep: nextStep
+			})
 		}
 
-		this.setState({
-			filterStep: nextStep
-		})
+		
 	}
 
 	getFilterItems = () => {
@@ -126,14 +133,13 @@ class Filters extends React.Component {
 					<Button size="mini" circular primary icon="plus" onClick={ () => console.log(`Adding Keyword`)}/>
 				</List.Content>
 				<List.Content floated="left">
-					<Input size="mini" placeholder='asparagus...' />
+					<Input size="mini" name="keywords" placeholder='asparagus...' onChange={ this.onFilterChange }/>
 				</List.Content>
 			</List.Item>
 		)
 	}
 
 	render(){
-		console.log("Filters", this.props)
 		return(
 			<React.Fragment>
 				<Header 
@@ -160,7 +166,9 @@ class Filters extends React.Component {
 									? "Cuisine Types" 
 									: this.state.filterStep === "cuisines"
 										? "Courses"
-										: "Matches"
+										: this.state.filterStep === "courses"
+											? "Keywords"
+											: "Matches"
 								}
 				</Header>
 				<Button 
@@ -187,4 +195,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Filters)
+const mapDispatchToProps = (dispatch) => ({
+  fetchingDishes: (obj) => { dispatch(fetchingDishes(obj))} ,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Filters))

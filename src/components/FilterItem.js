@@ -6,7 +6,7 @@ class FilterItem extends React.Component {
 	constructor(){
 		super()
 		this.state = {
-			checked: true
+			checked: false
 		}
 	}
 	
@@ -21,7 +21,6 @@ class FilterItem extends React.Component {
 	}
 
 	render(){
-		console.log("FilterItem(props)", this.props)
 		return(
 			<List.Item className="filter-items">
 				<List.Content floated="right">

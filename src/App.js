@@ -2,6 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import MainContainer from './containers/MainContainer.js'
+import Match from './components/Match.js'
 import { Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux'
 import { fetchingDiets, fetchingCuisines, fetchingCourses } from './redux/actions'
@@ -20,6 +21,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Switch>
+          <Route path="/match" component={ Match } />
           <Route path="/" component={ MainContainer } />
         </Switch>
       </div>
