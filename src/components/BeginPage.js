@@ -9,7 +9,6 @@ import { proceedToFilters } from '../redux/actions'
 
 class BeginPage extends React.Component {
 	render(){
-		console.log(this.props)
 		return(
 			<div className="content-container">
 				<UserPrompt prompt={`Welcome, ${this.props.currentUser.username}`} secondary="Start a Hunger Swype!" />

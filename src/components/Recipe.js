@@ -42,6 +42,7 @@ class Recipe extends React.Component {
 			? null
 			: <React.Fragment>
 				<MenuBar />
+				<div className="recipe-page-container">
 				<Image 
 				 	fluid
 				 	src={ this.state.recipeDetails.photo }
@@ -77,6 +78,7 @@ class Recipe extends React.Component {
 				    	{ this.state.recipeDetails.directions.map((step, index) => <li key={`step-${index}`}>{step}</li> ) }
 				    </ol>
 				</Container>
+				</div>
 			</React.Fragment>
 		)
 	}

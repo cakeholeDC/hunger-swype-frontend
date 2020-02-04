@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Icon, Container } from 'semantic-ui-react'
+import { Item, Icon } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
 class Result extends React.Component {
@@ -7,7 +7,10 @@ class Result extends React.Component {
 		console.log(this.props)
 		const { id: recipeID, photo: recipePhoto, title: recipeTitle, rating: recipeRating, servings: recipeServings } = this.props.dish.recipe
 		return(
-			<Item onClick={()=> this.props.history.push(`/match/recipe/${recipeID}`)}>
+			<Item 
+				onClick={()=> this.props.history.push(`/match/recipe/${recipeID}`)}
+				className="recipe-result"
+			>
 				{ this.props.dish.recipe
 					? <React.Fragment>
 						  <Item.Image size='small' src={recipePhoto} />
