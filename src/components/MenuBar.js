@@ -10,6 +10,7 @@ class MenuBar extends React.Component {
 	}
 
 	toggleUserActionMenu = () => {
+		console.log("Toggling User Action Menu", !this.state.showMenu)
 		this.setState({
 			showMenu: !this.state.showMenu
 		})

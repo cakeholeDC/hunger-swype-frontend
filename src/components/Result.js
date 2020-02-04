@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Icon } from 'semantic-ui-react'
+import { Item, Icon, Container } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
 class Result extends React.Component {
@@ -12,10 +12,10 @@ class Result extends React.Component {
 					? <React.Fragment>
 						  <Item.Image size='small' src={recipePhoto} />
 					      <Item.Content>
-					        <Item.Header as='a'>{recipeTitle}</Item.Header>
+					        <Item.Header as='h1' className="single-result-title">{recipeTitle}</Item.Header>
 					        <Item.Description>Serves {recipeServings}</Item.Description>
 					        <Item.Extra>
-					          <Icon color='green' name='thumbs up' /> { recipeRating }
+					          <Icon color='green' name='thumbs up' /> { recipeRating }%
 					        </Item.Extra>
 					      </Item.Content>
 				      </React.Fragment>

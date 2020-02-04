@@ -54,9 +54,9 @@ class Recipe extends React.Component {
 					<Header as="h4">
 						Cook Time: {this.state.recipeDetails.cook_time} min — Serves: { this.state.recipeDetails.servings }
 					</Header>
-					<Header as="h6" textAlign="right">
-						Rating: { this.state.recipeDetails.rating }/100
-					</Header>
+					<small className="gray-text">
+						<Icon color='green' name='thumbs up' /> { this.state.recipeDetails.rating }%
+					</small>
 					<Divider horizontal>
 				      <Header as='h4'>
 				        <Icon name='list' size='mini' />

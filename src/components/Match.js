@@ -2,7 +2,7 @@ import React from 'react'
 import MenuBar from './MenuBar'
 import Result from './Result'
 import { connect } from 'react-redux'
-import { Image, Button, Item, Header } from 'semantic-ui-react'
+import { Image, Button, Item, Header, Divider } from 'semantic-ui-react'
 import { getResultsPage, showUserMatches } from '../redux/actions'
 
 class Match extends React.Component {
@@ -103,9 +103,11 @@ class Match extends React.Component {
 					  </div>
 					: <React.Fragment>
 						<Header as="h2">Here's some ideas for you:</Header>
+						<Divider />
 						<Item.Group divided>
 							{ this.props.matches.map(dish => <Result dish={dish} /> ) }
-						</Item.Group> 
+						</Item.Group>
+						<div>&nbsp;</div> 
 					</React.Fragment>
 				}
 				</React.Fragment>

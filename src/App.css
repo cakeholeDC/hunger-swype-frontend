@@ -17,7 +17,14 @@
 h3.ui.header.recipe-title {
   margin-top: 1rem;
 }
-  
+
+.single-result-title {
+  width: 90%;
+}
+
+.gray-text {
+  color: #C0C0C0;
+}
 
 
 
