@@ -16,6 +16,12 @@ class Filters extends React.Component {
 		cuisinesFilter: [],
 		keywordsFilter: []
 	}
+
+	componentDidMount(){
+		this.setState({
+			filterStep: "diets"
+		})
+	}
 	
 	onFilterChange = (item, status) => {
 

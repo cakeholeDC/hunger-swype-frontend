@@ -4,7 +4,8 @@ export const PROGRESS = "PROGRESS"
 export const FETCHED_DIETS = "FETCHED_DIETS"
 export const FETCHED_CUISINES = "FETCHED_CUISINES"
 export const FETCHED_COURSES = "FETCHED_COURSES"
-export const MATCHES = "MATCHES"
+export const FETCHED_DISHES = "FETCHED_DISHES"
+export const USER_MATCHES = "USER_MATCHES"
 
 const BASE_URL = "http://localhost:3000"
 // const DISHES_URL = `${BASE_URL}/dishes`
@@ -63,7 +64,7 @@ export function fetchingDishes(filters){
 }
 
 export function fetchedDishes(dish_array){
-	return { type: MATCHES, payload: dish_array }
+	return { type: FETCHED_DISHES, payload: dish_array }
 }
 
 export function fetchedDiets(diets_array){
@@ -84,6 +85,10 @@ export function returnHome(){
 
 export function getMatches(){
 	return { type: PROGRESS, payload: "match"}
+}
+
+export function showUserMatches(matches){
+	return { type: USER_MATCHES, payload: matches}
 }
 
 export function getResultsPage() {

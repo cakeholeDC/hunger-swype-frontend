@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import { PROGRESS, FETCHED_DIETS, FETCHED_CUISINES, FETCHED_COURSES, MATCHES } from './actions.js'
+import { PROGRESS, FETCHED_DIETS, FETCHED_CUISINES, FETCHED_COURSES, FETCHED_DISHES, USER_MATCHES } from './actions.js'
 
 const sampleUserObj = {
 	username: "cakehole",
@@ -23,7 +23,7 @@ function progressReducer(oldState='home', action){
 
 function dishReducer(oldState = [], action){
 	switch (action.type){
-		case MATCHES:
+		case FETCHED_DISHES:
 			return action.payload
 		default:
 			return oldState
@@ -55,8 +55,17 @@ function coursesReducer(oldState=[], action){
 	}
 }
 
-function filterReducer(oldState = {}, action){
-	return oldState
+// function filterReducer(oldState = {}, action){
+// 	return oldState
+// }
+
+function matchReducer(oldState = [], action){
+	switch (action.type){
+		case USER_MATCHES:
+			return action.payload
+		default:
+			return oldState
+	}
 }
 
 
@@ -68,7 +77,7 @@ const rootReducer = combineReducers({
 	diets: dietReducer,
 	cuisines: cuisinesReducer,
 	courses: coursesReducer,
-	filters: filterReducer
+	matches: matchReducer
 })
 
 export default rootReducer

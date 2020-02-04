@@ -3,7 +3,7 @@ import MenuBar from './MenuBar'
 import Result from './Result'
 import { connect } from 'react-redux'
 import { Image, Button, Item, Header } from 'semantic-ui-react'
-import { getResultsPage } from '../redux/actions'
+import { getResultsPage, showUserMatches } from '../redux/actions'
 
 class Match extends React.Component {
 	state={
@@ -56,6 +56,7 @@ class Match extends React.Component {
 		})
 		if (this.state.interested.length + 1 === 5){
 			this.props.getResultsPage()
+			this.props.showUserMatches([...this.state.interested, this.state.currentDish])
 		} else {
 			this.getRandomDish()
 		}
@@ -103,7 +104,7 @@ class Match extends React.Component {
 					: <React.Fragment>
 						<Header as="h2">Here's some ideas for you:</Header>
 						<Item.Group divided>
-							{ this.state.interested.map(dish => <Result dish={dish} /> ) }
+							{ this.props.matches.map(dish => <Result dish={dish} /> ) }
 						</Item.Group> 
 					</React.Fragment>
 				}
@@ -116,12 +117,14 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
     dishes: state.dishes,
-    progress: state.progress
+    progress: state.progress,
+    matches: state.matches
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
 	getResultsPage: () => { dispatch(getResultsPage()) },
+	showUserMatches: (matches) => { dispatch(showUserMatches(matches)) },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Match)

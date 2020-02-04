@@ -2,8 +2,21 @@
   text-align: center;
 }
 
- 
+.ingredient-list,
+.directions-list {
+  text-align: left;
+  padding-left: 2em ;
+  padding-right: 1em ;
+}
 
+.ingredient-list li,
+.directions-list li {
+  margin-bottom: 0.5rem;
+}
+
+h3.ui.header.recipe-title {
+  margin-top: 1rem;
+}
   
 
 

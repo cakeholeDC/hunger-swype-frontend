@@ -1,6 +1,6 @@
 import React from 'react'
 import MenuBar from './MenuBar'
-import { Image, Header, List } from 'semantic-ui-react'
+import { Image, Header, Container, Divider, Icon } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
 const BASE_URL = "http://localhost:3000"
@@ -22,6 +22,16 @@ class Recipe extends React.Component {
 			})
 	}
 
+	getIngredients(){
+		const ingredients = this.state.recipeDetails.ingredients.split(";")
+		return ingredients
+	}
+
+	parseDirections(){
+		const directions = JSON.parse(this.state.recipeDetails.directions)
+		return directions
+	}
+
 	render(){
 		console.log("RECIPE =>", this.props)
 		// if (this.state.recipeDetails !== null){
@@ -37,18 +47,36 @@ class Recipe extends React.Component {
 				 	src={ this.state.recipeDetails.photo }
 				 	className="match-image"
 			 	/>
-				<Header as="h3">
-					{ this.state.recipeDetails.title }
-				</Header>
-				<Header as="h4" textAlign="left">
-					Serves: { this.state.recipeDetails.servings }
-				</Header>
-				<Header as="h4" textAlign="right">
-					{ this.state.recipeDetails.rating }/100
-				</Header>
-				<List ordered>
-					Ingredients: { this.state.recipeDetails.ingredients }
-				</List>
+			 	<Container className="recipe-page">
+					<Header as="h3" className="recipe-title">
+						{ this.state.recipeDetails.title }
+					</Header>
+					<Header as="h4">
+						Cook Time: {this.state.recipeDetails.cook_time} min — Serves: { this.state.recipeDetails.servings }
+					</Header>
+					<Header as="h6" textAlign="right">
+						Rating: { this.state.recipeDetails.rating }/100
+					</Header>
+					<Divider horizontal>
+				      <Header as='h4'>
+				        <Icon name='list' size='mini' />
+							Ingredients 
+					  </Header>
+				    </Divider>
+					<ul className="ingredient-list">
+						{ this.getIngredients().map((ingredient, index) => <li key={`ingredient-${index}`}>{ingredient}</li> ) }
+					</ul>
+					<div>&nbsp;</div>
+					<Divider horizontal>
+				      <Header as='h4'>
+				        <Icon name='tasks' size='mini' />
+							Directions 
+					  </Header>
+				    </Divider>
+				    <ol className="directions-list">
+				    	{ this.state.recipeDetails.directions.map((step, index) => <li key={`step-${index}`}>{step}</li> ) }
+				    </ol>
+				</Container>
 			</React.Fragment>
 		)
 	}
