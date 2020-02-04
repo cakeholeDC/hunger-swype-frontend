@@ -1,10 +1,20 @@
 import React from 'react'
-import { Segment, Image, Icon } from 'semantic-ui-react'
-import { home } from '../redux/actions'
-import store from '../redux/store'
+import { Segment, Image } from 'semantic-ui-react'
+import { returnHome } from '../redux/actions'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class MenuBar extends React.Component {
+	state={
+		showMenu: false
+	}
+
+	toggleUserActionMenu = () => {
+		this.setState({
+			showMenu: !this.state.showMenu
+		})
+	}
+
 	render(){
 		return(
 			<Segment 
@@ -15,11 +25,11 @@ class MenuBar extends React.Component {
 					id="user-avatar"
 					src='https://www.caribbeangamezone.com/wp-content/uploads/2018/03/avatar-placeholder.png' 
 					avatar
-					onClick={ () => console.log('toggle user action menu')}
+					onClick={ () => this.toggleUserActionMenu() }
 					/>
 				<p
 					id="menu-bar-text"
-					onClick={ () => this.props.match.url === '/' ? store.dispatch(home()) : this.props.history.push('/') }
+					onClick={ () => this.props.match.url === '/' ? this.props.returnHome() : this.props.history.push('/') }
 				>
 					Hunger Swype™
 				</p>
@@ -28,4 +38,15 @@ class MenuBar extends React.Component {
 	}
 }
 
-export default withRouter(MenuBar)
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+    progress: state.progress,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+	returnHome: () => { dispatch(returnHome()) }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MenuBar))

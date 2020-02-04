@@ -7,7 +7,7 @@ export const FETCHED_COURSES = "FETCHED_COURSES"
 export const MATCHES = "MATCHES"
 
 const BASE_URL = "http://localhost:3000"
-const DISHES_URL = `${BASE_URL}/dishes`
+// const DISHES_URL = `${BASE_URL}/dishes`
 const FILTER_DISH_URL = `${BASE_URL}/get-matches`
 const DIETS_URL = `${BASE_URL}/diets`
 const COURSES_URL = `${BASE_URL}/courses`
@@ -78,8 +78,16 @@ export function fetchedCourses(courses_array){
 	return { type: FETCHED_COURSES, payload: courses_array }
 }
 
-export function home(){
-	return { type: PROGRESS, payload: null}
+export function returnHome(){
+	return { type: PROGRESS, payload: "home"}
+}
+
+export function getMatches(){
+	return { type: PROGRESS, payload: "match"}
+}
+
+export function getResultsPage() {
+	return { type: PROGRESS, payload: "results"}
 }
 
 export function begin(){
@@ -87,6 +95,6 @@ export function begin(){
   return {type: PROGRESS, payload: "in-out"}
 }
 
-export function filter(){
+export function proceedToFilters(){
   return {type: PROGRESS, payload: "filter"}
 }

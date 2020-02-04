@@ -5,6 +5,8 @@ import { toTitleCase } from '../utils/Helpers.js'
 import { fetchingDishes } from '../redux/actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { getMatches } from '../redux/actions'
+
 
 class Filters extends React.Component {
 	state = {
@@ -14,14 +16,6 @@ class Filters extends React.Component {
 		cuisinesFilter: [],
 		keywordsFilter: []
 	}
-
-	// componentDidMount(){
-	// 	this.setState({
-	// 		dietsFilter: this.props.diets,
-	// 		coursesFilter: this.props.courses,
-	// 		cuisinesFilter: this.props.cuisines
-	// 	})
-	// }
 	
 	onFilterChange = (item, status) => {
 
@@ -84,9 +78,10 @@ class Filters extends React.Component {
 
 		if (this.state.filterStep === "keywords"){
 			this.setState({
-				filterStep: null
+				filterStep: "match"
 			})
 			this.props.fetchingDishes(this.state)
+			this.props.getMatches()
 			this.props.history.push('/match')
 		} else {
 			switch (this.state.filterStep){
@@ -197,6 +192,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchingDishes: (obj) => { dispatch(fetchingDishes(obj))} ,
+  getMatches: () => {dispatch(getMatches())}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Filters))

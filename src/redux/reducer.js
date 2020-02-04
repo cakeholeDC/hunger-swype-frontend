@@ -12,7 +12,7 @@ function userReducer(oldState = sampleUserObj, action) {
 	return oldState
 }
 
-function progressReducer(oldState='null', action){
+function progressReducer(oldState='home', action){
 	switch (action.type){
 		case PROGRESS:
 			return action.payload

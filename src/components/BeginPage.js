@@ -2,14 +2,14 @@ import React from 'react'
 import UserPrompt from './UserPrompt'
 import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { filter } from '../redux/actions'
-import store from '../redux/store'
+import { proceedToFilters } from '../redux/actions'
+// import store from '../redux/store'
 
 
 
 class BeginPage extends React.Component {
 	render(){
-
+		console.log(this.props)
 		return(
 			<div className="content-container">
 				<UserPrompt prompt={`Welcome, ${this.props.currentUser.username}`} secondary="Start a Hunger Swype!" />
@@ -18,7 +18,7 @@ class BeginPage extends React.Component {
 						circular
 						positive
 						className="massive single-user-action"
-						onClick={ () => store.dispatch(filter()) }
+						onClick={ () => this.props.proceedToFilters() }
 						icon='food'
 					/>
 					: <Button 
@@ -26,7 +26,7 @@ class BeginPage extends React.Component {
 						disabled
 						positive
 						className="massive single-user-action"
-						onClick={ () => store.dispatch(filter()) }
+						onClick={ () => this.props.proceedToFilters() }
 						icon='food'
 					/>
 				}
@@ -46,4 +46,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(BeginPage)
+const mapDispatchToProps = (dispatch) => ({
+	proceedToFilters: () => { dispatch(proceedToFilters()) }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(BeginPage)
