@@ -4,6 +4,7 @@ import './App.css';
 import MainContainer from './containers/MainContainer.js'
 import Match from './components/Match.js'
 import Recipe from './components/Recipe.js'
+import Login from './components/Login.js'
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { fetchingDiets, fetchingCuisines, fetchingCourses } from './redux/actions'
@@ -27,6 +28,7 @@ class App extends React.Component {
               : <Redirect to='/' />
           }/>
           <Route path="/match/recipe/:id" component={Recipe}/>
+          <Route path="/login" component={ Login } />
           <Route path="/" component={ MainContainer } />
         </Switch>
       </div>

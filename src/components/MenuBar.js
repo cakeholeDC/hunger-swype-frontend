@@ -22,12 +22,15 @@ class MenuBar extends React.Component {
 				className={ this.props.match.url === '/' ? "ui inverted teal" : "ui inverted teal match-menu"}
 				id="menu-bar"
 			>
-				<Image
-					id="user-avatar"
-					src='https://www.caribbeangamezone.com/wp-content/uploads/2018/03/avatar-placeholder.png' 
-					avatar
-					onClick={ () => this.toggleUserActionMenu() }
+				{ this.props.currentUser ?
+					<Image
+						id="user-avatar"
+						src='https://www.caribbeangamezone.com/wp-content/uploads/2018/03/avatar-placeholder.png' 
+						avatar
+						onClick={ () => this.toggleUserActionMenu() }
 					/>
+					: null
+				}
 				<p
 					id="menu-bar-text"
 					onClick={ () => this.props.match.url === '/' ? this.props.returnHome() : this.props.history.push('/') }

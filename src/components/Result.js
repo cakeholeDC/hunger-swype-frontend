@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 class Result extends React.Component {
 	render(){
 		console.log(this.props)
-		const { id: recipeID, photo: recipePhoto, title: recipeTitle, rating: recipeRating, servings: recipeServings } = this.props.dish.recipe
+		const { id: recipeID, photo: recipePhoto, title: recipeTitle, rating: recipeRating, servings: recipeServings, cook_time: cookTime } = this.props.dish.recipe
 		return(
 			<Item 
 				onClick={()=> this.props.history.push(`/match/recipe/${recipeID}`)}
@@ -16,7 +16,7 @@ class Result extends React.Component {
 						  <Item.Image size='small' src={recipePhoto} />
 					      <Item.Content>
 					        <Item.Header as='h1' className="single-result-title">{recipeTitle}</Item.Header>
-					        <Item.Description>Serves {recipeServings}</Item.Description>
+					        <Item.Description>{cookTime} Minutes / Serves {recipeServings}</Item.Description>
 					        <Item.Extra>
 					          <Icon color='green' name='thumbs up' /> { recipeRating }%
 					        </Item.Extra>

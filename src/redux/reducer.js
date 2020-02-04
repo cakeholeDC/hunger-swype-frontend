@@ -8,7 +8,7 @@ const sampleUserObj = {
 	} 
 }
 
-function userReducer(oldState = sampleUserObj, action) {
+function userReducer(oldState = null, action) {
 	return oldState
 }
 

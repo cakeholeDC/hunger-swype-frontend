@@ -11,7 +11,7 @@ class BeginPage extends React.Component {
 	render(){
 		return(
 			<div className="content-container">
-				<UserPrompt prompt={`Welcome, ${this.props.currentUser.username}`} secondary="Start a Hunger Swype!" />
+				<UserPrompt prompt={this.props.currentUser ? `Welcome, ${this.props.currentUser.username}` : "Welcome"} secondary="Start a Hunger Swype!" />
 				{ this.props.diets.length !== 0 || this.props.cuisines.length !== 0 || this.props.courses.length !== 0
 					? <Button 
 						circular
