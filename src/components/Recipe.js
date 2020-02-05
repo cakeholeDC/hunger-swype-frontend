@@ -42,7 +42,7 @@ class Recipe extends React.Component {
 			? null
 			: <React.Fragment>
 				<MenuBar />
-				<div className="recipe-page-container">
+				<div id="recipe-page-container">
 				<Image 
 				 	fluid
 				 	src={ this.state.recipeDetails.photo }

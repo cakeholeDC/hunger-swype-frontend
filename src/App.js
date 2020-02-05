@@ -17,9 +17,9 @@ class App extends React.Component {
   }
 
   appLoaded = () => {
-    // this.setState({
-    //   loading: false
-    // })
+    this.setState({
+      loading: false
+    })
   }
   
   componentDidMount(){
