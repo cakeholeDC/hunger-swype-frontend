@@ -1,5 +1,103 @@
+/*body {
+  !!! change body in index.css !!!  
+}*/
+
+/* @TODO - put this in a media query and change the background */
+/* also, figure out local storage */
+#root { 
+  height: 100%;
+  width: 100%;
+  background: url('https://cdn.pixabay.com/photo/2015/12/08/00/58/italian-1082230_1280.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover 
+  /*color: #fff; */
+  /*position: relative;*/
+}
+
 .App {
   text-align: center;
+}
+
+#splash-container {
+  height: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 10px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+ 
+#app-name {
+  color: rgba(255, 193, 7, .87);
+  font-family: 'Abril Fatface', cursive;
+  text-align: center;
+  font-size: 5rem;
+  line-height: 4.5rem;
+  margin-bottom: 3rem;
+}
+
+#splash-content {
+  grid-column: 2 / -2;
+  grid-row: 2;
+}
+
+#menu-bar {
+  background-color: rgba(255, 193, 7, .87);
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+#menu-bar-text {
+  grid-column: 2 / -2;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.5em;
+}
+
+.user-prompt {
+  grid-row: 3;
+  grid-column: 1 / -1;
+}
+
+.user-prompt .ui.header {
+  color: rgba(255, 193, 7, .87);
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+button.ui.positive.button,
+button.ui.circular.massive.positive.button,
+button.ui.positive.button:active {
+  background-color: rgba(255, 193, 7, .87);
+  border: .0625em rgba(0,0,0,.87) solid;
+}
+
+
+
+#filter-container {
+  padding: 0em 1em;
+  grid-column: 2 / 7;
+  grid-row: auto;
+}
+
+div.ui.divided.list {
+  background: rgba(255,255,255,.7);
+  padding: 1em;
+  border-radius: 1em;
+}
+
+/* @TODO - fix this without !important */
+h1.header.single-result-title,
+h2.ui.inverted.header,
+h3.ui.inverted.header.user-prompt.filter,
+h4.ui.inverted.header,
+h4.ui.header.filter-item,
+.recipe-result .description,
+.recipe-result .extra {
+  font-family: 'Roboto Condensed', sans-serif !important;
 }
 
 .ingredient-list,
@@ -18,24 +116,24 @@ h3.ui.header.recipe-title {
   margin-top: 1rem;
 }
 
+#recipe-page-container {
+  background-color: rgba(255,255,255,.7);
+  padding-bottom: 2em;
+  border-radius: 1em;
+}
+
 .single-result-title {
   width: 90%;
 }
 
 .gray-text {
-  color: #C0C0C0;
+  color: #888888;
 }
 
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
-  #menu-bar {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-gap: 10px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-  }
+  
 
   #menu-bar.match-menu {
     margin-bottom: 0px;
@@ -45,40 +143,30 @@ h3.ui.header.recipe-title {
     grid-column: 1 / 2;
   }
 
-  #menu-bar-text {
-    grid-column: 2 / -2;
-  }
+
 
   .content-container {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(6, .5fr);
     grid-gap: 10px;
   }
   
   /* single button */
   .single-user-action {
-    grid-row: 4;
+    grid-row: 6;
     grid-column: 4 / 6
   }
 
 
 
-  .user-prompt {
-    grid-row: 2;
-    grid-column: 1 / -1;
-  }
 
   .user-prompt.filter {
     grid-row: 1;
     grid-column: 1 / -1;
   }
 
-  #filter-container {
-    padding: 0em 1em;
-    grid-column: 2 / 7;
-    grid-row: auto;
-  }
+
 
   /* filter row with the label and the toggle */
   .filter-items {
@@ -87,38 +175,49 @@ h3.ui.header.recipe-title {
   }
 
   .match-page-container {
+    /*background-color: #FFF;*/
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: (7, 5fr);
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: repeat(1fr);
     grid-gap: 10px;
+    padding-bottom: 5rem;
+  }
+
+  .match-page-container::before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
   }
 
   .match-image {
    grid-column: 1 / -1;
-   grid-row: 1 / 3;
+   grid-row: 1 / 4;
+   border-bottom: .0625em rgba(0,0,0,.87) solid;
   }
 
   #match-no {
-    grid-column: 3 / 5;
-    grid-row: 5;
+    grid-column: 5;
+    grid-row: 10;
+    background-color: #ff5722;
+    border: .0625em rgba(0,0,0,.87) solid;
   }
 
   #match-yes {
-    grid-column: 7 / 9;
-    grid-row: 5;
+    grid-column: 8;
+    grid-row: 10;
   }
+
+  .results-listing div.item.recipe-result {
+    background-color: rgba(255,255,255,.7);
+  }
+
 
 }
 
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
-  #menu-bar {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-gap: 10px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-  }
 
   #menu-bar.match-menu {
     margin-bottom: 0px;
@@ -126,10 +225,6 @@ h3.ui.header.recipe-title {
 
   #user-profile-actions {
     grid-column: 1 / 2;
-  }
-
-  #menu-bar-text {
-    grid-column: 2 / -2;
   }
 
   .content-container {
@@ -157,22 +252,10 @@ h3.ui.header.recipe-title {
     margin: 0em;
   }
 
-  .user-prompt {
-    grid-row: 2;
-    grid-column: 1 / -1;
-  }
-
   .user-prompt.filter {
     grid-row: 1;
     grid-column: 1 / -1;
   }
-
-  #filter-container {
-    padding: 0em 1em;
-    grid-column: 2 / 7;
-    grid-row: auto;
-  }
-
   /* filter row with the label and the toggle */
   .filter-items {
     grid-column: 2 / 7;
@@ -186,14 +269,15 @@ h3.ui.header.recipe-title {
     grid-gap: 10px;
   }
 
-  .recipe-page-container {
+  #recipe-page-container {
+    background-color: rgba(255,255,255,.7) !important;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
   }
 
   .match-page-container::before,
-  .recipe-page-container::before {
+  #recipe-page-container::before {
     content: '';
     width: 0;
     padding-bottom: 100%;
@@ -236,6 +320,7 @@ h3.ui.header.recipe-title {
   }
 
   .recipe-result {
+    background-color: rgba(255,255,255,.7);
     grid-column: 2 / -2;
     grid-row: span 1;
   }
@@ -248,20 +333,9 @@ h3.ui.header.recipe-title {
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-  #menu-bar {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-gap: 10px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-  }
 
   #user-profile-actions {
     grid-column: 1 / 2;
-  }
-
-  #menu-bar-text {
-    grid-column: 2 / -2;
   }
 
   .content-container {
@@ -289,20 +363,9 @@ h3.ui.header.recipe-title {
     margin: 0em;
   }
 
-  .user-prompt {
-    grid-row: 2;
-    grid-column: 1 / -1;
-  }
-
   .user-prompt.filter {
     grid-row: 1;
     grid-column: 1 / -1;
-  }
-
-  #filter-container {
-    padding: 0em 1em;
-    grid-column: 2 / 7;
-    grid-row: auto;
   }
 
   /* filter row with the label and the toggle */
@@ -318,14 +381,15 @@ h3.ui.header.recipe-title {
     grid-gap: 10px;
   }
 
-  .recipe-page-container {
+  #recipe-page-container
+   {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
   }
 
   .match-page-container::before,
-  .recipe-page-container::before {
+  #recipe-page-container::before {
     content: '';
     width: 0;
     padding-bottom: 100%;
@@ -369,11 +433,12 @@ h3.ui.header.recipe-title {
   }
 
   .recipe-result {
+    background-color: rgba(255,255,255,.7);
     grid-column: 2 / -2;
     grid-row: span 1;
   }
 
-  .recipe-page-container .match-image {
+  #recipe-page-container .match-image {
    grid-column: 4 / -4;
    grid-row: 1 / 4;
   }

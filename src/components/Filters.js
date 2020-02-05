@@ -144,10 +144,11 @@ class Filters extends React.Component {
 		return(
 			<React.Fragment>
 				<Header 
+					inverted
 					as='h3' 
 					className="user-prompt filter">
 						{this.state.filterStep !== "keywords" 
-							? toTitleCase(`Filter By ${this.state.filterStep}`)
+							? <Header as='h1' className="user-prompt" id="app-name">{toTitleCase(`${this.state.filterStep}`)}</Header>
 							: toTitleCase(`Exclude ${this.state.filterStep}`)
 						}
 					</Header>
@@ -162,7 +163,7 @@ class Filters extends React.Component {
 					</List>
 
 				</Container>
-				<Header as="h4">
+				<Header inverted as="h4">
 					Continue to { this.state.filterStep === "diets" 
 									? "Cuisine Types" 
 									: this.state.filterStep === "cuisines"

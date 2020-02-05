@@ -5,6 +5,7 @@ import MainContainer from './containers/MainContainer.js'
 import Match from './components/Match.js'
 import Recipe from './components/Recipe.js'
 import Login from './components/Login.js'
+import SplashScreen from './components/SplashScreen.js'
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { fetchingDiets, fetchingCuisines, fetchingCourses } from './redux/actions'
@@ -12,8 +13,18 @@ import { fetchingDiets, fetchingCuisines, fetchingCourses } from './redux/action
 
 
 class App extends React.Component {
+  state={
+    loading: true
+  }
+
+  appLoaded = () => {
+    this.setState({
+      loading: false
+    })
+  }
   
   componentDidMount(){
+    setTimeout( this.appLoaded, 4000);
     this.props.fetchingDiets()
     this.props.fetchingCuisines()
     this.props.fetchingCourses()
@@ -21,17 +32,19 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="App">
-        <Switch>
-          <Route exact path="/match" render={ (props) => this.props.progress === "match" || this.props.progress === "results" 
-              ? <Match />
-              : <Redirect to='/' />
-          }/>
-          <Route path="/match/recipe/:id" component={Recipe}/>
-          <Route path="/login" component={ Login } />
-          <Route path="/" component={ MainContainer } />
-        </Switch>
-      </div>
+      this.state.loading 
+        ? <SplashScreen />
+        : <div className="App">
+            <Switch>
+              <Route exact path="/match" render={ (props) => this.props.progress === "match" || this.props.progress === "results" 
+                  ? <Match />
+                  : <Redirect to='/' />
+              }/>
+              <Route path="/match/recipe/:id" component={Recipe}/>
+              <Route path="/login" component={ Login } />
+              <Route path="/" component={ MainContainer } />
+            </Switch>
+          </div>
     );
   }
 }

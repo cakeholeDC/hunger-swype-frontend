@@ -15,9 +15,9 @@ class Result extends React.Component {
 					? <React.Fragment>
 						  <Item.Image size='small' src={recipePhoto} />
 					      <Item.Content>
-					        <Item.Header as='h1' className="single-result-title">{recipeTitle}</Item.Header>
-					        <Item.Description>{cookTime} Minutes / Serves {recipeServings}</Item.Description>
-					        <Item.Extra>
+					        <Item.Header inverted as='h1' className="single-result-title">{recipeTitle}</Item.Header>
+					        <Item.Description inverted >Serves {recipeServings}</Item.Description>
+					        <Item.Extra inverted >
 					          <Icon color='green' name='thumbs up' /> { recipeRating }%
 					        </Item.Extra>
 					      </Item.Content>

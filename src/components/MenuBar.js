@@ -19,7 +19,7 @@ class MenuBar extends React.Component {
 	render(){
 		return(
 			<Segment 
-				className={ this.props.match.url === '/' ? "ui inverted teal" : "ui inverted teal match-menu"}
+				className={ this.props.match.url === '/' ? "ui inverted" : "ui inverted match-menu"}
 				id="menu-bar"
 			>
 				{ this.props.currentUser ?
