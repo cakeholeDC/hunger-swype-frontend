@@ -4,6 +4,7 @@ import Result from './Result'
 import { connect } from 'react-redux'
 import { Image, Button, Item, Header } from 'semantic-ui-react'
 import { getResultsPage, showUserMatches } from '../redux/actions'
+import SplashScreen from './SplashScreen.js'
 
 class Match extends React.Component {
 	state={
@@ -41,7 +42,7 @@ class Match extends React.Component {
 			}
 		} else {
 			console.log("no dishes found")
-			return null
+			return <SplashScreen running/>
 		}
 	}
 
