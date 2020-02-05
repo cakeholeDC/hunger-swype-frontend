@@ -3,6 +3,7 @@ import MenuBar from '../components/MenuBar'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom";
 import { Form, Button, Container, Image, Header } from 'semantic-ui-react'
+import { processLoginForm, processNewUserForm } from '../redux/actions'
 
 class Login extends React.Component{
 	state={
@@ -13,7 +14,6 @@ class Login extends React.Component{
 		name: '',
 		email: '',
 		region: '',
-		birthdate: '',
 		avatar: ''
 	}
 
@@ -33,6 +33,7 @@ class Login extends React.Component{
 
 	onFormSubmit = (event) => {
 		event.preventDefault()
+		console.log("validating onFormSubmit...")
 		const checkFields = !this.state.isNewAccount ? ['username', 'password'] : ['username', 'password', 'name', 'email', 'region', 'birthdate', 'avatar']
 		let canSubmit = false
 		checkFields.forEach(field => {
@@ -47,6 +48,27 @@ class Login extends React.Component{
 
 		if (canSubmit) {
 			console.log("submitting form!")
+			let userFormData
+
+			let fallbackImg = 'https://f4.bcbits.com/img/a1368582765_10.jpg'
+			
+			if (this.state.isNewAccount){
+				 userFormData = {
+					username: this.state.username,
+					password: this.state.password,
+					name: this.state.name,
+					region: this.state.region,
+					birthdate: this.state.birthdate,
+					avatar: this.state.avatar !== '' ? this.state.avatar : fallbackImg,
+				}
+				this.props.processNewUserForm(userFormData)
+			} else {
+				 userFormData = {
+					username: this.state.username,
+					password: this.state.password
+				}
+				this.props.processLoginForm(userFormData)
+			}
 		}
 	}
 
@@ -71,12 +93,14 @@ class Login extends React.Component{
 								name="username" 
 								label="Username"
 								placeholder="cakehole"
-								error={ this.state.username === '' 
-									? null
-									: {
-							      content: 'Please enter a username',
-							      pointing: 'below',
-							    }}
+								error={ !this.state.formIsValid && this.state.username === '' 
+									? {
+								      content: 'Please enter a username',
+								      pointing: 'above',
+								    }
+									: null
+								}
+
 							/>
 							<Form.Input 
 								fluid 
@@ -84,12 +108,13 @@ class Login extends React.Component{
 								name="password" 
 								label="Password"
 								placeholder="password123"
-								error={ this.state.formIsValid 
-									? null
-									: {
-							      content: 'Please enter a password',
-							      pointing: 'below',
-							    }}
+								error={ !this.state.formIsValid && this.state.password === ''
+									? {
+								      content: 'Please enter a password',
+								      pointing: 'above',
+								    }
+								    : null
+								}
 							/>
 						</Form.Group>
 						{ this.state.isNewAccount 
@@ -100,24 +125,26 @@ class Login extends React.Component{
 										name="name" 
 										label="Full Name"
 										placeholder="John Doe"
-										error={ this.state.formIsValid 
-											? null
-											: {
-									      content: 'Full name is required',
-									      pointing: 'below',
-									    }}
+										error={ !this.state.formIsValid && this.state.name === ''
+											? {
+										      content: 'Full name is required',
+										      pointing: 'above',
+										    }
+										    : null
+										}
 									/>
 									<Form.Input 
 										fluid 
 										name="email" 
-										label="Email Address"
-										placeholder="jdoe@goodfood.com"
-										error={ this.state.formIsValid 
-											? null
-											: {
-									      content: 'Please enter a valid email address',
-									      pointing: 'below',
-									    }}
+										label="Email"
+										placeholder="jdoe@gmail.com"
+										error={ !this.state.formIsValid && this.state.birthdate === ''
+											? {
+										      content: 'Please enter a valid email address',
+										      pointing: 'above',
+										    }
+										    : null
+										}
 									/>
 								</Form.Group>
 								<Form.Group widths='equal'>
@@ -126,37 +153,26 @@ class Login extends React.Component{
 										name="region" 
 										label="Region"
 										placeholder="Washington, DC"
-										error={ this.state.formIsValid 
-											? null
-											: {
-									      content: 'Please enter a region',
-									      pointing: 'below',
-									    }}
-									/>
-									<Form.Input 
-										fluid 
-										type="date"
-										name="birthdate" 
-										label="Birthdate"
-										placeholder="July 4, 1776"
-										error={ this.state.formIsValid 
-											? null
-											: {
-									      content: 'Please enter a birthdate',
-									      pointing: 'below',
-									    }}
+										error={ !this.state.formIsValid && this.state.region === ''
+											? {
+										      content: 'Please enter a region',
+										      pointing: 'above',
+										    }
+										    : null
+										}
 									/>
 								<Form.Input 
 									fluid 
 									name="avatar" 
 									label="Avatar"
 									placeholder="www.sweetpics.com/yourimage.jpg"
-									error={ this.state.formIsValid 
-										? null
-										: {
-								      content: 'Please select a super cool avatar',
-								      pointing: 'below',
-								    }}
+									error={ !this.state.formIsValid && this.state.avatar === ''
+										? {
+									      content: 'Please select a super cool avatar',
+									      pointing: 'above',
+									    }
+									    : null
+									}
 								/>
 								</Form.Group>
 							</React.Fragment>
@@ -170,7 +186,7 @@ class Login extends React.Component{
 								<div>&nbsp;</div>
 							</React.Fragment>
 							: <React.Fragment>
-							    <Button type="submit" onClick={ () => console.log('log in') } primary >
+							    <Button type="submit" primary >
 							    		Let's Eat!
 							    </Button>
 							    <p><a onClick={() => this.toggleNewAccountForm() }>Don't have an account?</a></p>
@@ -189,4 +205,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+const mapDispatchToProps = (dispatch) => ({
+	processLoginForm: (user) => { dispatch(processLoginForm(user)) },
+	processNewUserForm: (user) => { dispatch(processNewUserForm(user)) }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

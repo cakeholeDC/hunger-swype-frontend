@@ -5,15 +5,16 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class MenuBar extends React.Component {
-	state={
-		showMenu: false
-	}
+	// state={
+	// 	showMenu: false
+	// }
 
 	toggleUserActionMenu = () => {
-		console.log("Toggling User Action Menu", !this.state.showMenu)
-		this.setState({
-			showMenu: !this.state.showMenu
-		})
+		this.props.history.push('/profile')
+		// console.log("Toggling User Action Menu", !this.state.showMenu)
+		// this.setState({
+		// 	showMenu: !this.state.showMenu
+		// })
 	}
 
 	render(){
@@ -37,6 +38,7 @@ class MenuBar extends React.Component {
 				>
 					Hunger Swype™
 				</p>
+
 			</Segment>
 		)
 	}

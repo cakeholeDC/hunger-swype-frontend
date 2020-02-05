@@ -5,10 +5,11 @@ import MainContainer from './containers/MainContainer.js'
 import Match from './components/Match.js'
 import Recipe from './components/Recipe.js'
 import Login from './components/Login.js'
+import Profile from './components/Profile.js'
 import SplashScreen from './components/SplashScreen.js'
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
-import { fetchingDiets, fetchingCuisines, fetchingCourses } from './redux/actions'
+import { fetchingDiets, fetchingCuisines, fetchingCourses, setCurrentUserState } from './redux/actions'
 
 
 
@@ -28,6 +29,23 @@ class App extends React.Component {
     this.props.fetchingDiets()
     this.props.fetchingCuisines()
     this.props.fetchingCourses()
+
+    let token = localStorage.getItem("token")
+
+    if (token) {
+      fetch('http://localhost:3000/profile', {
+        method: "GET",
+        headers: {
+          "Authentication": token
+        }
+      })
+      .then(res => res.json())
+      .then(user => {
+        this.props.setCurrentUserState(user)
+      })
+    } else {
+      this.setState({ loading: false })
+    }
   }
 
   render(){
@@ -42,7 +60,11 @@ class App extends React.Component {
               }/>
               <Route path="/match/recipe/:id" component={Recipe}/>
               <Route path="/login" component={ Login } />
-              <Route path="/" component={ MainContainer } />
+              <Route path="/profile" component={ Profile } />
+              { !this.props.currentUser 
+                  ? <Redirect to='/login' />
+                  : <Route path="/" component={ MainContainer } />
+              }
             </Switch>
           </div>
     );
@@ -61,6 +83,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchingDiets: () => { dispatch(fetchingDiets()) } ,
   fetchingCuisines: () => { dispatch(fetchingCuisines()) } ,
   fetchingCourses: () => { dispatch(fetchingCourses()) } ,
+  setCurrentUserState: (user) => { dispatch(setCurrentUserState(user)) }
   // fetchedDiets: (diets_array) => { dispatch(fetchedDiets(diets_array)) },
   // fetchedCuisines: (cuisines_array) => { dispatch(fetchedCuisines(cuisines_array)) },
   // fetchedCourses: (courses_array) => { dispatch(fetchedCourses(courses_array)) }

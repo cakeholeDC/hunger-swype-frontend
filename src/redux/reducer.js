@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import { PROGRESS, FETCHED_DIETS, FETCHED_CUISINES, FETCHED_COURSES, FETCHED_DISHES, USER_MATCHES } from './actions.js'
+import { PROGRESS, FETCHED_DIETS, FETCHED_CUISINES, FETCHED_COURSES, FETCHED_DISHES, USER_MATCHES, LOG_IN } from './actions.js'
 
 const sampleUserObj = {
 	username: "cakehole",
@@ -9,7 +9,12 @@ const sampleUserObj = {
 }
 
 function userReducer(oldState = null, action) {
-	return oldState
+	switch (action.type){
+		case LOG_IN:
+			return action.payload
+		default:
+			return oldState
+	}
 }
 
 function progressReducer(oldState='home', action){
