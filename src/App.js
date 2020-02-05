@@ -14,7 +14,7 @@ import { fetchingDiets, fetchingCuisines, fetchingCourses } from './redux/action
 
 class App extends React.Component {
   state={
-    loading: false
+    loading: true
   }
 
   appLoaded = () => {

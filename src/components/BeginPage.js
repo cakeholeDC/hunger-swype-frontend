@@ -16,7 +16,7 @@ class BeginPage extends React.Component {
 					? <Button 
 						circular
 						positive
-						className="massive single-user-action"
+						className="massive single-user-action start-swype"
 						onClick={ () => this.props.proceedToFilters() }
 						icon='food'
 					/>
@@ -24,7 +24,7 @@ class BeginPage extends React.Component {
 						circular
 						disabled
 						positive
-						className="massive single-user-action"
+						className="massive single-user-action start-swype"
 						onClick={ () => this.props.proceedToFilters() }
 						icon='food'
 					/>
