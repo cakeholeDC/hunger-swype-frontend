@@ -9,19 +9,9 @@ const BASE_URL = "http://localhost:3000"
 const USER_URL = `${BASE_URL}/users`
 
 class Profile extends React.Component {
-	
-	componentDidMount(){
-		const userID = this.props.match.params.id
-		fetch(`${USER_URL}/${userID}`)
-			.then(res => res.json())
-			.then(recipe => {
-				this.setState({
-					userDetails: recipe
-				})
-			})
-	}
 
 	render(){
+		console.log("profile=>", this.props)
 		return(
 			!this.props.currentUser
 			? <Redirect to="/login" />
@@ -30,18 +20,18 @@ class Profile extends React.Component {
 				<div id="profile-page-container">
 				<Image 
 				 	fluid
-				 	src={ this.props.avatar }
+				 	src={ this.props.currentUser.avatar }
 				 	className="profile-image"
 			 	/>
 			 	<Container className="profile-page">
 					<Header as="h1" className="profile-username">
-						{ this.props.username }
+						{ this.props.currentUser.username }
 					</Header>
 					<Header as="h3" className="profile-name">
-						{ this.props.name }
+						{ this.props.currentUser.name }
 					</Header>
 					<p className="gray-text">
-						{ this.props.region }
+						{ this.props.currentUser.region }
 					</p>
 
 					<Button animated='fade' onClick={ this.props.logOutUser } negative>
@@ -67,7 +57,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser,
+    currentUser: state.currentUser
   }
 }
 
