@@ -1,5 +1,5 @@
 import React from 'react'
-import UserPrompt from './UserPrompt'
+// import UserPrompt from './UserPrompt'
 import { Button, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { proceedToFilters } from '../redux/actions'
