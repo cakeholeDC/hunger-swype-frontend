@@ -57,7 +57,7 @@ class Login extends React.Component{
 				? <Redirect to="/" />
 				: <React.Fragment>
 					<MenuBar />
-					<Image src='Logo-mock.jpg'/>
+					<Header as='h1' className="user-prompt" id="app-name">Hunger<br/>Swype</Header>
 					
 					<Container>
 					<Form 

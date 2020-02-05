@@ -38,6 +38,15 @@
   margin-bottom: 3rem;
 }
 
+h2#app-name {
+  color: rgba(255, 193, 7, .87);
+  font-family: 'Abril Fatface', cursive;
+  text-align: center;
+  font-size: 4rem;
+  line-height: 4.5rem;
+  margin-bottom: 3rem;
+}
+
 #splash-content {
   grid-column: 2 / -2;
   grid-row: 2;
@@ -68,12 +77,20 @@
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-button.ui.positive.button,
+button.ui.primary.button,
+button.ui.primary.button:active,
+button.ui.primary.button:hover,
 button.ui.circular.massive.positive.button,
+button.ui.positive.button,
 button.ui.positive.button:active {
   background-color: rgba(255, 193, 7, .87);
   border: .0625em rgba(0,0,0,.87) solid;
 }
+
+button.ui.negative.button {
+    background-color: #ff5722;
+    border: .0625em rgba(0,0,0,.87) solid;
+  }
 
 
 
@@ -83,11 +100,19 @@ button.ui.positive.button:active {
   grid-row: auto;
 }
 
-div.ui.divided.list {
+div.ui.divided.list{
   background: rgba(255,255,255,.7);
   padding: 1em;
   border-radius: 1em;
 }
+
+.login-form {
+  background: rgba(255,255,255,.7);
+  padding: 1em;
+  border-radius: 1em;
+  padding-bottom: 2.125em;
+}
+
 
 /* @TODO - fix this without !important */
 h1.header.single-result-title,
@@ -96,7 +121,14 @@ h3.ui.inverted.header.user-prompt.filter,
 h4.ui.inverted.header,
 h4.ui.header.filter-item,
 .recipe-result .description,
-.recipe-result .extra {
+.recipe-result .extra,
+form.ui.form.login-form .field label {
+  font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+.login-form a {
+  text-decoration: underline;
+  color: #000000;
   font-family: 'Roboto Condensed', sans-serif !important;
 }
 

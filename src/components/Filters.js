@@ -131,7 +131,11 @@ class Filters extends React.Component {
 		return (
 			<List.Item>
 				<List.Content floated="right">
-					<Button size="mini" circular primary icon="plus" onClick={ () => console.log(`Adding Keyword`)}/>
+					<Button size="mini" circular primary icon="plus" onClick={ () => {
+							console.log(`Adding Keyword`)
+							this.addKeywordRow()
+						}
+					}/>
 				</List.Content>
 				<List.Content floated="left">
 					<Input size="mini" name="keywords" placeholder='asparagus...' onChange={ this.onFilterChange }/>
@@ -143,15 +147,7 @@ class Filters extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<Header 
-					inverted
-					as='h3' 
-					className="user-prompt filter">
-						{this.state.filterStep !== "keywords" 
-							? <Header as='h1' className="user-prompt" id="app-name">{toTitleCase(`${this.state.filterStep}`)}</Header>
-							: toTitleCase(`Exclude ${this.state.filterStep}`)
-						}
-					</Header>
+				<Header as='h2' className="user-prompt" id="app-name">{toTitleCase(`${this.state.filterStep}`)}</Header>
 				<Container id="filter-container">
 					<List divided >
 						{ this.getFilterItems().map(item => <FilterItem step={this.state.filterStep} key={item} item={item} onFilterChange={this.onFilterChange}/>) }
@@ -203,3 +199,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Filters))
+
