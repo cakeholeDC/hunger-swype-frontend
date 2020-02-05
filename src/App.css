@@ -420,7 +420,7 @@ h3.ui.header.recipe-title {
     grid-column: 5;
     height: 100px;
     width: 100px;
-    margin-left: .5em;
+    margin-left: 25%;
   }
 
   /*.ui.icon.button.single-user-action {
