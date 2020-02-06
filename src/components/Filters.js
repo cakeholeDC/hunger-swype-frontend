@@ -147,7 +147,7 @@ class Filters extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<Header as='h2' className="user-prompt" id="app-name">{toTitleCase(`${this.state.filterStep}`)}</Header>
+				<Header as='h2' className="user-prompt" id="filter-step">{toTitleCase(`${this.state.filterStep}`)}</Header>
 				<Container id="filter-container">
 					<List divided >
 						{ this.getFilterItems().map(item => <FilterItem step={this.state.filterStep} key={item} item={item} onFilterChange={this.onFilterChange}/>) }

@@ -1,19 +1,11 @@
-/*body {
-  !!! change body in index.css !!!  
-}*/
-
-/* @TODO - put this in a media query and change the background */
-/* also, figure out local storage */
-#root { 
-  height: 100%;
-  width: 100%;
+body {
+  background-color: transparent;
   /*background: url('https://cdn.pixabay.com/photo/2015/12/08/00/58/italian-1082230_1280.jpg');*/
-  background: url('/pasta-bkg.jpg');
+  background-image: url('/pasta-bkg.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover 
-  /*color: #fff; */
-  /*position: relative;*/
+  background-size: cover;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .App {
@@ -27,10 +19,16 @@
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 10px;
-  font-family: 'Roboto Condensed', sans-serif;
+  /*font-family: 'Roboto Condensed', sans-serif;*/
+}
+
+#splash-content {
+  grid-column: 2 / -2;
+  grid-row: 2;
 }
  
-#app-name {
+#app-name,
+#filter-step {
   color: rgba(255, 193, 7, .87);
   font-family: 'Abril Fatface', cursive;
   text-align: center;
@@ -39,18 +37,8 @@
   margin-bottom: 3rem;
 }
 
-h2#app-name {
-  color: rgba(255, 193, 7, .87);
-  font-family: 'Abril Fatface', cursive;
-  text-align: center;
+#filter-step {
   font-size: 4rem;
-  line-height: 4.5rem;
-  margin-bottom: 3rem;
-}
-
-#splash-content {
-  grid-column: 2 / -2;
-  grid-row: 2;
 }
 
 #menu-bar {
@@ -64,16 +52,27 @@ h2#app-name {
 
 #menu-bar-text {
   grid-column: 2 / -2;
-  font-family: 'Roboto Condensed', sans-serif;
+  /*font-family: 'Roboto Condensed', sans-serif;*/
   font-size: 1.5em;
 }
 
+.login-form {
+  background: rgba(255,255,255,.7);
+  padding: 1em;
+  border-radius: 1em;
+  padding-bottom: 2.125em;
+}
 
+.login-form a {
+  text-decoration: underline;
+  color: #000000;
+  font-family: 'Roboto Condensed', sans-serif !important;
+}
 
-.user-prompt .ui.header {
+/*.user-prompt .ui.header {
   color: rgba(255, 193, 7, .87);
   font-family: 'Roboto Condensed', sans-serif;
-}
+}*/
 
 button.ui.primary.button,
 button.ui.primary.button:active,
@@ -105,12 +104,6 @@ div.ui.divided.list{
   border-radius: 1em;
 }
 
-.login-form {
-  background: rgba(255,255,255,.7);
-  padding: 1em;
-  border-radius: 1em;
-  padding-bottom: 2.125em;
-}
 
 
 /* @TODO - fix this without !important */
@@ -139,11 +132,6 @@ h3.ui.header.profile-name {
   margin-bottom: 0em;
 }
 
-.login-form a {
-  text-decoration: underline;
-  color: #000000;
-  font-family: 'Roboto Condensed', sans-serif !important;
-}
 
 .ingredient-list,
 .directions-list {
