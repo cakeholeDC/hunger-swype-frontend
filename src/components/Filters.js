@@ -82,7 +82,7 @@ class Filters extends React.Component {
 	contineToNextStep = () => {
 		let nextStep
 
-		if (this.state.filterStep === "keywords"){
+		if (this.state.filterStep === "courses"){
 			this.setState({
 				filterStep: "match"
 			})
@@ -97,9 +97,9 @@ class Filters extends React.Component {
 				case "cuisines":
 					nextStep = "courses"
 					break
-				case "courses":
-					nextStep = "keywords"
-					break
+				// case "courses":
+				// 	nextStep = "keywords"
+				// 	break
 				default:
 					nextStep = "diets"
 					break
