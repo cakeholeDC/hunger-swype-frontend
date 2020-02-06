@@ -5,9 +5,6 @@ import { connect } from 'react-redux'
 import { logOutUser } from '../redux/actions'
 import { Redirect } from 'react-router-dom'
 
-const BASE_URL = "http://localhost:3000"
-const USER_URL = `${BASE_URL}/users`
-
 class Profile extends React.Component {
 
 	render(){

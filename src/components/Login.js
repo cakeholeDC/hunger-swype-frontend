@@ -2,7 +2,7 @@ import React from 'react'
 import MenuBar from '../components/MenuBar'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom";
-import { Form, Button, Container, Image, Header } from 'semantic-ui-react'
+import { Form, Button, Container, Header } from 'semantic-ui-react'
 import { processLoginForm, processNewUserForm } from '../redux/actions'
 
 class Login extends React.Component{
