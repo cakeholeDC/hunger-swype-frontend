@@ -50,7 +50,7 @@ class Login extends React.Component{
 			console.log("submitting form!")
 			let userFormData
 
-			let fallbackImg = 'https://f4.bcbits.com/img/a1368582765_10.jpg'
+			let fallbackImg = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
 			
 			if (this.state.isNewAccount){
 				 userFormData = {
