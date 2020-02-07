@@ -10,16 +10,16 @@ const USER_URL = `${BASE_URL}/users`
 
 class Profile extends React.Component {
 	
-	componentDidMount(){
-		const userID = this.props.match.params.id
-		fetch(`${USER_URL}/${userID}`)
-			.then(res => res.json())
-			.then(recipe => {
-				this.setState({
-					userDetails: recipe
-				})
-			})
-	}
+	// componentDidMount(){
+	// 	const userID = this.props.currentUser.id
+	// 	fetch(`${USER_URL}/${userID}`)
+	// 		.then(res => res.json())
+	// 		.then(recipe => {
+	// 			this.setState({
+	// 				userDetails: recipe
+	// 			})
+	// 		})
+	// }
 
 	render(){
 		return(
@@ -30,18 +30,18 @@ class Profile extends React.Component {
 				<div id="profile-page-container">
 				<Image 
 				 	fluid
-				 	src={ this.props.avatar }
+				 	src={ this.props.currentUser.avatar }
 				 	className="profile-image"
 			 	/>
 			 	<Container className="profile-page">
 					<Header as="h1" className="profile-username">
-						{ this.props.username }
+						{ this.props.currentUser.username }
 					</Header>
 					<Header as="h3" className="profile-name">
-						{ this.props.name }
+						{ this.props.currentUser.name }
 					</Header>
 					<p className="gray-text">
-						{ this.props.region }
+						{ this.props.currentUser.region }
 					</p>
 
 					<Button animated='fade' onClick={ this.props.logOutUser } negative>
