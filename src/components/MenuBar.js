@@ -28,7 +28,7 @@ class MenuBar extends React.Component {
 				{ this.props.currentUser ?
 					<Image
 						id="user-avatar"
-						src={ this.props.currentUser.avatar } 
+						src={ this.props.currentUser.avatar ? this.props.currentUser.avatar : fallbackAvatar } 
 						avatar
 						onClick={ () => this.toggleUserActionMenu() }
 					/>

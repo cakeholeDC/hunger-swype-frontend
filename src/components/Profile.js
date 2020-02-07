@@ -1,8 +1,9 @@
 import React from 'react'
 import MenuBar from './MenuBar'
-import { Image, Header, Container, Divider, Icon, Button } from 'semantic-ui-react'
+import { Image, Header, Container, Divider, Icon, Button, Item } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logOutUser } from '../redux/actions'
+import Favorite from './Favorite.js'
 import { Redirect } from 'react-router-dom'
 
 class Profile extends React.Component {
@@ -22,7 +23,7 @@ class Profile extends React.Component {
 			 	/>
 			 	<Container className="profile-page">
 					<Header as="h1" className="profile-username">
-						{ this.props.currentUser.username }
+						Chef de Cuisine,<br/>{ this.props.currentUser.username }
 					</Header>
 					<Header as="h3" className="profile-name">
 						{ this.props.currentUser.name }
@@ -38,12 +39,15 @@ class Profile extends React.Component {
 				      </Button.Content>
 				    </Button>
 
-					<Divider horizontal className="profile-favorites">
+					<Divider horizontal className="profile-favorites-header">
 				      <Header as='h4' >
 				        <Icon name='heart' size='mini' />
 							Favorites 
 					  </Header>
 				    </Divider>
+					<Item.Group>
+						{  this.props.currentUser.favorite_recipes.map(recipe => <Favorite key={recipe.api_id} recipe={recipe} />)  }
+					</Item.Group>
 					
 				</Container>
 				</div>

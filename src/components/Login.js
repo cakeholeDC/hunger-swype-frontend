@@ -92,7 +92,7 @@ class Login extends React.Component{
 								fluid 
 								name="username" 
 								label="Username"
-								placeholder="cakehole"
+								placeholder="dc_foodie"
 								error={ !this.state.formIsValid && this.state.username === '' 
 									? {
 								      content: 'Please enter a username',

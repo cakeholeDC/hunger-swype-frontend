@@ -105,7 +105,7 @@ class Match extends React.Component {
 					: <React.Fragment>
 						<Header inverted as="h2">Here's some of our Flavourites:</Header>
 						<Item.Group divided className="results-listing">
-							{ this.props.matches.map(dish => <Result dish={dish} /> ) }
+							{ this.props.matches.map(dish => <Result key={dish.api_id} dish={dish} /> ) }
 						</Item.Group>
 						<div>&nbsp;</div> 
 					</React.Fragment>
