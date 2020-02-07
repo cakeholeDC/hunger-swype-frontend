@@ -125,7 +125,7 @@ export function processLoginForm(user){
 				if (!apiResponse.error) {
 					console.log(apiResponse.jwt)
 					localStorage.setItem("token", apiResponse.jwt)
-					dispatch(setCurrentUserState(apiResponse.currentUser))
+					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
 					alert(apiResponse.message)
 				}
@@ -149,7 +149,7 @@ export function processNewUserForm(user){
 				if (!apiResponse.error) {
 					console.log(apiResponse.jwt)
 					localStorage.setItem("token", apiResponse.jwt)
-					dispatch(setCurrentUserState(apiResponse.currentUser))
+					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
 					alert(apiResponse.message)
 				}
