@@ -98,7 +98,7 @@ class Recipe extends React.Component {
 				    	{ this.state.recipeDetails.directions.map((step, index) => <li key={`step-${index}`}>{step}</li> ) }
 				    </ol>
 				<Divider />
-				<a href={ this.state.recipeDetails.source_url }>View Original Recipe</a> 
+				<a href={ this.state.recipeDetails.source_url } target="_blank">View Original Recipe</a> 
 				</Container>
 				</div>
 			</React.Fragment>
