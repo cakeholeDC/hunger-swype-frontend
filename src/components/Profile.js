@@ -32,11 +32,8 @@ class Profile extends React.Component {
 						{ this.props.currentUser.region }
 					</p>
 
-					<Button animated='fade' onClick={ this.props.logOutUser } negative>
-				      <Button.Content hidden>Log Out</Button.Content>
-				      <Button.Content visible>
-				        <Icon name='log out' />
-				      </Button.Content>
+					<Button onClick={ this.props.logOutUser } negative>
+				      <Button.Content>Log Out</Button.Content>
 				    </Button>
 
 					<Divider horizontal className="profile-favorites-header">
