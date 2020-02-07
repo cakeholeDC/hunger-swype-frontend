@@ -5,6 +5,7 @@ import MainContainer from './containers/MainContainer.js'
 import Match from './components/Match.js'
 import Recipe from './components/Recipe.js'
 import Login from './components/Login.js'
+import About from './components/About.js'
 import Profile from './components/Profile.js'
 import SplashScreen from './components/SplashScreen.js'
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -60,6 +61,7 @@ class App extends React.Component {
               }/>
               <Route path="/match/recipe/:id" component={Recipe}/>
               <Route path="/login" component={ Login } />
+              <Route path="/about" component={ About } />
               <Route path="/profile" component={ Profile } />
               { !this.props.currentUser 
                   ? <Redirect to='/login' />

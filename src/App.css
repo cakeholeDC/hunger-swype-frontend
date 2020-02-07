@@ -37,6 +37,68 @@ body {
   margin-bottom: 3rem;
 }
 
+.press-start {
+  /*color: rgba(255, 193, 7, .87);*/
+  /*-webkit-text-stroke-width: 1px;*/
+  /*-webkit-text-stroke-color: black;*/
+  color: black;
+  font-family: 'Press Start 2P', cursive;
+  grid-row: 5;
+  grid-column: 2 / -2;
+  align-self: end;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
+  }
+
+.about-container #app-name {
+  grid-row: 6;
+}
+
+
+.about-container .about-hunger-swype {
+  background: rgba(255,255,255,.7);
+  padding: 1em;
+  border-radius: 1em;
+  padding-bottom: 2.125em;
+  grid-row: 8;
+  grid-column: 2 / -2;
+}
+
+.about-container .credits {
+  margin-top: 2em;
+}
+
+.about-container .return-home {
+  grid-row: 9;
+  grid-column: 2/ -2;
+  border-radius: 1em;
+}
+
+#about-page-link{
+  grid-row: 10;
+  grid-column: 2 / -2;
+  color: black;
+}
+
+#about-page-link:hover {
+  text-decoration: underline;
+}
+
 #filter-step {
   font-size: 4rem;
 }
@@ -169,6 +231,8 @@ h3.ui.header.recipe-title {
 }
 
 
+  
+
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
   
@@ -187,6 +251,9 @@ h3.ui.header.recipe-title {
     grid-template-rows: repeat(6, .5fr);
     grid-gap: 10px;
   }
+
+  
+
 
   .user-prompt {
     grid-row: 3;
@@ -472,6 +539,8 @@ h3.ui.header.recipe-title {
     width: 100px;
     margin-left: 25%;
   }
+
+
 
   div.ui.divided.list {
     grid-column: 3 / -3;
