@@ -57,6 +57,7 @@ class Login extends React.Component{
 					username: this.state.username,
 					password: this.state.password,
 					name: this.state.name,
+					email: this.state.email,
 					region: this.state.region,
 					birthdate: this.state.birthdate,
 					avatar: this.state.avatar !== '' ? this.state.avatar : fallbackImg,
