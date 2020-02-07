@@ -2,7 +2,7 @@ import React from 'react'
 import MenuBar from '../components/MenuBar'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom";
-import { Form, Button, Container, Image, Header } from 'semantic-ui-react'
+import { Form, Button, Container, Header } from 'semantic-ui-react'
 import { processLoginForm, processNewUserForm } from '../redux/actions'
 
 class Login extends React.Component{
@@ -50,7 +50,7 @@ class Login extends React.Component{
 			console.log("submitting form!")
 			let userFormData
 
-			let fallbackImg = 'https://f4.bcbits.com/img/a1368582765_10.jpg'
+			let fallbackImg = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
 			
 			if (this.state.isNewAccount){
 				 userFormData = {
@@ -92,7 +92,7 @@ class Login extends React.Component{
 								fluid 
 								name="username" 
 								label="Username"
-								placeholder="cakehole"
+								placeholder="dc_foodie"
 								error={ !this.state.formIsValid && this.state.username === '' 
 									? {
 								      content: 'Please enter a username',

@@ -1,27 +1,15 @@
 import React from 'react'
 import MenuBar from './MenuBar'
-import { Image, Header, Container, Divider, Icon, Button } from 'semantic-ui-react'
+import { Image, Header, Container, Divider, Icon, Button, Item } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logOutUser } from '../redux/actions'
+import Favorite from './Favorite.js'
 import { Redirect } from 'react-router-dom'
 
-const BASE_URL = "http://localhost:3000"
-const USER_URL = `${BASE_URL}/users`
-
 class Profile extends React.Component {
-	
-	// componentDidMount(){
-	// 	const userID = this.props.currentUser.id
-	// 	fetch(`${USER_URL}/${userID}`)
-	// 		.then(res => res.json())
-	// 		.then(recipe => {
-	// 			this.setState({
-	// 				userDetails: recipe
-	// 			})
-	// 		})
-	// }
 
 	render(){
+		console.log("profile=>", this.props)
 		return(
 			!this.props.currentUser
 			? <Redirect to="/login" />
@@ -35,7 +23,7 @@ class Profile extends React.Component {
 			 	/>
 			 	<Container className="profile-page">
 					<Header as="h1" className="profile-username">
-						{ this.props.currentUser.username }
+						Chef de Cuisine,<br/>{ this.props.currentUser.username }
 					</Header>
 					<Header as="h3" className="profile-name">
 						{ this.props.currentUser.name }
@@ -44,19 +32,19 @@ class Profile extends React.Component {
 						{ this.props.currentUser.region }
 					</p>
 
-					<Button animated='fade' onClick={ this.props.logOutUser } negative>
-				      <Button.Content hidden>Log Out</Button.Content>
-				      <Button.Content visible>
-				        <Icon name='log out' />
-				      </Button.Content>
+					<Button onClick={ this.props.logOutUser } negative>
+				      <Button.Content>Log Out <Icon name='log out' /></Button.Content>
 				    </Button>
 
-					<Divider horizontal className="profile-favorites">
+					<Divider horizontal className="profile-favorites-header">
 				      <Header as='h4' >
 				        <Icon name='heart' size='mini' />
 							Favorites 
 					  </Header>
 				    </Divider>
+					<Item.Group>
+						{  this.props.currentUser.favorite_recipes.map(recipe => <Favorite key={recipe.api_id} recipe={recipe} />)  }
+					</Item.Group>
 					
 				</Container>
 				</div>
@@ -67,7 +55,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser,
+    currentUser: state.currentUser
   }
 }
 

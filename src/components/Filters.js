@@ -2,11 +2,12 @@ import React from 'react'
 import { Container, Header, List, Button, Input } from 'semantic-ui-react'
 import FilterItem from './FilterItem.js'
 import { toTitleCase } from '../utils/Helpers.js'
-import { fetchingDishes } from '../redux/actions'
+import { fetchingDishes, getMatches, setCurrentUserState } from '../redux/actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { getMatches } from '../redux/actions'
 
+const BASE_URL = "http://localhost:3000"
+const PREFS_URL = `${BASE_URL}/preferences` 
 
 class Filters extends React.Component {
 	state = {
@@ -82,7 +83,7 @@ class Filters extends React.Component {
 	contineToNextStep = () => {
 		let nextStep
 
-		if (this.state.filterStep === "keywords"){
+		if (this.state.filterStep === "courses"){
 			this.setState({
 				filterStep: "match"
 			})
@@ -92,14 +93,15 @@ class Filters extends React.Component {
 		} else {
 			switch (this.state.filterStep){
 				case "diets":
+					this.setUserDietPreferences()
 					nextStep = "cuisines"
 					break
 				case "cuisines":
 					nextStep = "courses"
 					break
-				case "courses":
-					nextStep = "keywords"
-					break
+				// case "courses":
+				// 	nextStep = "keywords"
+				// 	break
 				default:
 					nextStep = "diets"
 					break
@@ -110,6 +112,25 @@ class Filters extends React.Component {
 		}
 
 		
+	}
+
+	setUserDietPreferences() {
+		if (this.props.currentUser){
+			const prefs = {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Accepts": "application/json"
+				},
+				body: JSON.stringify({
+					currentUser: this.props.currentUser.id,
+					diets: this.state.dietsFilter
+				})
+			} 
+			fetch(PREFS_URL, prefs)
+				.then(res => res.json())
+				.then(user => this.props.setCurrentUserState(user))
+		}
 	}
 
 	getFilterItems = () => {
@@ -147,7 +168,7 @@ class Filters extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<Header as='h2' className="user-prompt" id="app-name">{toTitleCase(`${this.state.filterStep}`)}</Header>
+				<Header as='h2' className="user-prompt" id="filter-step">{toTitleCase(`${this.state.filterStep}`)}</Header>
 				<Container id="filter-container">
 					<List divided >
 						{ this.getFilterItems().map(item => <FilterItem step={this.state.filterStep} key={item} item={item} onFilterChange={this.onFilterChange}/>) }
@@ -165,7 +186,7 @@ class Filters extends React.Component {
 									: this.state.filterStep === "cuisines"
 										? "Courses"
 										: this.state.filterStep === "courses"
-											? "Keywords"
+											? "Matches"//"Keywords"
 											: "Matches"
 								}
 				</Header>
@@ -195,7 +216,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchingDishes: (obj) => { dispatch(fetchingDishes(obj))} ,
-  getMatches: () => {dispatch(getMatches())}
+  getMatches: () => {dispatch(getMatches())},
+  setCurrentUserState: (user) => { dispatch(setCurrentUserState(user)) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Filters))

@@ -7,6 +7,7 @@ export const FETCHED_COURSES = "FETCHED_COURSES"
 export const FETCHED_DISHES = "FETCHED_DISHES"
 export const USER_MATCHES = "USER_MATCHES"
 export const LOG_IN = "LOG_IN"
+export const FAVORITE = "FAVORITE"
 
 const BASE_URL = "http://localhost:3000"
 // const DISHES_URL = `${BASE_URL}/dishes`
@@ -16,6 +17,7 @@ const COURSES_URL = `${BASE_URL}/courses`
 const CUISINES_URL = `${BASE_URL}/cuisines` 
 const USER_URL = `${BASE_URL}/users` 
 const API_LOGIN = `${BASE_URL}/api/v1/login` 
+const FAVORITES_URL = `${BASE_URL}/favorites` 
 
 export function fetchingDiets(){
 	return (dispatch) => {
@@ -153,6 +155,31 @@ export function processNewUserForm(user){
 				}
 			})
 	}
+}
+
+export function toggleFavorite(userID, recipe){
+	return (dispatch) => {
+		const fav_config = {
+			method: "POST",
+			headers: {
+				'Content-Type': "application/json",
+				"Accept" : "application/json"
+			},
+			body: JSON.stringify({
+				userID: userID,
+				recipe: recipe
+			})
+		}
+		fetch(FAVORITES_URL, fav_config)
+			.then(res => res.json())
+			.then(favoritesList => {
+				dispatch(updateFavorites(favoritesList))
+			})
+	}
+}
+
+export function updateFavorites(favoritesList){
+	return { type: FAVORITE, payload: favoritesList}
 }
 
 export function logOutUser() {

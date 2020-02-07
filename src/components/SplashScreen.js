@@ -8,7 +8,7 @@ class SplashScreen extends React.Component {
 			<Container id="splash-container" >
 				<div id="splash-content">
 					<Header as='h1' id="app-name">Hunger<br/>Swype</Header>
-					<Loader indeterminate active inline='centered'>Preparing Flavour Algorithms...</Loader>
+					<Loader indeterminate active inline='centered'>{ this.props.running ? "Running Flavor Algorithm..." : "Preparing Flavour Algorithms..."}</Loader>
 				</div>
 			</Container>
 		)

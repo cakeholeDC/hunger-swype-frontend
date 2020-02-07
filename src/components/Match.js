@@ -4,6 +4,7 @@ import Result from './Result'
 import { connect } from 'react-redux'
 import { Image, Button, Item, Header } from 'semantic-ui-react'
 import { getResultsPage, showUserMatches } from '../redux/actions'
+import SplashScreen from './SplashScreen.js'
 
 class Match extends React.Component {
 	state={
@@ -41,7 +42,7 @@ class Match extends React.Component {
 			}
 		} else {
 			console.log("no dishes found")
-			return null
+			return <SplashScreen running/>
 		}
 	}
 
@@ -104,7 +105,7 @@ class Match extends React.Component {
 					: <React.Fragment>
 						<Header inverted as="h2">Here's some of our Flavourites:</Header>
 						<Item.Group divided className="results-listing">
-							{ this.props.matches.map(dish => <Result dish={dish} /> ) }
+							{ this.props.matches.map(dish => <Result key={dish.api_id} dish={dish} /> ) }
 						</Item.Group>
 						<div>&nbsp;</div> 
 					</React.Fragment>

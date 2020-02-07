@@ -2,6 +2,8 @@ import React from 'react'
 import MenuBar from './MenuBar'
 import { Image, Header, Container, Divider, Icon } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { toggleFavorite } from '../redux/actions.js'
 
 const BASE_URL = "http://localhost:3000"
 const RECIPE_URL = `${BASE_URL}/match/recipe`
@@ -32,6 +34,12 @@ class Recipe extends React.Component {
 		return directions
 	}
 
+	recipeIsFavorite(){
+		return this.props.currentUser.favorite_recipes.map(rec => rec.id).includes(this.state.recipeDetails.id)
+
+		// return this.props.currentUser.favorite_recipes.includes(this.state.recipeDetails)
+	}
+
 	render(){
 		console.log("RECIPE =>", this.props)
 		// if (this.state.recipeDetails !== null){
@@ -53,11 +61,24 @@ class Recipe extends React.Component {
 						{ this.state.recipeDetails.title }
 					</Header>
 					<Header as="h4">
-						Cook Time: {this.state.recipeDetails.cook_time} min — Serves: { this.state.recipeDetails.servings }
+						Cook Time: {this.state.recipeDetails.cook_time} min<br/>Serves: { this.state.recipeDetails.servings }
 					</Header>
-					<small className="gray-text">
-						<Icon color='green' name='thumbs up' /> { this.state.recipeDetails.rating }%
-					</small>
+			        <div className="icon-container">
+			        		<small className="favorites-toggle" onClick={ () => this.props.toggleFavorite(this.props.currentUser.id, this.state.recipeDetails) }>
+				          	    <Icon 
+				          	    	color="red" 
+				          	    	name={ this.props.currentUser 
+				          	    			? this.recipeIsFavorite() 
+			          	    					? "heart"
+			          	    					: "heart outline" 
+		          	    					: null
+		          	    				 }
+	      	    				/> Flavourite
+			          	    </small>
+						<small className="gray-text recipe-rating">
+							<Icon color='green' name='thumbs up' /> { this.state.recipeDetails.rating }%
+						</small>
+		            </div>
 					<Divider horizontal>
 				      <Header as='h4'>
 				        <Icon name='list' size='mini' />
@@ -84,4 +105,14 @@ class Recipe extends React.Component {
 	}
 }
 
-export default withRouter(Recipe)
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleFavorite: (userID, recipe) => { dispatch(toggleFavorite(userID, recipe)) }
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Recipe))

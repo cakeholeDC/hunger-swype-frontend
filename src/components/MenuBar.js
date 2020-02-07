@@ -4,6 +4,8 @@ import { returnHome } from '../redux/actions'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+const fallbackAvatar = "https://www.caribbeangamezone.com/wp-content/uploads/2018/03/avatar-placeholder.png"
+
 class MenuBar extends React.Component {
 	// state={
 	// 	showMenu: false
@@ -26,7 +28,7 @@ class MenuBar extends React.Component {
 				{ this.props.currentUser ?
 					<Image
 						id="user-avatar"
-						src='https://www.caribbeangamezone.com/wp-content/uploads/2018/03/avatar-placeholder.png' 
+						src={ this.props.currentUser.avatar ? this.props.currentUser.avatar : fallbackAvatar } 
 						avatar
 						onClick={ () => this.toggleUserActionMenu() }
 					/>

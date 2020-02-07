@@ -1,6 +1,7 @@
 import React from 'react'
 import { Item, Icon } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class Result extends React.Component {
 	render(){
@@ -16,8 +17,9 @@ class Result extends React.Component {
 						  <Item.Image size='small' src={recipePhoto} />
 					      <Item.Content>
 					        <Item.Header inverted as='h1' className="single-result-title">{recipeTitle}</Item.Header>
+					        <Item.Description inverted >Ready in {cookTime} minutes</Item.Description>
 					        <Item.Description inverted >Serves {recipeServings}</Item.Description>
-					        <Item.Extra inverted >
+					        <Item.Extra inverted>
 					          <Icon color='green' name='thumbs up' /> { recipeRating }%
 					        </Item.Extra>
 					      </Item.Content>
@@ -29,4 +31,16 @@ class Result extends React.Component {
 	}
 }
 
-export default withRouter(Result)
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+	// addDishToFavorites: (dish) => { dispatch(addDishToFavorites(dish)) }
+	// getResultsPage: () => { dispatch(getResultsPage()) },
+	// showUserMatches: (matches) => { dispatch(showUserMatches(matches)) },
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Result))
