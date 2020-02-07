@@ -28,7 +28,8 @@ body {
 }
  
 #app-name,
-#filter-step {
+#filter-step,
+#match-results {
   color: rgba(255, 193, 7, .87);
   font-family: 'Abril Fatface', cursive;
   text-align: center;
@@ -101,6 +102,12 @@ body {
 
 #filter-step {
   font-size: 4rem;
+}
+
+#match-results,
+.ui.header.user-prompt {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
 #menu-bar {
