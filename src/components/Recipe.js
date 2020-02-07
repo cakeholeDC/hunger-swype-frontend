@@ -71,7 +71,7 @@ class Recipe extends React.Component {
 				          	    			? this.recipeIsFavorite() 
 			          	    					? "heart"
 			          	    					: "heart outline" 
-		          	    					: null
+		          	    					: "heart outline"
 		          	    				 }
 	      	    				/> Flavourite
 			          	    </small>
@@ -88,7 +88,6 @@ class Recipe extends React.Component {
 					<ul className="ingredient-list">
 						{ this.getIngredients().map((ingredient, index) => <li key={`ingredient-${index}`}>{ingredient}</li> ) }
 					</ul>
-					<div>&nbsp;</div>
 					<Divider horizontal>
 				      <Header as='h4'>
 				        <Icon name='tasks' size='mini' />
@@ -98,6 +97,8 @@ class Recipe extends React.Component {
 				    <ol className="directions-list">
 				    	{ this.state.recipeDetails.directions.map((step, index) => <li key={`step-${index}`}>{step}</li> ) }
 				    </ol>
+				<Divider />
+				<a href={ this.state.recipeDetails.source_url }>View Original Recipe</a> 
 				</Container>
 				</div>
 			</React.Fragment>
