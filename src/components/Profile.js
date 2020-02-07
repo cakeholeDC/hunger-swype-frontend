@@ -33,7 +33,7 @@ class Profile extends React.Component {
 					</p>
 
 					<Button onClick={ this.props.logOutUser } negative>
-				      <Button.Content>Log Out</Button.Content>
+				      <Button.Content>Log Out <Icon name='log out' /></Button.Content>
 				    </Button>
 
 					<Divider horizontal className="profile-favorites-header">
