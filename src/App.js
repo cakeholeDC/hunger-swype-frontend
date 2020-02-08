@@ -16,7 +16,7 @@ import { fetchingDiets, fetchingCuisines, fetchingCourses, setCurrentUserState }
 
 class App extends React.Component {
   state={
-    loading: false
+    loading: true
   }
 
   appLoaded = () => {
@@ -51,10 +51,10 @@ class App extends React.Component {
 
   render(){
     return (
-      this.state.loading 
-        ? <SplashScreen />
-        : <div className="App">
-            <Switch>
+        <div className="App">
+         { this.state.loading 
+          ? <SplashScreen/>
+          : <Switch>
               <Route exact path="/match" render={ (props) => this.props.progress === "match" || this.props.progress === "results" 
                   ? <Match />
                   : <Redirect to='/' />
@@ -68,6 +68,7 @@ class App extends React.Component {
                   : <Route path="/" component={ MainContainer } />
               }
             </Switch>
+          }
           </div>
     );
   }

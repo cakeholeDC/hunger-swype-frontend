@@ -15,38 +15,38 @@ class Profile extends React.Component {
 			? <Redirect to="/login" />
 			: <React.Fragment>
 				<MenuBar/>
-				<div id="profile-page-container">
-				<Image 
-				 	fluid
-				 	src={ this.props.currentUser.avatar }
-				 	className="profile-image"
-			 	/>
-			 	<Container className="profile-page">
-					<Header as="h1" className="profile-username">
-						Chef de Cuisine,<br/>{ this.props.currentUser.username }
-					</Header>
-					<Header as="h3" className="profile-name">
-						{ this.props.currentUser.name }
-					</Header>
-					<p className="gray-text">
-						{ this.props.currentUser.region }
-					</p>
+					<div id="profile-page">
+					<Image 
+					 	fluid
+					 	src={ this.props.currentUser.avatar }
+					 	className="profile-image"
+				 	/>
+				 	<div className="profile-page">
+						<h1 className="yellow-header" id="profile-username">
+							Chef de Cuisine,<br/>{ this.props.currentUser.username }
+						</h1>
+						<Header as="h3" className="profile-name">
+							{ this.props.currentUser.name }
+						</Header>
+						<p className="gray-text">
+							{ this.props.currentUser.region }
+						</p>
 
-					<Button onClick={ this.props.logOutUser } negative>
-				      <Button.Content>Log Out <Icon name='log out' /></Button.Content>
-				    </Button>
+						<Button onClick={ this.props.logOutUser } negative>
+					      <Button.Content>Log Out <Icon name='log out' /></Button.Content>
+					    </Button>
 
-					<Divider horizontal className="profile-favorites-header">
-				      <Header as='h4' >
-				        <Icon name='heart' size='mini' />
-							Favorites 
-					  </Header>
-				    </Divider>
-					<Item.Group>
-						{  this.props.currentUser.favorite_recipes.map(recipe => <Favorite key={recipe.api_id} recipe={recipe} />)  }
-					</Item.Group>
-					
-				</Container>
+						<Divider horizontal className="profile-favorites-header">
+					      <Header as='h4' >
+					        <Icon name='heart' size='mini' />
+								Favorites 
+						  </Header>
+					    </Divider>
+						<Item.Group>
+							{  this.props.currentUser.favorite_recipes.map(recipe => <Favorite key={recipe.api_id} recipe={recipe} />)  }
+						</Item.Group>
+						
+					</div>
 				</div>
 			</React.Fragment>
 		)

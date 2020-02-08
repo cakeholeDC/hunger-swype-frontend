@@ -50,14 +50,29 @@ body {
 }
 
 #splash-container {
-  @extend .App;
-  position: relative;
+  // @extend .App;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
 
   #splash-content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 130%);
+    grid-row: 2;
+    // max-width: 50%;
+    // display: grid;
+    // grid-template-columns: 1fr;
+    // grid-template-rows: 3; 
+
+    #app-name {
+      // grid-column: 1 / -1;
+    }
+
+    // align-self: center;
+    // justify-content: space-around;
+    // grid-row: 4;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, 130%);
   }
 }
 
@@ -69,6 +84,7 @@ body {
   grid-template: inherit;
   grid-column: 1 / -1;
   grid-row: 1;
+  margin-bottom: 0px;
   // padding: .5em .5em;
 
   img.ui.avatar.image {
@@ -80,10 +96,6 @@ body {
     grid-row: 1;
     grid-column: 2 / -2;
     font-size: 1.5em;
-  }
-
-  &.match-menu {
-    margin-bottom: 0px;
   }
 }
 
@@ -106,6 +118,11 @@ body {
     font-size: 3rem;
     margin-bottom: 1rem;
   }
+
+  &#profile-username{
+    margin-top: 1rem;
+    margin-bottom: 0em;
+  }
 }
 
 #start-page {
@@ -119,11 +136,12 @@ body {
 
     .yellow-header {
       grid-column: 1 / -1;
+      margin-bottom: 1em;
     }
 
     .blink_me {
       grid-column: 1 / -1;
-      animation: blinker 1s linear infinite;
+      animation: blinker 2s linear infinite;
       font-family: 'Press Start 2P', cursive;
       align-self: end;
     }
@@ -138,7 +156,7 @@ body {
       @extend %transparent-container;
       color: black;
       grid-column: 2 / -2;
-      margin-top: 3em;
+      margin-top: 4em;
 
       &:hover {
         text-decoration: underline;
@@ -165,6 +183,19 @@ body {
     width: 100%;
     border-radius: 1em;
     margin-top: 2em;
+  }
+
+  #about-quote{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1em;
+    font-size: .80em;
+    text-align: left !important;
+
+    #about-quote-source {
+      width: 80%;
+      margin: auto;
+    }
   }
 
 }
@@ -291,6 +322,10 @@ button.ui.button.negative.circular.massive {
     font-size: 1em;
     margin-top: 1em;
   }
+}
+
+#profile-page {
+  grid-column: 1 / -1;
 }
 
 

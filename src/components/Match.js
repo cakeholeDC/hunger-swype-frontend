@@ -16,13 +16,19 @@ class Match extends React.Component {
 	}
 
 	getRandomDish = () => {
-		// if there are options to show
-		if (this.props.dishes.length > 0) {
+		let checked = false
+		//check if even have dishes
+		if (this.props.dishes.length === 0){
+			console.log("no dishes found")
+			return checked ? <SplashScreen error message="out-of-dishes"/> : <SplashScreen running/>
+			checked = true
+		} else if (this.props.dishes.length > 0) {
+		// then check if there are more options to show
 
 			// if user has been shown all the options
 			if (this.props.dishes.length === this.state.shownDishes.length){
 				console.log("no more dishes to show")
-				return null
+				return <SplashScreen error message="out-of-dishes"/>
 			} else {
 				const dishArray = this.props.dishes
 
@@ -37,12 +43,8 @@ class Match extends React.Component {
 					shownDishes: [...this.state.shownDishes, dish]
 				})
 
-				
 				return null
 			}
-		} else {
-			console.log("no dishes found")
-			return <SplashScreen running/>
 		}
 	}
 
@@ -106,8 +108,8 @@ class Match extends React.Component {
 						</div>
 					  </div>
 					: <div className="match-results-container">
-						<h2 className="yellow-header" id="match-results">Our Flavourites</h2>
-						{ /*<h2 className="yellow-header" id="match-results">Bon Appétit!</h2> */}
+						{/* <h2 className="yellow-header" id="match-results">Our Flavourites</h2> */}
+						<h2 className="yellow-header" id="match-results">Bon Appétit!</h2>
 						<Item.Group divided className="results-listing">
 							{ this.props.matches.map(dish => <Result key={dish.api_id} dish={dish} /> ) }
 						</Item.Group>

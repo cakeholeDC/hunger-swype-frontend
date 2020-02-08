@@ -15,11 +15,12 @@ class About extends React.Component{
 			<div className="about-container">
 				<h1 className="yellow-header" id="app-name">Hunger<br/>Swype</h1>
 				<div className="about-hunger-swype">
-					<h4>Hunger Swype is <em>flavour dating.</em></h4>
-					<p>Start out by providing our flavour algorithm with your dietary restrictions. Then let us know what you're looking for and Hunger Swype will present you with a series of delicious looking photos.</p>
-					<p>You decide if that dish looks appetizing. Hunger Swype’s flavour algorithm will match you with recipes to cook.</p>
-					<p>No more arguments over what's for dinner. No more frozen pizzas from the bodega on the corner (unless you're into that).</p>
-					<p>No more trusting recommendations from that one friend who lived in the neighborhood ten years ago (Looking at you, Scott).</p>
+					<h3>Hunger Swype is <em>flavour dating.</em></h3>
+					<p>A study by John's Hopkins University <a href="https://clf.jhsph.edu/about-us/news/news-2014/study-suggests-home-cooking-main-ingredient-healthier-diet" target="_blank">suggests</a> that cooking at home is the main ingredient for a healthier life.</p>
+					<p id="about-quote"><em>“When people cook most of their meals at home, they consume fewer carbohydrates, less sugar and less fat than those who cook less or not at all – even if they are not trying to lose weight”</em><br/><p id="about-quote-source">-Julia A. Wolfson, MPP<br/><small>Fellow, Johns Hopkins Center for a Livable Future</small></p></p>
+					<p>Hunger Swype is here to help! We know that when it comes to cooking the problem that most of us face isn't the cooking itself, but rather what to cook. Start out by entering your dietary restrictions, then let us know what you're looking for and Hunger Swype will present you with a series of delicious looking photos matching your flavour profile.</p>
+					<p>Your only job is to decide whether that dish looks appetizing or not and we'll take it from there. Hunger Swype’s flavour algorithm will match you with suggested recipes.</p>
+					<p>No more arguments over what's for dinner. No more frozen pizzas or rotisserie hot-dogs from the bodega around the corner (unless you're into that).</p>
 					<p>Let your appetite drive your flavour profile!</p>
 				<div className="credits">
 					<p>Hunger Swype &copy;{this.getCurrentYear()} <a href="https://www.kylepcole.com/" target="_blank">Kyle P. Cole</a></p>

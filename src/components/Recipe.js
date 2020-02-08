@@ -64,7 +64,7 @@ class Recipe extends React.Component {
 							Cook Time: {this.state.recipeDetails.cook_time} min&nbsp; | &nbsp;Serves: { this.state.recipeDetails.servings }
 						</Header>
 				        <div className="icon-container">
-				        		<small className="favorites-toggle" onClick={ () => this.props.toggleFavorite(this.props.currentUser.id, this.state.recipeDetails) }>
+				        		<span className="favorites-toggle" onClick={ () => this.props.toggleFavorite(this.props.currentUser.id, this.state.recipeDetails) }>
 					          	    <Icon 
 					          	    	color="red" 
 					          	    	name={ this.props.currentUser 
@@ -74,10 +74,10 @@ class Recipe extends React.Component {
 			          	    					: "heart outline"
 			          	    				 }
 		      	    				/> Flavourite
-				          	    </small>
-							<small className="gray-text recipe-rating">
+				          	    </span>
+							<span className="gray-text recipe-rating">
 								<Icon color='green' name='thumbs up' /> { this.state.recipeDetails.rating }%
-							</small>
+							</span>
 			            </div>
 						<Divider horizontal>
 					      <Header as='h4'>
