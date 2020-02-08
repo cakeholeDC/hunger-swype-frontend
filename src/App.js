@@ -16,7 +16,7 @@ import { fetchingDiets, fetchingCuisines, fetchingCourses, setCurrentUserState }
 
 class App extends React.Component {
   state={
-    loading: true
+    loading: false
   }
 
   appLoaded = () => {

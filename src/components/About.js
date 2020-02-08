@@ -13,7 +13,7 @@ class About extends React.Component{
 			<React.Fragment>
 			<MenuBar />
 			<div className="about-container">
-				<Header as='h1' className="user-prompt" id="app-name">Hunger<br/>Swype</Header>
+				<h1 className="yellow-header" id="app-name">Hunger<br/>Swype</h1>
 				<div className="about-hunger-swype">
 					<h4>Hunger Swype is <em>flavour dating.</em></h4>
 					<p>Start out by providing our flavour algorithm with your dietary restrictions. Then let us know what you're looking for and Hunger Swype will present you with a series of delicious looking photos.</p>
@@ -23,11 +23,12 @@ class About extends React.Component{
 					<p>Let your appetite drive your flavour profile!</p>
 				<div className="credits">
 					<p>Hunger Swype &copy;{this.getCurrentYear()} <a href="https://www.kylepcole.com/" target="_blank">Kyle P. Cole</a></p>
+					<p><small>version 0.1.2</small></p>
 				</div>
 				</div>
 				<Button
 					positive
-					className="return-home"
+					className="return-home-btn"
 					content="Alright, let's get started!"
 					onClick={ () => this.props.history.push(`/`)} />
 			</div>
