@@ -60,8 +60,8 @@ class Recipe extends React.Component {
 						<Header as="h3" className="recipe-title">
 							{ this.state.recipeDetails.title }
 						</Header>
-						<Header as="h4">
-							Cook Time: {this.state.recipeDetails.cook_time} min<br/>Serves: { this.state.recipeDetails.servings }
+						<Header as="h4" className="recipe-cooking-detals">
+							Cook Time: {this.state.recipeDetails.cook_time} min&nbsp; | &nbsp;Serves: { this.state.recipeDetails.servings }
 						</Header>
 				        <div className="icon-container">
 				        		<small className="favorites-toggle" onClick={ () => this.props.toggleFavorite(this.props.currentUser.id, this.state.recipeDetails) }>

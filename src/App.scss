@@ -270,7 +270,26 @@ button.ui.button.negative.circular.massive {
   .recipe-image {
     @extend %transparent-container;
     margin-bottom: 1em;
-    // margin-top: -1em;
+  }
+
+  ol, ul {
+    padding-inline-start: 2em;
+    padding-inline-end: 2em;
+  }
+
+  li {
+    text-align: left;
+  }
+
+  .icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .recipe-cooking-detals{
+    font-size: 1em;
+    margin-top: 1em;
   }
 }
 
@@ -421,6 +440,23 @@ button.ui.button.negative.circular.massive {
 
   #recipe-page-container {
     grid-column: 1 / -1;
+
+    img { 
+      border-radius: 0em;
+    }
+
+    .recipe-image {
+      margin-bottom: 0px;
+      margin-top: -1em;
+      padding: 0em;
+      border-radius: 0em;
+    }
+
+    .recipe-page {
+      margin-bottom: 1em;
+      border-top-right-radius: 0em;
+      border-top-left-radius: 0em;
+    }
   }
 
 
@@ -579,6 +615,11 @@ button.ui.button.negative.circular.massive {
 
   #recipe-page-container {
     grid-column: 2 / -2;
+
+    .icon-container{
+      width: 80%;
+      margin: auto;
+    }
   }
 
   /// REFACTOR BELOW
@@ -773,6 +814,11 @@ button.ui.button.negative.circular.massive {
 
   #recipe-page-container {
     grid-column: 3 / -3;
+
+    .icon-container{
+      width: 60%;
+      margin: auto;
+    }
   }
 
 
