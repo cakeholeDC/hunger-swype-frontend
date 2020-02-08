@@ -167,9 +167,9 @@ class Filters extends React.Component {
 
 	render(){
 		return(
-			<React.Fragment>
-				<Header as='h2' className="user-prompt" id="filter-step">{toTitleCase(`${this.state.filterStep}`)}</Header>
-				<Container id="filter-container">
+			<div id="filter-container">
+				<h2 className="yellow-header" id="filter-step">{toTitleCase(`${this.state.filterStep}`)}</h2>
+				<div className="filter-content">
 					<List divided >
 						{ this.getFilterItems().map(item => <FilterItem step={this.state.filterStep} key={item} item={item} onFilterChange={this.onFilterChange}/>) }
 						{ this.state.filterStep === "keywords" 
@@ -179,8 +179,8 @@ class Filters extends React.Component {
 						{  }
 					</List>
 
-				</Container>
-				<Header inverted as="h4">
+				</div>
+				<h4 className="continue-btn-label">
 					Continue to { this.state.filterStep === "diets" 
 									? "Cuisine Types" 
 									: this.state.filterStep === "cuisines"
@@ -189,7 +189,7 @@ class Filters extends React.Component {
 											? "Matches"//"Keywords"
 											: "Matches"
 								}
-				</Header>
+				</h4>
 				<Button 
 					circular
 					positive
@@ -197,7 +197,7 @@ class Filters extends React.Component {
 					onClick={ this.contineToNextStep }
 					icon='arrow right'
 				/>
-			</React.Fragment>
+			</div>
 		)
 	}
 }

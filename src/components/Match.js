@@ -84,6 +84,8 @@ class Match extends React.Component {
 					 	src={ this.state.currentDish ? this.getDishImage(this.state.currentDish) : 'https://www.ajactraining.org/wp-content/uploads/2019/09/image-placeholder.jpg'}
 					 	className="match-image"
 				 	/>
+						 <h1 className="match-prompt-label">Does this look appetizing?</h1>
+						 <div className="match-btn-container">
 						 <Button 
 							circular
 							negative
@@ -101,14 +103,16 @@ class Match extends React.Component {
 							onClick={ this.interestedInDish }
 							icon='thumbs up'
 						/>
+						</div>
 					  </div>
-					: <React.Fragment>
-						<Header as='h2' className="user-prompt" id="match-results">Our Flavourites</Header>
+					: <div className="match-results-container">
+						<h2 className="yellow-header" id="match-results">Our Flavourites</h2>
+						{ /*<h2 className="yellow-header" id="match-results">Bon Appétit!</h2> */}
 						<Item.Group divided className="results-listing">
 							{ this.props.matches.map(dish => <Result key={dish.api_id} dish={dish} /> ) }
 						</Item.Group>
 						<div>&nbsp;</div> 
-					</React.Fragment>
+					</div>
 				}
 				</React.Fragment>
 		)

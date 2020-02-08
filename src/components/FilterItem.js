@@ -27,7 +27,7 @@ class FilterItem extends React.Component {
 
 	render(){
 		return(
-			<List.Item className="filter-items">
+			<List.Item className="filter-items" onClick={ this.toggleFilter }>
 				<List.Content floated="right">
 					<Radio toggle name={ this.props.item } checked={ this.userDietsArray().includes(this.props.item) ? true : this.state.checked } onChange={ this.toggleFilter } />
 				</List.Content>

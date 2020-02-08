@@ -17,8 +17,7 @@ class Result extends React.Component {
 						  <Item.Image size='small' src={recipePhoto} />
 					      <Item.Content>
 					        <Item.Header inverted as='h1' className="single-result-title">{recipeTitle}</Item.Header>
-					        <Item.Description inverted >Ready in {cookTime} minutes</Item.Description>
-					        <Item.Description inverted >Serves {recipeServings}</Item.Description>
+					        <Item.Description inverted >Ready in {cookTime} minutes | Serves {recipeServings}</Item.Description>
 					        <Item.Extra inverted>
 					          <Icon color='green' name='thumbs up' /> { recipeRating }%
 					        </Item.Extra>
