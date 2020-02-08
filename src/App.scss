@@ -233,7 +233,7 @@ button.ui.button.negative.circular.massive {
 }
 
 .match-results-container {
-  grid-column: 3 / -3;
+  //grid colun is set with media queries
 
   .results-listing {
     
@@ -255,6 +255,22 @@ button.ui.button.negative.circular.massive {
       }
     }
 
+  }
+}
+
+#recipe-page-container {
+  // @extend %transparent-container;
+  grid-column: 3 / -3;
+
+  img { 
+    border-radius: 1em;
+  }
+
+  .recipe-page,
+  .recipe-image {
+    @extend %transparent-container;
+    margin-bottom: 1em;
+    // margin-top: -1em;
   }
 }
 
@@ -401,6 +417,10 @@ button.ui.button.negative.circular.massive {
 
     } 
 
+  }
+
+  #recipe-page-container {
+    grid-column: 1 / -1;
   }
 
 
@@ -555,6 +575,10 @@ button.ui.button.negative.circular.massive {
         grid-column: 2 / -2;
       }
     }
+  }
+
+  #recipe-page-container {
+    grid-column: 2 / -2;
   }
 
   /// REFACTOR BELOW
@@ -730,17 +754,25 @@ button.ui.button.negative.circular.massive {
   }
 
 
-  .match-results-container .results-listing .item.recipe-result {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
+  .match-results-container {
+    grid-column: 3 / -3;
 
-    .ui.small.image {
-      grid-column: 1 / 4;
-    }
+    .results-listing .item.recipe-result {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
 
-    .content{
-      grid-column: 4 / -2;
+      .ui.small.image {
+        grid-column: 1 / 4;
+      }
+
+      .content{
+        grid-column: 4 / -2;
+      }
     }
+  }
+
+  #recipe-page-container {
+    grid-column: 3 / -3;
   }
 
 
