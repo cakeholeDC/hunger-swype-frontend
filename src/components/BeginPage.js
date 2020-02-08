@@ -21,9 +21,9 @@ class BeginPage extends React.Component {
 		}, 1000);
 	}
 
-	componentDidMount(){
-		this.toggleBlink()
-	}
+	// componentDidMount(){
+	// 	this.toggleBlink()
+	// }
 
 
 
