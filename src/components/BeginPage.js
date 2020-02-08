@@ -25,39 +25,31 @@ class BeginPage extends React.Component {
 	// 	this.toggleBlink()
 	// }
 
-
-
-	redirectToAboutPage = () => {
-		this.props.history.push(`/about`)
-	}
 	render(){
 		return(
-			<div className="content-container">
-				<Header as='h1' className="user-prompt" id="app-name">Hunger<br/>Swype</Header>
-				<p className="press-start">
-		            { this.state.blinkState 
-		              ? "LET'S EAT!"
-		              : null
-		            }
-	            </p>
-				{ this.props.diets.length !== 0 || this.props.cuisines.length !== 0 || this.props.courses.length !== 0
-					? <Button 
-						circular
-						positive
-						className="massive single-user-action start-swype"
-						onClick={ () => this.props.proceedToFilters() }
-						icon='food'
-					/>
-					: <Button 
-						circular
-						disabled
-						positive
-						className="massive single-user-action start-swype"
-						onClick={ () => this.props.proceedToFilters() }
-						icon='food'
-					/>
-				}
-				<a id="about-page-link" onClick={ this.redirectToAboutPage }>I'm new here, how's this work?</a>
+			<div id="start-page">
+				<div className="content">
+					<h1 className="yellow-header" id="app-name">Hunger<br/>Swype</h1>
+					<p className="blink_me">LET'S EAT!</p>
+					{ this.props.diets.length !== 0 || this.props.cuisines.length !== 0 || this.props.courses.length !== 0
+						? <Button 
+							circular
+							positive
+							className="massive" id="start-swype-btn"
+							onClick={ () => this.props.proceedToFilters() }
+							icon='food'
+						/>
+						: <Button 
+							circular
+							disabled
+							positive
+							className="massive" id="start-swype-btn"
+							onClick={ () => this.props.proceedToFilters() }
+							icon='food'
+						/>
+					}
+					<a id="about-page-link" onClick={ () => this.props.history.push(`/about`) }>I'm new here, how's this work?</a>
+				</div>
 			</div>
 		)
 	}

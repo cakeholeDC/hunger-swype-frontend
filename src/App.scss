@@ -11,6 +11,19 @@ $abril-fat: 'Abril Fatface';
 //   transform: translate(-50%, 100%);
 // }
 
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+%transparent-container{
+  background: $trans-bkg;
+  padding: 1em;
+  border-radius: 1em;
+  padding-bottom: 2.125em;
+}
+
 body {
   background-color: transparent;
   background-image: url('/pasta-bkg.jpg');
@@ -68,42 +81,31 @@ body {
   }
 }
 
-%transparent-container{
-  background: $trans-bkg;
-  padding: 1em;
-  border-radius: 1em;
-  padding-bottom: 2.125em;
+
+// @TODO - add .yellow-header class.
+.yellow-header {
+  color: $hs-yellow;
+  font-family: $abril-fat, cursive;
+  text-align: center;
+  line-height: 4.5rem;
+  margin-bottom: 3rem;
+
+  &#app-name{
+    font-size: 5rem;
+  }
+  
+  &#filter-step {
+    font-size: 4rem;
+  }
+  
+  &#match-results {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
 }
 
-// #splash-container {
-//   // height: 100%;
-//   // margin: auto;
-//   display: grid;
-//   grid-template: inherit;
-//   // grid-template-columns: repeat(8, 1fr);
-//   // grid-template-rows: repeat(3, 1fr);
-//   // grid-gap: 10px;
-//   /*font-family: $roboto-cn, sans-serif;*/
-// }
-
-
-
-
-
-
-// #menu-bar-text {
-//   // grid-column: 2 / -2;
-//   font-family: $roboto-cn, sans-serif;
-//   font-size: 1.5em;
-// }
-
-
-#splash-content {
-  // grid-column: 2 / -2;
-  grid-row: 2;
-}
- 
-#app-name,
+// @TODO - remove this once added .yellow-header
+// #app-name,
 #filter-step,
 #match-results {
   color: $hs-yellow;
@@ -114,26 +116,51 @@ body {
   margin-bottom: 3rem;
 }
 
-.press-start {
-  /*color: $hs-yellow;*/
-  /*-webkit-text-stroke-width: 1px;*/
-  /*-webkit-text-stroke-color: black;*/
-  color: black;
-  font-family: 'Press Start 2P', cursive;
-  grid-row: 5;
-  // grid-column: 2 / -2;
-  align-self: end;
-}
+#start-page {
+  grid-column: 2 / -2;
+  grid-row: 14;
 
-.blink_me {
-  animation: blinker 1s linear infinite;
-}
+  .content {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-row: repeat(6, 2fr);
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
+    .yellow-header {
+      grid-column: 1 / -1;
+    }
+
+    .blink_me {
+      grid-column: 1 / -1;
+      animation: blinker 1s linear infinite;
+      font-family: 'Press Start 2P', cursive;
+      align-self: end;
+    }
+
+    //button
+    #start-swype-btn {
+      grid-column: 4 / 6;
+      margin-right: none;
+      margin: auto;
+    }
+
+    #about-page-link {
+      @extend %transparent-container;
+      color: black;
+      grid-column: 2 / -2;
+      margin-top: 3em;
+      padding-bottom: 1em;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+  }// .content
+
+}// #start-page
+
+
+
 
 .about-container {
     // display: grid;
@@ -163,25 +190,7 @@ body {
   border-radius: 1em;
 }
 
-#about-page-link{
-  grid-row: 10;
-  // grid-column: 2 / -2;
-  color: black;
-}
 
-#about-page-link:hover {
-  text-decoration: underline;
-}
-
-#filter-step {
-  font-size: 4rem;
-}
-
-#match-results,
-.ui.header.user-prompt {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
 
 
 
@@ -305,9 +314,9 @@ h3.ui.header.recipe-title {
     margin-bottom: 0px;
   }
 
-  #user-profile-actions {
-    // grid-column: 1 / 2;
-  }
+  // #user-profile-actions {
+  //   // grid-column: 1 / 2;
+  // }
 
   .content-container {
     // display: grid;
@@ -427,6 +436,14 @@ h3.ui.header.recipe-title {
 
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
+  #start-page  .content #about-page-link {
+    grid-column: 3 / -3;
+  }
+
+
+  /// REFACTOR BELOW
+
+
 
   /*#menu-bar.match-menu {
     margin-bottom: 0px;
@@ -566,24 +583,15 @@ h3.ui.header.recipe-title {
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
 
-  #user-profile-actions {
-    // grid-column: 1 / 2;
+  #start-page  .content #about-page-link {
+    grid-column: 4 / -4;
   }
 
-  .content-container {
-    // display: grid;
-    // grid-template-columns: repeat(9, 1fr);
-    grid-auto-rows: 1fr;
-    grid-gap: 10px;
-  }
 
-  .content-container::before {
-    content: '';
-    width: 0;
-    padding-bottom: 100%;
-    grid-row: 1 / 1;
-    // grid-column: 1 / 1;
-  }
+
+
+  /// REFACTOR BELOW
+
 
   .user-prompt {
     grid-row: 2;
