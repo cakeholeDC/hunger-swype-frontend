@@ -17,39 +17,50 @@ class Login extends React.Component{
 		avatar: ''
 	}
 
-	toggleNewAccountForm = () => {
-		// const validity = !this.state.formIsValid ? true : false
+	toggleNewAccountForm = (event) => {
+		event.preventDefault()
 		this.setState({
 			isNewAccount: !this.state.isNewAccount,
-			// formIsValid: validity
+			formIsValid: true
 		})
 	}
 
 	onFormChange(event){
-		console.log(event.target.name, event.target.value)
 		this.setState({
 			[event.target.name]: event.target.value,
 			formIsValid: true
 		})
 	}
 
+	emailIsValid(email) {
+		console.log('validating email')
+	 if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(email)) 
+		{	
+			console.log('valid')
+			return (true)
+		} else {
+			return (false)
+		}
+	}
+
 	onFormSubmit = (event) => {
 		event.preventDefault()
 		console.log("validating onFormSubmit...")
 		const checkFields = !this.state.isNewAccount ? ['username', 'password'] : ['username', 'password', 'name', 'email', 'region', 'birthdate', 'avatar']
-		let canSubmit = false
+		let canSubmit = true
 		checkFields.forEach(field => {
 			if (this.state[field] === ''){
-				this.setState({
-					formIsValid: false
-				})
-			} else {
-				canSubmit = true
+				canSubmit = false
 			}
 		})
 
+		if (!canSubmit) {
+			this.setState({
+				formIsValid: false
+			})
+		}
+
 		if (canSubmit) {
-			console.log("submitting form!")
 			let userFormData
 
 			let fallbackImg = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
@@ -122,7 +133,7 @@ class Login extends React.Component{
 									? <React.Fragment>
 										<Form.Group widths='equal'>
 											<Form.Input 
-												fluid 
+												fluid
 												name="name" 
 												label="Full Name"
 												placeholder="John Doe"
@@ -135,13 +146,13 @@ class Login extends React.Component{
 												}
 											/>
 											<Form.Input 
-												fluid 
+												fluid
 												name="email" 
 												label="Email"
 												placeholder="jdoe@gmail.com"
-												error={ !this.state.formIsValid && this.state.email === ''
+												error={ !this.state.formIsValid && !this.emailIsValid(this.state.email)
 													? {
-												      content: `Please enter a valid email address. We'll only use it for product updates.`,
+												      content: `Please enter a valid email address.`,
 												      pointing: 'above',
 												    }
 												    : null
@@ -150,7 +161,7 @@ class Login extends React.Component{
 										</Form.Group>
 										<Form.Group widths='equal'>
 											<Form.Input 
-												fluid 
+												fluid
 												name="region" 
 												label="Region"
 												placeholder="Washington, DC"
@@ -167,13 +178,6 @@ class Login extends React.Component{
 											name="avatar" 
 											label="Avatar"
 											placeholder="www.sweetpics.com/avatar.jpg"
-											error={ !this.state.formIsValid && this.state.avatar === ''
-												? {
-											      content: 'Please select a super cool avatar',
-											      pointing: 'above',
-											    }
-											    : null
-											}
 										/>
 										</Form.Group>
 									</React.Fragment>
@@ -182,14 +186,14 @@ class Login extends React.Component{
 								{
 									this.state.isNewAccount
 									? <div className="signup-btn-container"> 
-										<Button floated="left" onClick={ () => this.toggleNewAccountForm() } negative >Cancel</Button>
-										<Button type="submit" floated="right" onClick={ () => console.log("sign up") } primary >Sign Up</Button>
+										<Button type="button" onClick={ (event) => this.toggleNewAccountForm(event) } negative >Cancel</Button>
+										<Button type="submit" onClick={ () => console.log("sign up") } primary >Sign Up</Button>
 									</div>
 									: <div className="login-btn-container"> 
 									    <Button type="submit" primary >
 									    		Let's Eat!
 									    </Button>
-									    <p className="sign-up-link"><a onClick={() => this.toggleNewAccountForm() }>Don't have an account?</a></p>
+									    <p className="sign-up-link"><a onClick={(event) => this.toggleNewAccountForm(event) }>Don't have an account?</a></p>
 								    </div>
 								}
 							</Form>
