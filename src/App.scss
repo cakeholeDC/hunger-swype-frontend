@@ -217,7 +217,16 @@ body {
 
 }
 
+.ui.button {
+  &.primary,
+  &.positive{
+    @extend %yellow-button;       
+  }
 
+  &.negative{
+    @extend %red-button;
+  }
+}
 
 #filter-container {
   grid-column: 2 / -2;
@@ -548,7 +557,7 @@ body {
   }
 
   .about-container, {
-    grid-column: 4 / -4;
+    grid-column: 3 / -3;
     
     .return-home-btn {
       width: 100%;
