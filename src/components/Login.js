@@ -18,8 +18,10 @@ class Login extends React.Component{
 	}
 
 	toggleNewAccountForm = () => {
+		// const validity = !this.state.formIsValid ? true : false
 		this.setState({
-			isNewAccount: !this.state.isNewAccount
+			isNewAccount: !this.state.isNewAccount,
+			// formIsValid: validity
 		})
 	}
 
@@ -80,121 +82,119 @@ class Login extends React.Component{
 				? <Redirect to="/" />
 				: <React.Fragment>
 					<MenuBar />
-					<Header as='h1' className="user-prompt" id="app-name">Hunger<br/>Swype</Header>
-					
-					<Container>
-					<Form 
-						className="login-form"
-						onChange={ event => this.onFormChange(event) }
-						onSubmit={ this.onFormSubmit }
-					>
-						<Form.Group widths='equal'>
-							<Form.Input 
-								fluid 
-								name="username" 
-								label="Username"
-								placeholder="dc_foodie"
-								error={ !this.state.formIsValid && this.state.username === '' 
-									? {
-								      content: 'Please enter a username',
-								      pointing: 'above',
-								    }
+						<div id="login-page">
+						<h1 className="yellow-header" id="app-name">Hunger<br/>Swype</h1>
+						<div className="login-content">
+							<Form 
+								className="login-form"
+								onChange={ event => this.onFormChange(event) }
+								onSubmit={ this.onFormSubmit } >
+								<Form.Group widths='equal'>
+									<Form.Input 
+										fluid 
+										name="username" 
+										label="Username"
+										placeholder="dc_foodie"
+										error={ !this.state.formIsValid && this.state.username === '' 
+											? {
+										      content: 'Please enter a username',
+										      pointing: 'above',
+										    }
+											: null
+										}
+									/>
+									<Form.Input 
+										fluid 
+										type="password"
+										name="password" 
+										label="Password"
+										placeholder="password123"
+										error={ !this.state.formIsValid && this.state.password === ''
+											? {
+										      content: 'Please enter a password',
+										      pointing: 'above',
+										    }
+										    : null
+										}
+									/>
+								</Form.Group>
+								{ this.state.isNewAccount 
+									? <React.Fragment>
+										<Form.Group widths='equal'>
+											<Form.Input 
+												fluid 
+												name="name" 
+												label="Full Name"
+												placeholder="John Doe"
+												error={ !this.state.formIsValid && this.state.name === ''
+													? {
+												      content: 'Full name is required',
+												      pointing: 'above',
+												    }
+												    : null
+												}
+											/>
+											<Form.Input 
+												fluid 
+												name="email" 
+												label="Email"
+												placeholder="jdoe@gmail.com"
+												error={ !this.state.formIsValid && this.state.email === ''
+													? {
+												      content: `Please enter a valid email address. We'll only use it for product updates.`,
+												      pointing: 'above',
+												    }
+												    : null
+												}
+											/>
+										</Form.Group>
+										<Form.Group widths='equal'>
+											<Form.Input 
+												fluid 
+												name="region" 
+												label="Region"
+												placeholder="Washington, DC"
+												error={ !this.state.formIsValid && this.state.region === ''
+													? {
+												      content: 'Please enter a region',
+												      pointing: 'above',
+												    }
+												    : null
+												}
+											/>
+										<Form.Input 
+											fluid 
+											name="avatar" 
+											label="Avatar"
+											placeholder="www.sweetpics.com/avatar.jpg"
+											error={ !this.state.formIsValid && this.state.avatar === ''
+												? {
+											      content: 'Please select a super cool avatar',
+											      pointing: 'above',
+											    }
+											    : null
+											}
+										/>
+										</Form.Group>
+									</React.Fragment>
 									: null
 								}
-
-							/>
-							<Form.Input 
-								fluid 
-								type="password"
-								name="password" 
-								label="Password"
-								placeholder="password123"
-								error={ !this.state.formIsValid && this.state.password === ''
-									? {
-								      content: 'Please enter a password',
-								      pointing: 'above',
-								    }
-								    : null
+								{
+									this.state.isNewAccount
+									? <div className="signup-btn-container"> 
+										<Button floated="left" onClick={ () => this.toggleNewAccountForm() } negative >Cancel</Button>
+										<Button type="submit" floated="right" onClick={ () => console.log("sign up") } primary >Sign Up</Button>
+									</div>
+									: <div className="login-btn-container"> 
+									    <Button type="submit" primary >
+									    		Let's Eat!
+									    </Button>
+									    <p className="sign-up-link"><a onClick={() => this.toggleNewAccountForm() }>Don't have an account?</a></p>
+								    </div>
 								}
-							/>
-						</Form.Group>
-						{ this.state.isNewAccount 
-							? <React.Fragment>
-								<Form.Group widths='equal'>
-									<Form.Input 
-										fluid 
-										name="name" 
-										label="Full Name"
-										placeholder="John Doe"
-										error={ !this.state.formIsValid && this.state.name === ''
-											? {
-										      content: 'Full name is required',
-										      pointing: 'above',
-										    }
-										    : null
-										}
-									/>
-									<Form.Input 
-										fluid 
-										name="email" 
-										label="Email"
-										placeholder="jdoe@gmail.com"
-										error={ !this.state.formIsValid && this.state.birthdate === ''
-											? {
-										      content: 'Please enter a valid email address',
-										      pointing: 'above',
-										    }
-										    : null
-										}
-									/>
-								</Form.Group>
-								<Form.Group widths='equal'>
-									<Form.Input 
-										fluid 
-										name="region" 
-										label="Region"
-										placeholder="Washington, DC"
-										error={ !this.state.formIsValid && this.state.region === ''
-											? {
-										      content: 'Please enter a region',
-										      pointing: 'above',
-										    }
-										    : null
-										}
-									/>
-								<Form.Input 
-									fluid 
-									name="avatar" 
-									label="Avatar"
-									placeholder="www.sweetpics.com/yourimage.jpg"
-									error={ !this.state.formIsValid && this.state.avatar === ''
-										? {
-									      content: 'Please select a super cool avatar',
-									      pointing: 'above',
-									    }
-									    : null
-									}
-								/>
-								</Form.Group>
-							</React.Fragment>
-							: null
-						}
-						{
-							this.state.isNewAccount
-							? <React.Fragment> 
-								<Button type="submit" floated="right" onClick={ () => console.log("sign up") } primary >Sign Up</Button>
-								<Button type="submit" floated="left" onClick={ () => this.toggleNewAccountForm() } negative >Cancel</Button>
-								<div>&nbsp;</div>
-							</React.Fragment>
-							: <React.Fragment>
-							    <Button type="submit" primary >
-							    		Let's Eat!
-							    </Button>
-							    <p><a onClick={() => this.toggleNewAccountForm() }>Don't have an account?</a></p>
-						    </React.Fragment>
-						}
-					</Form>
-					</Container>
+							</Form>
+						</div>
+					</div>
 				  </React.Fragment>
 		)
 	}

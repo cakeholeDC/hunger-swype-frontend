@@ -33,7 +33,7 @@ class Profile extends React.Component {
 								{ this.props.currentUser.region }
 							</p>
 						</div>
-						<div class="profile-btn-container">
+						<div className="profile-btn-container">
 						<Button onClick={ () => console.log('edit') } primary >
 					      <Button.Content>Edit Profile <Icon name='edit' /></Button.Content>
 					    </Button>
