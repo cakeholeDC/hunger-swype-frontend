@@ -20,7 +20,8 @@ class Filters extends React.Component {
 
 	componentDidMount(){
 		this.setState({
-			filterStep: "diets"
+			filterStep: "diets",
+			dietsFilter: [...this.props.currentUser.diets.map(diet=> diet.name)]
 		})
 	}
 	
@@ -28,6 +29,10 @@ class Filters extends React.Component {
 
 		switch (this.state.filterStep){
 			case "diets":
+				if (this.state.dietsFilter.includes(item)) {
+					status = false
+				}
+
 				if (status === false){
 					this.setState({
 						dietsFilter: [...this.state.dietsFilter.filter(diet => diet !== item)]
@@ -75,10 +80,6 @@ class Filters extends React.Component {
 				return null
 		}
 	}
-
-	// onFilterChange = (event) => {
-	// 	console.log(event.target.name, event.target.value)
-	// }
 
 	contineToNextStep = () => {
 		let nextStep
@@ -171,12 +172,7 @@ class Filters extends React.Component {
 				<h2 className="yellow-header" id="filter-step">{toTitleCase(`${this.state.filterStep}`)}</h2>
 				<div className="filter-content">
 					<List divided >
-						{ this.getFilterItems().map(item => <FilterItem step={this.state.filterStep} key={item} item={item} onFilterChange={this.onFilterChange}/>) }
-						{ this.state.filterStep === "keywords" 
-							? this.addKeywordRow()
-							: null
-						}
-						{  }
+						{ this.getFilterItems().map(item => <FilterItem step={this.state.filterStep} key={item} item={item} diets={this.state.dietsFilter} onFilterChange={this.onFilterChange}/>) }
 					</List>
 
 				</div>

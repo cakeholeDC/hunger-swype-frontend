@@ -3,17 +3,16 @@ import { Header, Radio, List } from 'semantic-ui-react'
 import { toTitleCase } from '../utils/Helpers.js'
 import { connect } from 'react-redux'
 
-class FilterItem extends React.Component {
+class DietFilterItem extends React.Component {
 	constructor(){
 		super()
 		this.state = {
 			checked: false
 		}
 	}
-	
 
-	toggleFilter = (item) => {
-		const init = this.state.checked
+	toggleFilter = () => {
+		const init = this.props.diets.includes(this.props.item)
 
 		this.setState({
 			checked: !this.state.checked
@@ -21,15 +20,12 @@ class FilterItem extends React.Component {
 		this.props.onFilterChange(this.props.item, !init)
 	}
 
-	userDietsArray(){
-		return this.props.currentUser.diets.map(diet => diet.name)
-	}
-
 	render(){
+		console.log(this.props)
 		return(
 			<List.Item className="filter-items" onClick={ this.toggleFilter }>
 				<List.Content floated="right">
-					<Radio toggle name={ this.props.item } checked={ this.userDietsArray().includes(this.props.item) ? true : this.state.checked } onChange={ this.toggleFilter } />
+					<Radio toggle name={ this.props.item } checked={ this.props.step === "diets" ? this.props.diets.includes(this.props.item) : this.state.checked } onChange={ this.toggleFilter } />
 				</List.Content>
 				<List.Content floated="left">
 					<Header
@@ -50,4 +46,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(FilterItem)
+export default connect(mapStateToProps)(DietFilterItem)
