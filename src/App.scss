@@ -58,6 +58,18 @@ body {
   }
 }
 
+.ui.button {
+  &.primary,
+  &.positive{
+    @extend %yellow-button;
+       
+  }
+
+  &.negative{
+    @extend %red-button;
+  }
+}
+
 #splash-container {
   // @extend .App;
   grid-column: 1 / -1;
@@ -205,37 +217,7 @@ body {
 
 }
 
-.ui.button {
-  &.primary,
-  &.positive{
-    @extend %yellow-button;
 
-    //move to btn
-       
-  }
-
-  &.negative{
-    @extend %red-button;
-  }
-}
-
-// @TODO - refactor to scss
-// button.ui.button.primary,
-// button.ui.button.primary:active,
-// button.ui.button.primary:hover,
-// button.ui.button.positive,
-// button.ui.button.positive:active,
-// button.ui.button.positive:hover,
-// button.ui.button.positive.circular.massive {
-//   @extend %yellow-button;
-// }
-
-// button.ui.button.negative,
-// button.ui.button.negative:active,
-// button.ui.button.negative:hover,
-// button.ui.button.negative.circular.massive {
-//   @extend %red-button;
-// }
 
 #filter-container {
   grid-column: 2 / -2;
