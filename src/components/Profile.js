@@ -21,20 +21,26 @@ class Profile extends React.Component {
 					 	src={ this.props.currentUser.avatar }
 					 	className="profile-image"
 				 	/>
-				 	<div className="profile-page">
+				 	<div className="profile-data">
 						<h1 className="yellow-header" id="profile-username">
 							Chef de Cuisine,<br/>{ this.props.currentUser.username }
 						</h1>
-						<Header as="h3" className="profile-name">
-							{ this.props.currentUser.name }
-						</Header>
-						<p className="gray-text">
-							{ this.props.currentUser.region }
-						</p>
-
+						<div className="profile-attributes">
+							<Header as="h3" className="profile-name">
+								{ this.props.currentUser.name }
+							</Header>
+							<p className="gray-text">
+								{ this.props.currentUser.region }
+							</p>
+						</div>
+						<div class="profile-btn-container">
+						<Button onClick={ () => console.log('edit') } primary >
+					      <Button.Content>Edit Profile <Icon name='edit' /></Button.Content>
+					    </Button>
 						<Button onClick={ this.props.logOutUser } negative>
 					      <Button.Content>Log Out <Icon name='log out' /></Button.Content>
 					    </Button>
+					    </div>
 
 						<Divider horizontal className="profile-favorites-header">
 					      <Header as='h4' >

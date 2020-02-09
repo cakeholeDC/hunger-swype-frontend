@@ -18,13 +18,13 @@ class Favorite extends React.Component {
 			> 
 				{ this.props.recipe
 					? <React.Fragment>
-						  <Item.Image size='tiny' src={this.props.recipe.photo} onClick={()=> this.props.history.push(`/match/recipe/${this.props.recipe.id}`)}/>
+						  <Item.Image size='small' src={this.props.recipe.photo} onClick={()=> this.props.history.push(`/match/recipe/${this.props.recipe.id}`)}/>
 					      <Item.Content>
 					        <Item.Header onClick={()=> this.props.history.push(`/match/recipe/${this.props.recipe.id}`)}>{this.props.recipe.title}</Item.Header>
 					        <Item.Description  >Ready in {this.props.recipe.cook_time} minutes</Item.Description>
 					        <Item.Description>Serves {this.props.recipe.servings}</Item.Description>
-					        <Item.Extra className="icon-container">
-					        	<small className="favorites-toggle" onClick={ () => this.props.toggleFavorite(this.props.currentUser.id, this.props.recipe) }>
+					        <Item.Extra className="profile-favorite-icons">
+					        	<span className="favorites-toggle" onClick={ () => this.props.toggleFavorite(this.props.currentUser.id, this.props.recipe) }>
 					          	    <Icon 
 					          	    	color="red" 
 					          	    	name={ this.props.currentUser 
@@ -34,10 +34,10 @@ class Favorite extends React.Component {
 				          	    					: null
 			          	    				 }
 		      	    				/> Flavourite
-				          	    </small>
-								<small className="gray-text recipe-rating">
+				          	    </span>
+								<span className="gray-text recipe-rating">
 						            <Icon color='green' name='thumbs up' /> { this.props.recipe.rating }%
-								</small>
+								</span>
 					        </Item.Extra>
 					      </Item.Content>
 				      </React.Fragment>

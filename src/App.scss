@@ -47,6 +47,10 @@ body {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 1em;
+
+  .gray-text {
+    color: #888888;
+  }
 }
 
 #splash-container {
@@ -57,23 +61,8 @@ body {
 
   #splash-content{
     grid-row: 2;
-    // max-width: 50%;
-    // display: grid;
-    // grid-template-columns: 1fr;
-    // grid-template-rows: 3; 
-
-    #app-name {
-      // grid-column: 1 / -1;
-    }
-
-    // align-self: center;
-    // justify-content: space-around;
-    // grid-row: 4;
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, 130%);
   }
+
 }
 
 #menu-bar {
@@ -120,6 +109,8 @@ body {
   }
 
   &#profile-username{
+    font-size: 3rem;
+    line-height: 3.5rem;
     margin-top: 1rem;
     margin-bottom: 0em;
   }
@@ -325,7 +316,30 @@ button.ui.button.negative.circular.massive {
 }
 
 #profile-page {
-  grid-column: 1 / -1;
+
+  .profile-image, 
+  .profile-data {
+    @extend %transparent-container;
+    margin-bottom: 1em;
+  }
+
+  .profile-attributes {
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    .profile-name {
+      margin-bottom: 0em;
+    }
+
+  }
+
+
+  .profile-btn-container,
+  .profile-favorite-icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 }
 
 
@@ -421,9 +435,7 @@ button.ui.button.negative.circular.massive {
 //   width: 90%;
 // }
 
-// .gray-text {
-//   color: #888888;
-// }
+
 
 // .results-listing div.item.recipe-result {
 //   background-color: $trans-bkg;
@@ -492,6 +504,24 @@ button.ui.button.negative.circular.massive {
       border-top-right-radius: 0em;
       border-top-left-radius: 0em;
     }
+  }
+
+  #profile-page {
+    grid-column: 1 / -1;
+
+    .profile-image {
+      margin-top: -1em;
+      margin-bottom: 0em;
+      padding: 0em;
+      border-radius: 0em;
+    }
+
+    .profile-data {
+      margin-bottom: 0em;
+      border-top-right-radius: 0em;
+      border-top-left-radius: 0em;
+    }
+
   }
 
 
@@ -655,6 +685,27 @@ button.ui.button.negative.circular.massive {
       width: 80%;
       margin: auto;
     }
+  }
+
+  #profile-page {
+    grid-column: 2 / -2;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1em;
+
+    .profile-image {
+      grid-column: 1 / 2;
+    }
+
+    .profile-data {
+      margin-bottom: 1em;
+    }
+
+    // have to decouple from profile page if I want to move this
+    // .profile-attributes {
+    //   grid-column: 1 / 2;
+    //   grid-row: 3;
+    // }
   }
 
   /// REFACTOR BELOW
@@ -854,6 +905,27 @@ button.ui.button.negative.circular.massive {
       width: 60%;
       margin: auto;
     }
+  }
+
+  #profile-page {
+    grid-column: 3 / -3;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1em;
+
+    .profile-image {
+      grid-column: 1 / 2;
+    }
+
+    .profile-data {
+      margin-bottom: 1em;
+    }
+
+    // have to decouple from profile page if I want to move this
+    // .profile-attributes {
+    //   grid-column: 1 / 2;
+    //   grid-row: 3;
+    // }
   }
 
 

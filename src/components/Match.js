@@ -28,6 +28,7 @@ class Match extends React.Component {
 			// if user has been shown all the options
 			if (this.props.dishes.length === this.state.shownDishes.length){
 				console.log("no more dishes to show")
+				// return null
 				return <SplashScreen error message="out-of-dishes"/>
 			} else {
 				const dishArray = this.props.dishes
