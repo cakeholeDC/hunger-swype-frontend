@@ -13,21 +13,28 @@ $abril-fat: 'Abril Fatface';
   border: .0625em rgba(0,0,0,.87) solid;
   font-family: $roboto-cn, sans-serif;
 
-  &:focus,
-  &:hover,
-  &:active, {
-    background-color: #1B98CC;
-  }
 }
 
 %yellow-button {
   @extend %button-styles;
   background-color: $hs-yellow;
+  
+  &:focus,
+  &:hover,
+  &:active, {
+    background-color: $hs-yellow;
+  }
 }
 
 %red-button {
   @extend %button-styles;
   background-color: #ff5722;
+
+  &:focus,
+  &:hover,
+  &:active, {
+    background-color: #ff5722;
+  }
 }
 
 body {
