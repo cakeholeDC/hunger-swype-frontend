@@ -3,13 +3,35 @@ import { Button, Loader, Header } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
 class SplashScreen extends React.Component {
+	state={
+		failed: false
+	}
+
+	componentDidMount(){
+		if (this.props.running){
+			console.log('props.running')
+			this.switchToErrorPage()
+		}
+	}
+
+	switchToErrorPage = () => {
+		console.log("starting timeout")
+		setTimeout(this.setStateFailed, 10000)
+	}
+
+	setStateFailed = () => {
+		console.log("timed out")
+		this.setState({
+			failed: true
+		})
+	}
 	
 	render(){
 		console.log(this.props)
 		return(
 			<div id="splash-container" >
 				<div id="splash-content">
-					{ !this.props.error
+					{ !this.props.error && !this.state.failed
 						? <React.Fragment>
 							<h1 className="yellow-header" id="app-name">Hunger<br/>Swype</h1>
 							<Loader 
