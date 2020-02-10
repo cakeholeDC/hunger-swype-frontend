@@ -46,7 +46,7 @@ class Login extends React.Component{
 	onFormSubmit = (event) => {
 		event.preventDefault()
 		console.log("validating onFormSubmit...")
-		const checkFields = !this.state.isNewAccount ? ['username', 'password'] : ['username', 'password', 'name', 'email', 'region', 'birthdate', 'avatar']
+		const checkFields = !this.state.isNewAccount ? ['username', 'password'] : ['username', 'password', 'name', 'email', 'region',]
 		let canSubmit = true
 		checkFields.forEach(field => {
 			if (this.state[field] === ''){
@@ -59,7 +59,6 @@ class Login extends React.Component{
 				formIsValid: false
 			})
 		}
-
 		if (canSubmit) {
 			let userFormData
 
