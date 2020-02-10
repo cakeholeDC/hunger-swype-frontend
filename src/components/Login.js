@@ -1,8 +1,9 @@
 import React from 'react'
 import MenuBar from '../components/MenuBar'
+import ContactUs from '../components/ContactUs'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom";
-import { Form, Button, Container, Header } from 'semantic-ui-react'
+import { Form, Button, Container, Header, Modal, TextArea } from 'semantic-ui-react'
 import { processLoginForm, processNewUserForm } from '../redux/actions'
 
 class Login extends React.Component{
@@ -14,9 +15,8 @@ class Login extends React.Component{
 		name: '',
 		email: '',
 		region: '',
-		avatar: ''
+		avatar: '',
 	}
-
 	toggleNewAccountForm = (event) => {
 		event.preventDefault()
 		this.setState({
@@ -197,6 +197,7 @@ class Login extends React.Component{
 								    </div>
 								}
 							</Form>
+							<ContactUs />
 						</div>
 					</div>
 				  </React.Fragment>

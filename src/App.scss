@@ -44,6 +44,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   font-family: $roboto-cn, sans-serif;
+  color: black;
 }
 
 .App {
@@ -347,6 +348,26 @@ body {
   }
 }
 
+#contact-us {
+    margin-top: 1em;
+    display: flex;
+
+    a {
+      flex:start;
+      color: black;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+#contact-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 #login-page {
   grid-column: 3 / -3;
 
@@ -375,13 +396,14 @@ body {
 
     .signup-btn-container {
       width: 50%;
-      margin-left: auto;
+      margin: auto;
       display: inline-block;
       display: flex;
       align-items: center;
       justify-content: space-evenly;
     }
   }
+
 }
   
 
