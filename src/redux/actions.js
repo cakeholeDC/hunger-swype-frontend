@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2' 
+
 // const START_SWYPE = "START_SWYPE"
 // const FILTER = "FILTER"
 export const PROGRESS = "PROGRESS"
@@ -127,7 +129,14 @@ export function processLoginForm(user){
 					localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
-					alert(apiResponse.message)
+					console.log("apiResponse", apiResponse)
+					Swal.fire({
+					  title: 'Error!',
+					  text: `${apiResponse.message}`,
+					  icon: 'error',
+					  confirmButtonText: 'Dang.'
+					})
+					// alert(apiResponse.message)
 				}
 			})
 	}
@@ -147,11 +156,19 @@ export function processNewUserForm(user){
 			.then(res => res.json())
 			.then(apiResponse => {
 				if (!apiResponse.error) {
+					debugger
 					console.log(apiResponse.jwt)
 					localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
-					alert(apiResponse.message)
+					console.log("apiResponse", apiResponse)
+					Swal.fire({
+					  title: 'Error!',
+					  text: `${apiResponse.message}`,
+					  icon: 'error',
+					  confirmButtonText: 'Dang.'
+					})
+					// alert(apiResponse.message)
 				}
 			})
 	}
