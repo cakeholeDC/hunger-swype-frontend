@@ -1,12 +1,21 @@
 import React from 'react'
 import MenuBar from './MenuBar'
-import { Image, Header, Container, Divider, Icon, Button, Item } from 'semantic-ui-react'
+import { Image, Header, Container, Divider, Icon, Button, Item, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logOutUser } from '../redux/actions'
 import Favorite from './Favorite.js'
 import { Redirect } from 'react-router-dom'
 
 class Profile extends React.Component {
+	state = {
+		editModal: true
+	}
+
+	// toggleEditModal = () => {
+	// 	this.setState({
+	// 		editModal: !this.state.editModal
+	// 	})
+	// }
 
 	render(){
 		console.log("profile=>", this.props)
@@ -34,7 +43,7 @@ class Profile extends React.Component {
 							</p>
 						</div>
 						<div className="profile-btn-container">
-						<Button onClick={ () => console.log('edit') } primary >
+						<Button onClick={ () => console.log("modal") } primary >
 					      <Button.Content>Edit Profile <Icon name='edit' /></Button.Content>
 					    </Button>
 						<Button onClick={ this.props.logOutUser } negative>
@@ -52,6 +61,12 @@ class Profile extends React.Component {
 							{  this.props.currentUser.favorite_recipes.map(recipe => <Favorite key={recipe.api_id} recipe={recipe} />)  }
 						</Item.Group>
 						
+						<Modal
+						    trigger={ true }
+						    header='Reminder!'
+						    content='Call Benjamin regarding the reports.'
+						    actions={['Snooze', { key: 'done', content: 'Done', positive: true }]}
+						  />
 					</div>
 				</div>
 			</React.Fragment>
