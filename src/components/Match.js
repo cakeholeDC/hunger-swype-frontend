@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 import { Image, Button, Item, Header } from 'semantic-ui-react'
 import { getResultsPage, showUserMatches } from '../redux/actions'
 import SplashScreen from './SplashScreen.js'
+import { withRouter } from 'react-router-dom'
+import iziToast from 'izitoast'
+
 
 class Match extends React.Component {
 	state={
@@ -29,7 +32,17 @@ class Match extends React.Component {
 			if (this.props.dishes.length === this.state.shownDishes.length){
 				console.log("no more dishes to show")
 				// return null
-				return <SplashScreen error message="out-of-dishes"/>
+				// return <SplashScreen error message="out-of-dishes"/>
+				iziToast.info({
+					title: "You're being too picky",
+				    message: "Let's try this again.",
+				    timeout: 5000,
+				    resetOnHover: true,
+				    transitionIn: 'fadeInDown',
+				    transitionOut: 'fadeOutUp',
+				    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+				})
+				setTimeout(() => { this.props.history.push('/') }, 5500)
 			} else {
 				const dishArray = this.props.dishes
 
@@ -136,4 +149,4 @@ const mapDispatchToProps = (dispatch) => ({
 	showUserMatches: (matches) => { dispatch(showUserMatches(matches)) },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Match)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Match))
