@@ -1,6 +1,7 @@
 import React from 'react'
 import MenuBar from '../components/MenuBar'
 import { Header, Button } from 'semantic-ui-react'
+import ContactUs from '../components/ContactUs'
 
 
 class About extends React.Component{
@@ -24,8 +25,9 @@ class About extends React.Component{
 					<p>Let your appetite drive your flavour profile!</p>
 				<div className="credits">
 					<p>Hunger Swype &copy;{this.getCurrentYear()} <a href="https://www.kylepcole.com/" target="_blank">Kyle P. Cole</a></p>
-					<p><small>version 0.1.2</small></p>
+					<p><small>version 0.8.2</small></p>
 				</div>
+				<ContactUs />
 				</div>
 				<Button
 					positive

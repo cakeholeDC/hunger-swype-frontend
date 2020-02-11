@@ -44,6 +44,32 @@ body {
   background-attachment: fixed;
   background-size: cover;
   font-family: $roboto-cn, sans-serif;
+  color: black;
+
+  .swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal {
+    @extend %transparent-container
+  }
+
+  .swal2-actions,
+  .swal2-title {
+    font-family: $roboto-cn, sans-serif;
+    color: black;
+
+    button {
+      font-weight: bold;
+      @extend %yellow-button;
+      border: 0.0625em rgba(0, 0, 0, 0.87) solid !important;
+
+      &.swal2-styled.swal2-confirm{
+        @extend %yellow-button;
+      }
+
+      &:focus{
+        box-shadow: none;
+      }
+    }
+  }
+
 }
 
 .App {
@@ -347,6 +373,26 @@ body {
   }
 }
 
+#contact-us {
+    margin-top: 1em;
+    display: flex;
+
+    a {
+      flex:start;
+      color: black;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+#contact-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 #login-page {
   grid-column: 3 / -3;
 
@@ -375,13 +421,14 @@ body {
 
     .signup-btn-container {
       width: 50%;
-      margin-left: auto;
+      margin: auto;
       display: inline-block;
       display: flex;
       align-items: center;
       justify-content: space-evenly;
     }
   }
+
 }
   
 
@@ -537,11 +584,6 @@ body {
       margin-bottom: 1em;
     }
 
-    // have to decouple from profile page if I want to move this
-    // .profile-attributes {
-    //   grid-column: 1 / 2;
-    //   grid-row: 3;
-    // }
   }
 
   #login-page {
@@ -624,11 +666,6 @@ body {
       margin-bottom: 1em;
     }
 
-    // have to decouple from profile page if I want to move this
-    // .profile-attributes {
-    //   grid-column: 1 / 2;
-    //   grid-row: 3;
-    // }
   }
 
 }

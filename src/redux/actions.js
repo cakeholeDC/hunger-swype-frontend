@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2' 
+
 // const START_SWYPE = "START_SWYPE"
 // const FILTER = "FILTER"
 export const PROGRESS = "PROGRESS"
@@ -109,6 +111,36 @@ export function proceedToFilters(){
   return {type: PROGRESS, payload: "filter"}
 }
 
+function handleErrorAPI(apiResponse){
+	let title;
+	let icon;
+	let button;
+	switch (apiResponse.status) {
+		case 'created': 
+			title = "Success!"
+			icon = 'success'
+			button = "Ok"
+		break
+		case 'success': 
+			title = "Success!"
+			icon = 'success'
+			button = "Ok"
+		break
+		default:
+			title = "Error!"
+			icon = "error"
+			button = "Dang."
+	}
+
+	console.log("apiResponse", apiResponse)
+	Swal.fire({
+	  title: `${title}`,
+	  text: `${apiResponse.message}`,
+	  icon: `${icon}`,
+	  confirmButtonText: `${button}`
+	})
+}
+
 export function processLoginForm(user){
 	return (dispatch) => {
 		const userConfig = {
@@ -127,7 +159,8 @@ export function processLoginForm(user){
 					localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
-					alert(apiResponse.message)
+					handleErrorAPI(apiResponse)
+					// alert(apiResponse.message)
 				}
 			})
 	}
@@ -147,11 +180,13 @@ export function processNewUserForm(user){
 			.then(res => res.json())
 			.then(apiResponse => {
 				if (!apiResponse.error) {
+					debugger
 					console.log(apiResponse.jwt)
 					localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
-					alert(apiResponse.message)
+					handleErrorAPI(apiResponse)
+					// alert(apiResponse.message)
 				}
 			})
 	}
