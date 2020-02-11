@@ -101,15 +101,25 @@ body {
   margin-bottom: 0px;
   // padding: .5em .5em;
 
-  img.ui.avatar.image {
+  img.ui.avatar.image, {
     grid-column: -1;
     grid-row: 1;
+  }
+
+  img.menu-bar-logo {
+    border-radius: 1em;
+    height: 2em;
   }
 
   .menu-bar-home {
     grid-column: 1;
     grid-row: 1;
-    margin-top: .2em;
+
+    
+
+    &i{
+      margin-top: .2em;
+    }
   }
 
   p {

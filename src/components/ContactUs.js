@@ -1,10 +1,15 @@
 import React from 'react'
 import { Form, Button, Container, Header, Modal, TextArea } from 'semantic-ui-react'
+import { toTitleCase, emailIsValid } from '../utils/Helpers.js'
+import iziToast from 'izitoast'
 
 class ContactUs extends React.Component {
 	state={
 		contactModal: false,
-		contactFormValid: true
+		contactFormValid: true,
+		name: '',
+		email: '',
+		message: ''
 	}
 
 	toggleContactModal = () => {
@@ -12,7 +17,81 @@ class ContactUs extends React.Component {
 			contactModal: !this.state.contactModal
 		})
 	}
+
+	onFormChange(event){
+		this.setState({
+			[event.target.name]: event.target.value,
+		})
+	}
+
+	onFormSubmit = (event) => {
+		this.formIsValid()
+		window.open(`mailto:hungerswype@gmail.com?subject=Hunger Swype Help&body=${this.state.message}`);
+		event.target.reset()
+		this.toggleContactModal()
+	}
+
+	formIsValid = () => {
+		let valid = true
+		
+		let fields = ['name','email','message']
+		
+		let errors = []
+		fields.forEach(field => {
+
+			if (field === "email") {
+
+				if (!emailIsValid(this.state.email)) {
+					iziToast.error({
+						title: "Error",
+					    message: "Email is not valid",
+					    timeout: 10000,
+					    resetOnHover: true,
+					    transitionIn: 'fadeInDown',
+					    transitionOut: 'fadeOutUp',
+					    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+					})
+					valid = false
+					errors.push(field)
+				}
+			} else if (this.state[field] === '') {
+				valid = false
+				if (!errors.includes(field)){
+					errors.push(field)
+				} 
+			}
+		})
+		
+		if (errors.length > 0) {
+			let titleCasedFields = errors.map(field => toTitleCase(field))
+
+			iziToast.warning({
+				title: "Whoops",
+			    message: `${titleCasedFields.join(', ')} ${errors.length > 1 ? errors.length > 2 ? " are all" : "are both " : " is"} required`,
+			    timeout: 10000,
+			    resetOnHover: true,
+			    transitionIn: 'fadeInDown',
+			    transitionOut: 'fadeOutUp',
+			    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+			})
+		} else {
+			iziToast.success({
+				title: "Thanks",
+			    message: "We'll be in touch.",
+			    timeout: 3000,
+			    resetOnHover: false,
+			    transitionIn: 'fadeInDown',
+			    transitionOut: 'fadeOutUp',
+			    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+			})
+		}
+
+		return valid
+	}
+
+
 	render(){
+		//onClose={ () => this.toggleContactModal() }
 		return (
 			<div id="contact-us">
 				<a className="gray-text" onClick={ () => this.toggleContactModal() }>Need Help?</a>
@@ -21,7 +100,7 @@ class ContactUs extends React.Component {
 					open={this.state.contactModal}
 					closeOnEscape={true}
 		            closeOnDimmerClick={true}
-		            onClose={ () => this.toggleContactModal() }
+		            
 		            closeIcon
 				>
 			    <Modal.Header>Contact Hunger Swype</Modal.Header>
@@ -29,12 +108,12 @@ class ContactUs extends React.Component {
 			      <Modal.Description>
 			        <Form 
 						className="login-form"
-						onChange={ () => console.log('contact form changed')/*event => this.onFormChange(event)*/ }
-						onSubmit={ () => console.log('contact form submit') /*this.onFormSubmit*/ } >
+						onChange={ (event) => this.onFormChange(event) }
+						onSubmit={ this.onFormSubmit } >
 			        		<Form.Input 
 								fluid 
-								name="contactForm_name" 
-								label="Username"
+								name="name" 
+								label="Name"
 								placeholder="John Doe"
 								error={ !this.state.contactFormValid /*&& this.state.contactFormName === '' */
 									? {
@@ -46,7 +125,7 @@ class ContactUs extends React.Component {
 							/>
 			        		<Form.Input 
 								fluid
-								name="contactForm_emai" 
+								name="email" 
 								label="Email"
 								placeholder="jdoe@gmail.com"
 								error={ !this.state.contactFormValid && !this.emailIsValid(this.state.email)
@@ -60,7 +139,7 @@ class ContactUs extends React.Component {
 							<Form.Input 
 								fluid 
 								control={TextArea}
-								name="contactForm_message" 
+								name="message" 
 								label="Message"
 								placeholder="So, what's up?"
 								error={ !this.state.contactFormValid /*&& this.state.username === '' */
@@ -72,7 +151,7 @@ class ContactUs extends React.Component {
 								}
 							/>
 							<div id="contact-btn-container">
-							<Button type="submit" onClick={ () => console.log("submit contact form") } primary >Send Email</Button>
+							<Button type="submit" primary >Send Email</Button>
 				        	</div>
 				        </Form>
 				      </Modal.Description>

@@ -20,6 +20,7 @@ class MenuBar extends React.Component {
 	}
 
 	render(){
+		
 		return(
 			<Segment 
 				className="ui inverted"
@@ -27,7 +28,12 @@ class MenuBar extends React.Component {
 			>
 				{ this.props.currentUser ?
 					<React.Fragment>
-						<Icon name="home" size="large" className="menu-bar-home"/>
+						<img 
+							src="favicon.ico" 
+							className ="menu-bar-logo"
+							onClick={ () => this.props.match.url === '/' ? this.props.returnHome() : this.props.history.push('/') }
+						/>
+						{ /*<Icon name="home" size="large" className="menu-bar-home"/> */}
 						<Image
 							id="user-avatar"
 							src={ this.props.currentUser.avatar ? this.props.currentUser.avatar : fallbackAvatar } 
