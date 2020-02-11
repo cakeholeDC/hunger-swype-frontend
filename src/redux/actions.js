@@ -119,8 +119,9 @@ function handleErrorAPI(apiResponse){
 	    timeout: 10000,
 	    resetOnHover: true,
 	    // icon: 'font-awesome',
-	    transitionIn: 'flipInX',
-	    transitionOut: 'flipOutX',
+	    transitionIn: 'fadeInDown',
+	    transitionOut: 'fadeOutUp',
+	    // overlay: true,
 	    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
 	    onOpening: function(){
 	        console.log('callback abriu!');
