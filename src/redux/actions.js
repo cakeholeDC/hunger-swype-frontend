@@ -260,6 +260,13 @@ export function updateFavorites(favoritesList){
 }
 
 export function logOutUser() {
+	iziToast.info({
+		title: "Auf Wiedersehen!",
+	    timeout: 5000,
+	    transitionIn: 'fadeInDown',
+	    transitionOut: 'fadeOutUp',
+	    position: 'topCenter',
+	})
 	return (dispatch) => {
 		localStorage.removeItem('token')
 		dispatch(setCurrentUserState(null))	

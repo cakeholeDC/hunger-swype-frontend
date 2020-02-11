@@ -8,6 +8,7 @@ import Login from './components/Login.js'
 import About from './components/About.js'
 import Profile from './components/Profile.js'
 import SplashScreen from './components/SplashScreen.js'
+import PageNotFound from './components/PageNotFound.js'
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { fetchingDiets, fetchingCuisines, fetchingCourses, setCurrentUserState } from './redux/actions'
@@ -59,14 +60,15 @@ class App extends React.Component {
                   ? <Match />
                   : <Redirect to='/' />
               }/>
-              <Route path="/match/recipe/:id" component={Recipe}/>
-              <Route path="/login" component={ Login } />
-              <Route path="/about" component={ About } />
-              <Route path="/profile" component={ Profile } />
+              <Route exact path="/match/recipe/:id" component={Recipe}/>
+              <Route exact path="/login" component={ Login } />
+              <Route exact path="/about" component={ About } />
+              <Route exact path="/profile" component={ Profile } />
               { !this.props.currentUser 
                   ? <Redirect to='/login' />
-                  : <Route path="/" component={ MainContainer } />
+                  : <Route exact path="/" component={ MainContainer } />
               }
+              <Route component={ PageNotFound } />
             </Switch>
           }
           </div>

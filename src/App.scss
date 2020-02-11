@@ -90,6 +90,22 @@ body {
 
 }
 
+#page-404 {
+  // @extend .App;
+  grid-column: 4 / -4;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+
+  #page-404-content{
+    grid-row: 2;
+
+    button {
+      margin-top: 3em;
+    }
+  }
+
+}
+
 #menu-bar {
   position: fixed;
   width: 100%;
