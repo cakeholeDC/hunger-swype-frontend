@@ -378,18 +378,13 @@ body {
 
 #user-form-modal{
 
-  .user-form-avatar{
+  .user-form-avatar img {
     margin: auto;
-
-    img {
-      border-radius: 1em;
-      margin-bottom: 1em;
-    }
+    border-radius: 1em;
+    margin-bottom: 1em;
   }
 
   #user-form-action-container {
-      width: 50%;
-      margin: auto;
       display: inline-block;
       display: flex;
       align-items: center;

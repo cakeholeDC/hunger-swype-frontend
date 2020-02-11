@@ -140,6 +140,7 @@ function handleErrorAPI(apiResponse){
 		break
 		case 'success': 
 			iziToast.success({
+				timeout: 5000,
 				title: "Success",
 			    message: `${apiResponse.message}`,
 			})
@@ -169,6 +170,15 @@ export function processLoginForm(user){
 					console.log(apiResponse.jwt)
 					localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
+					iziToast.success({
+						title: `${JSON.parse(apiResponse.currentUser).username}`,
+					    message: "Welcome to Hunger Swype",
+					    timeout: 3000,
+					    resetOnHover: false,
+					    transitionIn: 'fadeInDown',
+					    transitionOut: 'fadeOutUp',
+					    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+					})
 				} else {
 					handleErrorAPI(apiResponse)
 					// alert(apiResponse.message)
@@ -191,13 +201,11 @@ export function processNewUserForm(user){
 			.then(res => res.json())
 			.then(apiResponse => {
 				if (!apiResponse.error) {
-					debugger
 					console.log(apiResponse.jwt)
 					localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
 					handleErrorAPI(apiResponse)
-					// alert(apiResponse.message)
 				}
 			})
 	}
@@ -213,17 +221,15 @@ export function processUserUpdateForm(user){
 			},
 			body: JSON.stringify(user)
 		}
-		fetch(USER_URL, userConfig)
+		fetch(`${USER_URL}/${user.id}`, userConfig)
 			.then(res => res.json())
 			.then(apiResponse => {
 				if (!apiResponse.error) {
-					debugger
-					console.log(apiResponse.jwt)
-					localStorage.setItem("token", apiResponse.jwt)
+					// console.log(apiResponse.jwt)
+					// localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
 					handleErrorAPI(apiResponse)
-					// alert(apiResponse.message)
 				}
 			})
 	}
