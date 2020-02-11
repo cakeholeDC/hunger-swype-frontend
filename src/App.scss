@@ -46,30 +46,12 @@ body {
   font-family: $roboto-cn, sans-serif;
   color: black;
 
-  .swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal {
-    @extend %transparent-container
-  }
 
-  .swal2-actions,
-  .swal2-title {
-    font-family: $roboto-cn, sans-serif;
-    color: black;
 
-    button {
-      font-weight: bold;
-      @extend %yellow-button;
-      border: 0.0625em rgba(0, 0, 0, 0.87) solid !important;
+}
 
-      &.swal2-styled.swal2-confirm{
-        @extend %yellow-button;
-      }
-
-      &:focus{
-        box-shadow: none;
-      }
-    }
-  }
-
+.iziToast-wrapper.iziToast-wrapper-topCenter {
+  margin-top: 3em;
 }
 
 .App {
@@ -456,6 +438,10 @@ body {
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
+  .iziToast-wrapper.iziToast-wrapper-topCenter {
+    margin-top: 4em;
+  }
+
   .match-page-container {
     grid-column: 1 / -1;
     padding: 0em;

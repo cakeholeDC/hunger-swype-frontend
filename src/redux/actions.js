@@ -1,4 +1,5 @@
-import Swal from 'sweetalert2' 
+// import Swal from 'sweetalert2' 
+import iziToast from 'izitoast'
 
 // const START_SWYPE = "START_SWYPE"
 // const FILTER = "FILTER"
@@ -112,33 +113,43 @@ export function proceedToFilters(){
 }
 
 function handleErrorAPI(apiResponse){
-	let title;
-	let icon;
-	let button;
+	console.log("apiResponse", apiResponse)
+
+	iziToast.settings({
+	    timeout: 10000,
+	    resetOnHover: true,
+	    // icon: 'font-awesome',
+	    transitionIn: 'fadeInDown',
+	    transitionOut: 'fadeOutUp',
+	    // overlay: true,
+	    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+	    onOpening: function(){
+	        console.log('callback abriu!');
+	    },
+	    onClosing: function(){
+	        console.log("callback fechou!");
+	    }
+	});
+	
 	switch (apiResponse.status) {
 		case 'created': 
-			title = "Success!"
-			icon = 'success'
-			button = "Ok"
+			iziToast.warning({
+				title: "Created",
+			    message: `${apiResponse.message}`,
+			})
 		break
 		case 'success': 
-			title = "Success!"
-			icon = 'success'
-			button = "Ok"
+			iziToast.success({
+				title: "Success",
+			    message: `${apiResponse.message}`,
+			})
 		break
 		default:
-			title = "Error!"
-			icon = "error"
-			button = "Dang."
+			iziToast.error({
+				title: "Error",
+			    message: `${apiResponse.message}`,
+			})
 	}
-
-	console.log("apiResponse", apiResponse)
-	Swal.fire({
-	  title: `${title}`,
-	  text: `${apiResponse.message}`,
-	  icon: `${icon}`,
-	  confirmButtonText: `${button}`
-	})
 }
 
 export function processLoginForm(user){
