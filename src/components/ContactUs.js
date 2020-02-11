@@ -25,10 +25,11 @@ class ContactUs extends React.Component {
 	}
 
 	onFormSubmit = (event) => {
-		this.formIsValid()
-		window.open(`mailto:hungerswype@gmail.com?subject=Hunger Swype Help&body=${this.state.message}`);
-		event.target.reset()
-		this.toggleContactModal()
+		if (this.formIsValid()) {
+			window.open(`mailto:hungerswype@gmail.com?subject=Hunger Swype Help&body=${this.state.message}`);
+			event.target.reset()
+			this.toggleContactModal()
+		}
 	}
 
 	formIsValid = () => {
@@ -45,7 +46,7 @@ class ContactUs extends React.Component {
 					iziToast.error({
 						title: "Error",
 					    message: "Email is not valid",
-					    timeout: 10000,
+					    timeout: 5000,
 					    resetOnHover: true,
 					    transitionIn: 'fadeInDown',
 					    transitionOut: 'fadeOutUp',
@@ -68,7 +69,7 @@ class ContactUs extends React.Component {
 			iziToast.warning({
 				title: "Whoops",
 			    message: `${titleCasedFields.join(', ')} ${errors.length > 1 ? errors.length > 2 ? " are all" : "are both " : " is"} required`,
-			    timeout: 10000,
+			    timeout: 5000,
 			    resetOnHover: true,
 			    transitionIn: 'fadeInDown',
 			    transitionOut: 'fadeOutUp',
@@ -91,7 +92,6 @@ class ContactUs extends React.Component {
 
 
 	render(){
-		//onClose={ () => this.toggleContactModal() }
 		return (
 			<div id="contact-us">
 				<a className="gray-text" onClick={ () => this.toggleContactModal() }>Need Help?</a>
@@ -100,7 +100,7 @@ class ContactUs extends React.Component {
 					open={this.state.contactModal}
 					closeOnEscape={true}
 		            closeOnDimmerClick={true}
-		            
+		            onClose={ () => this.toggleContactModal() }
 		            closeIcon
 				>
 			    <Modal.Header>Contact Hunger Swype</Modal.Header>

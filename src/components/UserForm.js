@@ -66,7 +66,7 @@ class UserForm extends React.Component {
 					iziToast.error({
 						title: "Error",
 					    message: "Email is not valid",
-					    timeout: 10000,
+					    timeout: 5000,
 					    resetOnHover: true,
 					    transitionIn: 'fadeInDown',
 					    transitionOut: 'fadeOutUp',
@@ -88,7 +88,7 @@ class UserForm extends React.Component {
 			iziToast.warning({
 				title: "Whoops",
 			    message: `${titleCasedFields.join(', ')} ${errors.length > 1 ? errors.length > 2 ? " are all" : "are both " : " is"} required`,
-			    timeout: 10000,
+			    timeout: 5000,
 			    resetOnHover: true,
 			    transitionIn: 'fadeInDown',
 			    transitionOut: 'fadeOutUp',

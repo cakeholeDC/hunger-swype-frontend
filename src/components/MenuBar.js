@@ -7,16 +7,9 @@ import { connect } from 'react-redux'
 const fallbackAvatar = "https://www.caribbeangamezone.com/wp-content/uploads/2018/03/avatar-placeholder.png"
 
 class MenuBar extends React.Component {
-	// state={
-	// 	showMenu: false
-	// }
 
-	toggleUserActionMenu = () => {
+	redirectToProfilePage = () => {
 		this.props.history.push('/profile')
-		// console.log("Toggling User Action Menu", !this.state.showMenu)
-		// this.setState({
-		// 	showMenu: !this.state.showMenu
-		// })
 	}
 
 	render(){
@@ -26,22 +19,18 @@ class MenuBar extends React.Component {
 				className="ui inverted"
 				id="menu-bar"
 			>
-				{ this.props.currentUser ?
-					<React.Fragment>
-						<img 
-							src="favicon.ico" 
-							className ="menu-bar-logo"
-							onClick={ () => this.props.match.url === '/' ? this.props.returnHome() : this.props.history.push('/') }
-						/>
-						{ /*<Icon name="home" size="large" className="menu-bar-home"/> */}
-						<Image
+				{ this.props.currentUser
+					? <Image
 							id="user-avatar"
 							src={ this.props.currentUser.avatar ? this.props.currentUser.avatar : fallbackAvatar } 
 							avatar
-							onClick={ () => this.toggleUserActionMenu() }
+							onClick={ () => this.redirectToProfilePage() }
 						/>
-					</React.Fragment>
-					: null
+					: <img 
+							src="small-logo.png	" 
+							className ="menu-bar-logo"
+							onClick={ () => this.props.match.url === '/' ? this.props.returnHome() : this.props.history.push('/') }
+						/>
 				}
 				<p
 					id="menu-bar-text"

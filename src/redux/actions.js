@@ -116,7 +116,7 @@ function handleErrorAPI(apiResponse){
 	console.log("apiResponse", apiResponse)
 
 	iziToast.settings({
-	    timeout: 10000,
+	    timeout: 5000,
 	    resetOnHover: true,
 	    // icon: 'font-awesome',
 	    transitionIn: 'fadeInDown',
@@ -140,7 +140,6 @@ function handleErrorAPI(apiResponse){
 		break
 		case 'success': 
 			iziToast.success({
-				timeout: 5000,
 				title: "Success",
 			    message: `${apiResponse.message}`,
 			})

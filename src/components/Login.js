@@ -43,7 +43,7 @@ class Login extends React.Component{
 			iziToast.warning({
 				title: "Whoops",
 			    message: `${messageContent}`,
-			    timeout: 10000,
+			    timeout: 5000,
 			    resetOnHover: true,
 			    transitionIn: 'fadeInDown',
 			    transitionOut: 'fadeOutUp',
