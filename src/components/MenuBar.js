@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Image } from 'semantic-ui-react'
+import { Segment, Image, Icon } from 'semantic-ui-react'
 import { returnHome } from '../redux/actions'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -26,12 +26,15 @@ class MenuBar extends React.Component {
 				id="menu-bar"
 			>
 				{ this.props.currentUser ?
-					<Image
-						id="user-avatar"
-						src={ this.props.currentUser.avatar ? this.props.currentUser.avatar : fallbackAvatar } 
-						avatar
-						onClick={ () => this.toggleUserActionMenu() }
-					/>
+					<React.Fragment>
+						<Icon name="home" size="large" className="menu-bar-home"/>
+						<Image
+							id="user-avatar"
+							src={ this.props.currentUser.avatar ? this.props.currentUser.avatar : fallbackAvatar } 
+							avatar
+							onClick={ () => this.toggleUserActionMenu() }
+						/>
+					</React.Fragment>
 					: null
 				}
 				<p
