@@ -184,7 +184,7 @@ class Login extends React.Component{
 								}
 								{
 									this.state.isNewAccount
-									? <div className="signup-btn-container"> 
+									? <div className="action-btn-container"> 
 										<Button type="button" onClick={ (event) => this.toggleNewAccountForm(event) } negative >Cancel</Button>
 										<Button type="submit" onClick={ () => console.log("sign up") } primary >Sign Up</Button>
 									</div>

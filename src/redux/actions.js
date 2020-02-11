@@ -192,6 +192,32 @@ export function processNewUserForm(user){
 	}
 }
 
+export function processUserUpdateForm(user){
+	return (dispatch) => {
+			const userConfig = {
+			method: "PATCH",
+			headers: {
+				'Content-Type': "application/json",
+				"Accept" : "application/json"
+			},
+			body: JSON.stringify(user)
+		}
+		fetch(USER_URL, userConfig)
+			.then(res => res.json())
+			.then(apiResponse => {
+				if (!apiResponse.error) {
+					debugger
+					console.log(apiResponse.jwt)
+					localStorage.setItem("token", apiResponse.jwt)
+					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
+				} else {
+					handleErrorAPI(apiResponse)
+					// alert(apiResponse.message)
+				}
+			})
+	}
+}
+
 export function toggleFavorite(userID, recipe){
 	return (dispatch) => {
 		const fav_config = {

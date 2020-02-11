@@ -167,6 +167,7 @@ body {
 }
 
 
+
 #start-page {
   grid-column: 2 / -2;
   grid-row: 14;
@@ -393,6 +394,27 @@ body {
   justify-content: space-evenly;
 }
 
+#user-form-modal{
+
+  .user-form-avatar{
+    margin: auto;
+
+    img {
+      border-radius: 1em;
+      margin-bottom: 1em;
+    }
+  }
+
+  #user-form-action-container {
+      width: 50%;
+      margin: auto;
+      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+}
+
 #login-page {
   grid-column: 3 / -3;
 
@@ -419,7 +441,7 @@ body {
       }
     }
 
-    .signup-btn-container {
+    .action-btn-container {
       width: 50%;
       margin: auto;
       display: inline-block;
@@ -522,7 +544,7 @@ body {
         text-align: center;
       }
       
-      .signup-btn-container {
+      .action-btn-container {
         width: 100%;
       }
 
