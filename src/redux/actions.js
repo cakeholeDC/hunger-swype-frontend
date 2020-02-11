@@ -117,10 +117,11 @@ function handleErrorAPI(apiResponse){
 
 	iziToast.settings({
 	    timeout: 10000,
-	    // resetOnHover: true,
-	    // icon: 'material-icons',
-	    // transitionIn: 'flipInX',
-	    // transitionOut: 'flipOutX',
+	    resetOnHover: true,
+	    // icon: 'font-awesome',
+	    transitionIn: 'flipInX',
+	    transitionOut: 'flipOutX',
+	    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
 	    onOpening: function(){
 	        console.log('callback abriu!');
 	    },
@@ -131,24 +132,21 @@ function handleErrorAPI(apiResponse){
 	
 	switch (apiResponse.status) {
 		case 'created': 
-			iziToast.success({
+			iziToast.warning({
 				title: "Created",
 			    message: `${apiResponse.message}`,
-			    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
 			})
 		break
 		case 'success': 
 			iziToast.success({
 				title: "Success",
 			    message: `${apiResponse.message}`,
-			    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
 			})
 		break
 		default:
 			iziToast.error({
 				title: "Error",
 			    message: `${apiResponse.message}`,
-			    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
 			})
 	}
 }
