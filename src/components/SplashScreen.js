@@ -18,7 +18,7 @@ class SplashScreen extends React.Component {
 								inline='centered'>
 							{
 								this.props.running 
-									? "Running Flavor Algorithm..." 
+									? "Running Flavour Algorithm..." 
 									: "Preparing Flavour Algorithms..."
 							}
 							</Loader>
