@@ -6,7 +6,7 @@ import { fetchingDishes, getMatches, setCurrentUserState } from '../redux/action
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-const BASE_URL = "http://localhost:3000"
+const BASE_URL = "https://hunger-swype-api.herokuapp.com"
 const PREFS_URL = `${BASE_URL}/preferences` 
 
 class Filters extends React.Component {

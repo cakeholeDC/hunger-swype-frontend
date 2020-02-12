@@ -13,7 +13,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { fetchingDiets, fetchingCuisines, fetchingCourses, setCurrentUserState } from './redux/actions'
 
-
+const BASE_URL = "https://hunger-swype-api.herokuapp.com"
+const PROFILE_URL = `${BASE_URL}/profile`
 
 class App extends React.Component {
   state={
@@ -35,7 +36,7 @@ class App extends React.Component {
     let token = localStorage.getItem("token")
 
     if (token) {
-      fetch('http://localhost:3000/profile', {
+      fetch(PROFILE_URL, {
         method: "GET",
         headers: {
           "Authentication": token

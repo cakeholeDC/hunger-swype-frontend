@@ -12,7 +12,7 @@ export const USER_MATCHES = "USER_MATCHES"
 export const LOG_IN = "LOG_IN"
 export const FAVORITE = "FAVORITE"
 
-const BASE_URL = "http://localhost:3000"
+const BASE_URL = "https://hunger-swype-api.herokuapp.com"
 // const DISHES_URL = `${BASE_URL}/dishes`
 const FILTER_DISH_URL = `${BASE_URL}/get-matches`
 const DIETS_URL = `${BASE_URL}/diets`

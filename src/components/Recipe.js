@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { toggleFavorite } from '../redux/actions.js'
 
-const BASE_URL = "http://localhost:3000"
+const BASE_URL = "https://hunger-swype-api.herokuapp.com"
 const RECIPE_URL = `${BASE_URL}/match/recipe`
 
 class Recipe extends React.Component {
