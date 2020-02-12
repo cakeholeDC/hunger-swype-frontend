@@ -25,7 +25,7 @@ class About extends React.Component{
 					<p>Let your appetite drive your flavour profile!</p>
 				<div className="credits">
 					<p>Hunger Swype &copy;{this.getCurrentYear()} <a href="https://www.kylepcole.com/" target="_blank" rel="noopener noreferrer">Kyle P. Cole</a></p>
-					<p><small>version 1.0.0</small></p>
+					<p><small>version 1.0.1</small></p>
 				</div>
 				<ContactUs />
 				</div>
