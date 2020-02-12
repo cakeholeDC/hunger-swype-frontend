@@ -103,7 +103,7 @@ class UserForm extends React.Component {
 
 		if (this.formIsValid()){
 
-			let defaultAvatar = 'http://localhost:3001/default-avatar.png'
+			let defaultAvatar = 'default-avatar.png'
 			let userFormData
 
 			if (this.props.newAccount){
