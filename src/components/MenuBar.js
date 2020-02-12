@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Image, Icon } from 'semantic-ui-react'
+import { Segment, Image } from 'semantic-ui-react'
 import { returnHome } from '../redux/actions'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -27,6 +27,7 @@ class MenuBar extends React.Component {
 							onClick={ () => this.redirectToProfilePage() }
 						/>
 					: <img 
+							alt="hs-logo-small"
 							src="small-logo.png	" 
 							className ="menu-bar-logo"
 							onClick={ () => this.props.match.url === '/' ? this.props.returnHome() : this.props.history.push('/') }

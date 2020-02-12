@@ -4,8 +4,8 @@ import ContactUs from './ContactUs'
 import UserForm from './UserForm.js'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom";
-import { Form, Button, Container, Header, Modal, TextArea } from 'semantic-ui-react'
-import { processLoginForm, processNewUserForm } from '../redux/actions'
+import { Form, Button } from 'semantic-ui-react'
+import { processLoginForm } from '../redux/actions'
 import iziToast from 'izitoast'
 
 
@@ -59,7 +59,6 @@ class Login extends React.Component{
 	}
 
 	render(){
-		console.log("loaded login page")
 		return( this.props.currentUser 
 				? <Redirect to="/" />
 				: <React.Fragment>
@@ -90,7 +89,7 @@ class Login extends React.Component{
 								    <Button type="submit" primary >
 								    		Let's Eat!
 								    </Button>
-								    <p className="sign-up-link"><a onClick={ this.toggleNewAccountForm }>Don't have an account?</a></p>
+								    <p className="sign-up-link" onClick={ this.toggleNewAccountForm }>Don't have an account?</p>
 							    </div>
 							</Form>
 							{ this.state.showUserForm 
@@ -103,6 +102,7 @@ class Login extends React.Component{
 							}
 							<ContactUs />
 						</div>
+						<p id="about-page-link" href="#" onClick={ () => this.props.history.push(`/about`) }>I'm new here, how's this work?</p>
 					</div>
 				  </React.Fragment>
 		)
@@ -117,7 +117,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
 	processLoginForm: (user) => { dispatch(processLoginForm(user)) },
-	// processNewUserForm: (user) => { dispatch(processNewUserForm(user)) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Form, Button, Container, Header, Modal, TextArea, Image } from 'semantic-ui-react'
-import { logOutUser, processLoginForm, processNewUserForm, processUserUpdateForm } from '../redux/actions'
+import { Form, Button, Modal, Image } from 'semantic-ui-react'
+import { logOutUser, processNewUserForm, processUserUpdateForm } from '../redux/actions'
 import { toTitleCase, emailIsValid } from '../utils/Helpers.js'
 import { connect } from 'react-redux'
 import iziToast from 'izitoast'
@@ -36,17 +36,6 @@ class UserForm extends React.Component {
 			isNewAccount: !this.state.isNewAccount,
 		})
 	}
-
-	// emailIsValid(email) {
-	// 	console.log('validating email')
-	//  if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(email)) 
-	// 	{	
-	// 		console.log('valid')
-	// 		return (true)
-	// 	} else {
-	// 		return (false)
-	// 	}
-	// }
 
 	formIsValid = () => {
 		let valid = true
@@ -145,14 +134,11 @@ class UserForm extends React.Component {
 
 	onFormChange(event){
 		this.setState({
-			[event.target.name]: event.target.value,
-			formIsValid: true
+			[event.target.name]: event.target.value
 		})
 	}
 
 	render(){
-		// const { ...this.props }
-		// const { formIsValid, username, password, name, email, region, avatar } = this.state.currentUser
 		return (
 			<Modal
 				id="user-form-modal"
@@ -239,7 +225,7 @@ class UserForm extends React.Component {
 							    <Button type="submit" primary >
 							    		Let's Eat!
 							    </Button>
-							    <p className="sign-up-link"><a onClick={(event) => this.toggleNewAccount(event) }>Don't have an account?</a></p>
+							    <p className="sign-up-link" onClick={(event) => this.toggleNewAccount(event) }>Don't have an account?</p>
 						    </div>
 						}
 					</Form>
@@ -258,7 +244,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   logOutUser: () => { dispatch(logOutUser()) },
-  // processLoginForm: (user) => { dispatch(processLoginForm(user)) },
   processNewUserForm: (user) => { dispatch(processNewUserForm(user)) },
   processUserUpdateForm: (user) => { dispatch(processUserUpdateForm(user)) }
 })

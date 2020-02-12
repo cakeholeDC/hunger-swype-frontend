@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Header, List, Button, Input } from 'semantic-ui-react'
+import { List, Button, Input } from 'semantic-ui-react'
 import FilterItem from './FilterItem.js'
 import { toTitleCase } from '../utils/Helpers.js'
 import { fetchingDishes, getMatches, setCurrentUserState } from '../redux/actions'
@@ -154,7 +154,6 @@ class Filters extends React.Component {
 			<List.Item>
 				<List.Content floated="right">
 					<Button size="mini" circular primary icon="plus" onClick={ () => {
-							console.log(`Adding Keyword`)
 							this.addKeywordRow()
 						}
 					}/>

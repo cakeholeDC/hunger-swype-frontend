@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Container, Header, Modal, TextArea } from 'semantic-ui-react'
+import { Form, Button, Modal, TextArea } from 'semantic-ui-react'
 import { toTitleCase, emailIsValid } from '../utils/Helpers.js'
 import iziToast from 'izitoast'
 
@@ -94,7 +94,7 @@ class ContactUs extends React.Component {
 	render(){
 		return (
 			<div id="contact-us">
-				<a className="gray-text" onClick={ () => this.toggleContactModal() }>Need Help?</a>
+				<p onClick={ () => this.toggleContactModal() }>Need Help?</p>
 				<Modal
 					size="mini"
 					open={this.state.contactModal}
@@ -111,7 +111,6 @@ class ContactUs extends React.Component {
 						onChange={ (event) => this.onFormChange(event) }
 						onSubmit={ this.onFormSubmit } >
 			        		<Form.Input 
-								fluid 
 								name="name" 
 								label="Name"
 								placeholder="John Doe"
@@ -124,7 +123,6 @@ class ContactUs extends React.Component {
 								}
 							/>
 			        		<Form.Input 
-								fluid
 								name="email" 
 								label="Email"
 								placeholder="jdoe@gmail.com"
@@ -137,7 +135,6 @@ class ContactUs extends React.Component {
 								}
 							/>
 							<Form.Input 
-								fluid 
 								control={TextArea}
 								name="message" 
 								label="Message"

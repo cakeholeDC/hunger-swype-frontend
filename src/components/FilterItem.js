@@ -21,7 +21,6 @@ class DietFilterItem extends React.Component {
 	}
 
 	render(){
-		console.log(this.props)
 		return(
 			<List.Item className="filter-items" onClick={ this.toggleFilter }>
 				<List.Content floated="right">

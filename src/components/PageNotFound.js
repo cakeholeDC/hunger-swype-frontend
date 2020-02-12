@@ -1,11 +1,10 @@
 import React from 'react'
-import { Button, Loader, Header } from 'semantic-ui-react'
+import { Button, Header } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
 class PageNotFound extends React.Component {
 	
 	render(){
-		console.log(this.props)
 		return(
 			<div id="page-404" >
 				<div id="page-404-content">

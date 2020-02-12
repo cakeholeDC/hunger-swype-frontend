@@ -2,7 +2,7 @@ import React from 'react'
 import MenuBar from './MenuBar'
 import Result from './Result'
 import { connect } from 'react-redux'
-import { Image, Button, Item, Header } from 'semantic-ui-react'
+import { Image, Button, Item } from 'semantic-ui-react'
 import { getResultsPage, showUserMatches } from '../redux/actions'
 import SplashScreen from './SplashScreen.js'
 import { withRouter } from 'react-router-dom'
@@ -22,7 +22,6 @@ class Match extends React.Component {
 		let checked = false
 		//check if even have dishes
 		if (this.props.dishes.length === 0){
-			console.log("no dishes found")
 			return checked ? <SplashScreen error message="out-of-dishes"/> : <SplashScreen running/>
 			checked = true
 		} else if (this.props.dishes.length > 0) {
@@ -30,7 +29,6 @@ class Match extends React.Component {
 
 			// if user has been shown all the options
 			if (this.props.dishes.length === this.state.shownDishes.length){
-				console.log("no more dishes to show")
 				// return null
 				// return <SplashScreen error message="out-of-dishes"/>
 				iziToast.info({
@@ -49,7 +47,6 @@ class Match extends React.Component {
 				let dish = dishArray[Math.floor(Math.random() * dishArray.length)]
 
 				while (this.state.shownDishes.includes(dish)) {
-					console.log("dish already displayed... getting another")
 					dish = dishArray[Math.floor(Math.random() * dishArray.length)]
 				}
 				this.setState({
@@ -67,7 +64,6 @@ class Match extends React.Component {
 	}
 
 	interestedInDish = () => {
-		console.log("I'd eat that!")
 		this.setState({
 			interested: [...this.state.interested, this.state.currentDish]
 		})
@@ -80,7 +76,6 @@ class Match extends React.Component {
 	}
 
 	notInterestedInDish = () => {
-		console.log("I'll pass...")
 		this.setState({
 			notInterested: [...this.state.notInterested, this.state.currentDish]
 		})
@@ -122,7 +117,6 @@ class Match extends React.Component {
 						</div>
 					  </div>
 					: <div className="match-results-container">
-						{/* <h2 className="yellow-header" id="match-results">Our Flavourites</h2> */}
 						<h2 className="yellow-header" id="match-results">Bon Appétit!</h2>
 						<Item.Group divided className="results-listing">
 							{ this.props.matches.map(dish => <Result key={dish.api_id} dish={dish} /> ) }

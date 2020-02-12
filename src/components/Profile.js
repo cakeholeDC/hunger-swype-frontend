@@ -1,6 +1,6 @@
 import React from 'react'
 import MenuBar from './MenuBar'
-import { Image, Header, Container, Divider, Icon, Button, Item, Modal } from 'semantic-ui-react'
+import { Image, Header, Divider, Icon, Button, Item } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logOutUser } from '../redux/actions'
 import Favorite from './Favorite.js'
@@ -13,14 +13,12 @@ class Profile extends React.Component {
 	}
 
 	toggleUserForm = () => {
-		console.log("clicked")
 		this.setState({
 			showUserForm: !this.state.showUserForm
 		})
 	}
 
 	render(){
-		console.log("profile=>", this.props)
 		return(
 			!this.props.currentUser
 			? <Redirect to="/login" />

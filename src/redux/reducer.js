@@ -1,13 +1,6 @@
 import {combineReducers} from 'redux'
 import { PROGRESS, FETCHED_DIETS, FETCHED_CUISINES, FETCHED_COURSES, FETCHED_DISHES, USER_MATCHES, LOG_IN, FAVORITE } from './actions.js'
 
-const sampleUserObj = {
-	username: "cakehole",
-	preferences: {
-		diets: ["vegan"]
-	} 
-}
-
 function userReducer(oldState = null, action) {
 	switch (action.type){
 		case LOG_IN:

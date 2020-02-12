@@ -104,7 +104,6 @@ export function getResultsPage() {
 }
 
 export function begin(){
-	console.log("Let's hunger swype")
   return {type: PROGRESS, payload: "in-out"}
 }
 
@@ -113,7 +112,6 @@ export function proceedToFilters(){
 }
 
 function handleErrorAPI(apiResponse){
-	console.log("apiResponse", apiResponse)
 
 	iziToast.settings({
 	    timeout: 5000,
@@ -123,12 +121,6 @@ function handleErrorAPI(apiResponse){
 	    transitionOut: 'fadeOutUp',
 	    // overlay: true,
 	    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-	    onOpening: function(){
-	        console.log('callback abriu!');
-	    },
-	    onClosing: function(){
-	        console.log("callback fechou!");
-	    }
 	});
 	
 	switch (apiResponse.status) {
@@ -166,7 +158,6 @@ export function processLoginForm(user){
 			.then(res => res.json())
 			.then(apiResponse => {
 				if (!apiResponse.error) {
-					console.log(apiResponse.jwt)
 					localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 					iziToast.success({
@@ -200,7 +191,6 @@ export function processNewUserForm(user){
 			.then(res => res.json())
 			.then(apiResponse => {
 				if (!apiResponse.error) {
-					console.log(apiResponse.jwt)
 					localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {
@@ -224,7 +214,6 @@ export function processUserUpdateForm(user){
 			.then(res => res.json())
 			.then(apiResponse => {
 				if (!apiResponse.error) {
-					// console.log(apiResponse.jwt)
 					// localStorage.setItem("token", apiResponse.jwt)
 					dispatch(setCurrentUserState(JSON.parse(apiResponse.currentUser)))
 				} else {

@@ -272,6 +272,7 @@ body {
   }
 
   .continue-btn-label {
+    font-family: $roboto-cn, sans-serif;
     color: white;
     grid-column: 1 / -1;
   }
@@ -406,6 +407,9 @@ body {
 }
 
 #user-form-modal{
+  .header{
+    font-family: $roboto-cn, sans-serif;
+  }
 
   .user-form-avatar img {
     margin: auto;
@@ -456,6 +460,14 @@ body {
       align-items: center;
       justify-content: space-evenly;
     }
+  }
+
+  #about-page-link {
+    @extend %transparent-container;
+    width: 50%;
+    margin: auto;
+    grid-row: 8;
+    margin-top: 2em;
   }
 
 }
@@ -565,6 +577,10 @@ body {
         width: 100%;
       }
 
+    }
+
+    #about-page-link {
+      width: 80%;
     }
   }
 

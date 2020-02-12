@@ -6,12 +6,6 @@ import { toggleFavorite } from '../redux/actions.js'
 
 class Favorite extends React.Component {
 	render(){
-		console.log("Favorite=>", this.props)
-		// const { id: recipeID, photo: recipePhoto, title: recipeTitle, rating: recipeRating, servings: recipeServings, cook_time: cookTime } = this.props.recipe
-		
-		// ON CLICK
-
-		//
 		return(
 			<Item 
 				className="recipe-result"

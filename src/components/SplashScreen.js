@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 class SplashScreen extends React.Component {
 	
 	render(){
-		console.log(this.props)
 		return(
 			<div id="splash-container" >
 				<div id="splash-content">

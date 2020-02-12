@@ -1,30 +1,11 @@
 import React from 'react'
-// import UserPrompt from './UserPrompt'
-import { Button, Header } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { proceedToFilters } from '../redux/actions'
-// import store from '../redux/store'
 import { withRouter } from 'react-router-dom'
 
 
 class BeginPage extends React.Component {
-	state={
-		blinkState: true
-	}
-
-	toggleBlink = () => {
-		setTimeout(() => { 
-		  this.setState({
-		    blinkState: !this.state.blinkState
-		  })
-		  this.toggleBlink()
-		}, 1000);
-	}
-
-	// componentDidMount(){
-	// 	this.toggleBlink()
-	// }
-
 	render(){
 		return(
 			<div id="start-page">
@@ -48,7 +29,7 @@ class BeginPage extends React.Component {
 							icon='food'
 						/>
 					}
-					<a id="about-page-link" onClick={ () => this.props.history.push(`/about`) }>I'm new here, how's this work?</a>
+					<p id="about-page-link" href="#" onClick={ () => this.props.history.push(`/about`) }>I'm new here, how's this work?</p>
 				</div>
 			</div>
 		)
@@ -71,11 +52,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BeginPage))
-
-
-/*<UserPrompt 
-	prompt={`Welcome, ${this.props.currentUser.username}`} 
-	secondary="Start a Hunger Swype!"
-/>*/
-
 

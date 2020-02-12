@@ -1,6 +1,6 @@
 import React from 'react'
 import MenuBar from './MenuBar'
-import { Image, Header, Container, Divider, Icon } from 'semantic-ui-react'
+import { Image, Header, Divider, Icon } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { toggleFavorite } from '../redux/actions.js'
@@ -36,15 +36,9 @@ class Recipe extends React.Component {
 
 	recipeIsFavorite(){
 		return this.props.currentUser.favorite_recipes.map(rec => rec.id).includes(this.state.recipeDetails.id)
-
-		// return this.props.currentUser.favorite_recipes.includes(this.state.recipeDetails)
 	}
 
 	render(){
-		console.log("RECIPE =>", this.props)
-		// if (this.state.recipeDetails !== null){
-		// 	const { photo, title, rating, servings, cook_time: cookTime, ingredients, directions } = this.state.recipeDetails
-		// }
 		return(
 			!this.state.recipeDetails
 			? null
@@ -98,7 +92,7 @@ class Recipe extends React.Component {
 					    	{ this.state.recipeDetails.directions.map((step, index) => <li key={`step-${index}`}>{step}</li> ) }
 					    </ol>
 					<Divider />
-					<a href={ this.state.recipeDetails.source_url } target="_blank">View Original Recipe</a> 
+					<a rel="noopener noreferrer" href={ this.state.recipeDetails.source_url } target="_blank">View Original Recipe</a> 
 					</div>
 				</div>
 			</React.Fragment>
