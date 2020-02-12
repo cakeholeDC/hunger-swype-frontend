@@ -220,7 +220,7 @@ body {
 
 .about-container {
   grid-column: 2 / -2;
-  grid-row: 6;
+  grid-row: 9;
   
   .about-hunger-swype {
     @extend %transparent-container;
@@ -240,14 +240,16 @@ body {
   #about-quote{
     width: 90%;
     margin: auto;
+    font-size: .80em;
+    text-align: left !important;
+  }
+
+  #about-quote-source {
+    width: 80%;
+    margin: auto;
     margin-bottom: 1em;
     font-size: .80em;
     text-align: left !important;
-
-    #about-quote-source {
-      width: 80%;
-      margin: auto;
-    }
   }
 
 }
@@ -426,7 +428,7 @@ body {
 }
 
 #login-page {
-  grid-row: 6;
+  grid-row: 9;
   grid-column: 3 / -3;
 
   .login-content {
@@ -475,6 +477,24 @@ body {
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
+  body:before {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: url('/pasta-bkg.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+
+
   .iziToast-wrapper.iziToast-wrapper-topCenter {
     margin-top: 4em;
   }
