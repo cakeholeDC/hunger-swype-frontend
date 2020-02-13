@@ -115,7 +115,18 @@ class UserForm extends React.Component {
 					region: this.state.region,
 					avatar: this.state.avatar !== '' ? this.state.avatar : defaultAvatar,
 				}
-				this.props.processNewUserForm(userFormData)
+				// FOR DEMO
+				iziToast.info({
+						title: "Signup has been temporaily disabled for the event",
+					    message: "Please come back tomorrow to start using Hunger Swype",
+					    timeout: 10000,
+					    resetOnHover: true,
+					    transitionIn: 'fadeInDown',
+					    transitionOut: 'fadeOutUp',
+					    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+					})
+				// FOR DEMO
+				// this.props.processNewUserForm(userFormData)
 				setTimeout(this.props.closeModal, 500)
 			} else if (this.props.edit) {
 				userFormData = {
