@@ -620,7 +620,7 @@ body {
 
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
+@media only screen and (min-width: 401px) and (max-width: 990px) {
   #start-page  .content #about-page-link {
     grid-column: 3 / -3;
   }
@@ -678,7 +678,7 @@ body {
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 961px) {
+@media only screen and (min-width: 991px) {
   #start-page .content #about-page-link {
     grid-column: 4 / -4;
   }
