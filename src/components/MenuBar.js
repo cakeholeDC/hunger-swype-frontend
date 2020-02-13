@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Image } from 'semantic-ui-react'
+import { Segment, Image, Icon } from 'semantic-ui-react'
 import { returnHome } from '../redux/actions'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -13,12 +13,12 @@ class MenuBar extends React.Component {
 	}
 
 	render(){
-		
+		console.log(this.props)
 		return(
 			<Segment 
 				className="ui inverted"
 				id="menu-bar"
-			>
+			> { this.props.match.path === "/match/recipe/:id" && this.props.history.action === "PUSH" ? <Icon name="chevron left" size="large" className="recipe-back-btn" onClick={ () => this.props.history.goBack() }/> : null }
 				{ this.props.currentUser
 					? <Image
 							id="user-avatar"

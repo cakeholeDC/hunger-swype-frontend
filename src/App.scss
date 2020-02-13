@@ -136,6 +136,10 @@ body {
     grid-column: 2 / -2;
     font-size: 1.5em;
   }
+
+  .recipe-back-btn {
+    grid-column: 1;
+  }
 }
 
 .yellow-header {
