@@ -117,8 +117,8 @@ class UserForm extends React.Component {
 				}
 				// FOR DEMO
 				iziToast.info({
-						title: "Signup has been temporaily disabled for the event",
-					    message: "Please come back tomorrow to start using Hunger Swype",
+						title: "Signup has been disabled for the event",
+					    message: "Come back tomorrow to start using Hunger Swype",
 					    timeout: 10000,
 					    resetOnHover: true,
 					    transitionIn: 'fadeInDown',
