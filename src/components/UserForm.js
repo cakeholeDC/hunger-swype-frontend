@@ -116,17 +116,17 @@ class UserForm extends React.Component {
 					avatar: this.state.avatar !== '' ? this.state.avatar : defaultAvatar,
 				}
 				// FOR DEMO
-				iziToast.info({
-						title: "Signup has been disabled for the event",
-					    message: "Come back tomorrow to start using Hunger Swype",
-					    timeout: 10000,
-					    resetOnHover: true,
-					    transitionIn: 'fadeInDown',
-					    transitionOut: 'fadeOutUp',
-					    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-					})
+				// iziToast.info({
+				// 		title: "Signup has been disabled for the event",
+				// 	    message: "Come back tomorrow to start using Hunger Swype",
+				// 	    timeout: 10000,
+				// 	    resetOnHover: true,
+				// 	    transitionIn: 'fadeInDown',
+				// 	    transitionOut: 'fadeOutUp',
+				// 	    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+				// 	})
 				// FOR DEMO
-				// this.props.processNewUserForm(userFormData)
+				this.props.processNewUserForm(userFormData)
 				setTimeout(this.props.closeModal, 500)
 			} else if (this.props.edit) {
 				userFormData = {
