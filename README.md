@@ -1,68 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hunger Swype
 
-## Available Scripts
+Studies show that people who cook at home consume, on average, fewer calories than those who eat or order out. But, we know that when it comes to cooking the problem that most of us face isn't the cooking itself, but rather what to cook.
 
-In the project directory, you can run:
+Hunger Swype is here to help! Start out by entering your dietary restrictions, then let us know what you're looking for and Hunger Swype will present you with photos of food. Your only job is to decide whether that dish looks appetizing or not and Hunger Swype’s flavour algorithm will match you with suggested recipes.
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
+
+Before running Hunger Swype locally, you will need to clone down the back-end repo [Hunger Swype API](https://github.com/cakeholeDC/hunger-swype-backend)
+
+### Install Dependencies
+Before starting the development server, run `npm install` to ensure all dependencies are installed and up to date.
+
+### Start Local App
+To run Hunger Swype in development mode, run the following command in the project directory:
+### `npm start` or `yarn start`
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser. (if running the Rails API locally, this will default to http://localhost:3001)
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+## Credits
+Hunger Swype was created by [Kyle P Cole](https://www.kylepcole.com/) ©2020 All rights reserved 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Licesne 
+GNU General Public License v3.0 (GNU GPLv3)
 
-### `yarn build`
+## Notes
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
