@@ -37,7 +37,7 @@ class MenuBar extends React.Component {
 					id="menu-bar-text"
 					onClick={ () => this.props.match.url === '/' ? this.props.returnHome() : this.props.history.push('/') }
 				>
-					Hunger Swype™
+					Hunger Swype
 				</p>
 
 			</Segment>
