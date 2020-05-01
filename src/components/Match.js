@@ -23,7 +23,7 @@ class Match extends React.Component {
 		//check if even have dishes
 		if (this.props.dishes.length === 0){
 			return checked ? <SplashScreen error message="out-of-dishes"/> : <SplashScreen running/>
-			checked = true
+			// checked = true
 		} else if (this.props.dishes.length > 0) {
 		// then check if there are more options to show
 
