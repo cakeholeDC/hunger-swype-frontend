@@ -1,4 +1,3 @@
-// import Swal from 'sweetalert2' 
 import iziToast from 'izitoast'
 
 // const START_SWYPE = "START_SWYPE"

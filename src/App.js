@@ -1,6 +1,6 @@
 import React from 'react';
 // import logo from './logo.svg';
-import './App.scss';
+// import './App.scss';
 import MainContainer from './containers/MainContainer.js'
 import Match from './components/Match.js'
 import Recipe from './components/Recipe.js'
